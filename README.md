@@ -1,2 +1,2 @@
 # bomberman
-# Petit test trololol
+# On modifie ce qu'on a écrit
