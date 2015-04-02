@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 
 public class Panneau extends JPanel {
 	//Position initiale
-	private int posX = 50;
-	private int posY = 50;
+	public int posX = 50;
+	public int posY = 50;
 
   public void paintComponent(Graphics g){
 	  super.paintComponent(g);
