@@ -1,11 +1,7 @@
-
 public class Bomberman {
-
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		//Ouvre la fenêtre du jeu 
+		Fenetre fenetre = new Fenetre();
 
 	}
 
