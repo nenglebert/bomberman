@@ -32,11 +32,18 @@ public class Fenetre extends JFrame implements KeyListener{
 	/////////////////
 	//Lorsqu'une touche est appuyée
 	public void keyPressed(KeyEvent e){
-		 int x = pan.getPosX();
-		 pan.setPosX(x+10);
-		 pan.repaint();
-		 if(e.getKeyCode()==KeyEvent.VK_SPACE)
-			 System.out.println("ESPAAAAACE ! <3");
+		int x = pan.getPosX();
+		int y = pan.getPosY();
+		 
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT)
+			 pan.setPosX(x+10);
+		 if(e.getKeyCode()==KeyEvent.VK_LEFT)
+			 pan.setPosX(x-10);
+		 
+		 if(e.getKeyCode()==KeyEvent.VK_UP)
+			 pan.setPosY(y-10);
+		 if(e.getKeyCode()==KeyEvent.VK_DOWN)
+			 pan.setPosY(y+10);
 	}
 	
 	//Touche lachée
