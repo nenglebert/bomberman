@@ -3,12 +3,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 
 public class Fenetre extends JFrame implements KeyListener{
 	
+	/**
+	 * 
+	 */
 	public Panneau pan;
-	JTextField KeyCodeT;
 
 
 	//Constructeur de la simple fenÃªtre
@@ -16,7 +17,7 @@ public class Fenetre extends JFrame implements KeyListener{
 		this.addKeyListener(this);
 		pan = new Panneau();
 		
-		//Propre à JFrame
+		//Propre ï¿½ JFrame
 		this.setTitle("Bomberman !");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -34,13 +35,10 @@ public class Fenetre extends JFrame implements KeyListener{
 	}
 	
 	/////////////////
-	//Lorsqu'une touche est appuyée
+	//Lorsqu'une touche est appuyï¿½e
 	public void keyPressed(KeyEvent e){
 		int x = pan.getPosX();
 		int y = pan.getPosY();
-		 System.out.println("x="+x);
-		 System.out.println("y="+y);
-		 int size = 32;
 		if(e.getKeyCode()==KeyEvent.VK_RIGHT && x < 14)
 			 pan.setPosX(x+1);
 		 if(e.getKeyCode()==KeyEvent.VK_LEFT && x > 0)
@@ -54,7 +52,7 @@ public class Fenetre extends JFrame implements KeyListener{
 		
 	}
 	
-	//Touche lachée
+	//Touche lachï¿½e
 	public void keyReleased(KeyEvent e){}
 	
 	//Par ex : CTRL + touch
