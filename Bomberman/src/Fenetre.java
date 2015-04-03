@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -6,23 +7,26 @@ import javax.swing.JTextField;
 
 public class Fenetre extends JFrame implements KeyListener{
 	
-	public Panneau pan = new Panneau();
-	JTextField KeyCodeT = new JTextField("Key Code:");
+	public Panneau pan;
+	JTextField KeyCodeT;
 
 
 	//Constructeur de la simple fenÃªtre
 	public Fenetre(){		
 		this.addKeyListener(this);
+		pan = new Panneau();
 		
-		this.setTitle("Animation");
-		this.setSize(600, 600);
+		//Propre à JFrame
+		this.setTitle("Bomberman !");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		
+		//Conteneur utile
+		pan.setPreferredSize(new Dimension(480,480));
 		
-		
-		//"Charge" le contenu JPanel sur la page
+		//Ajoute le contenu JPanel
 		this.setContentPane(pan);
+		this.pack();
 		this.setVisible(true);
 		
 		//Recharge la page
@@ -34,34 +38,30 @@ public class Fenetre extends JFrame implements KeyListener{
 	public void keyPressed(KeyEvent e){
 		int x = pan.getPosX();
 		int y = pan.getPosY();
+		 System.out.println("x="+x);
+		 System.out.println("y="+y);
+		 int size = 32;
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT && x < 14)
+			 pan.setPosX(x+1);
+		 if(e.getKeyCode()==KeyEvent.VK_LEFT && x > 0)
+			 pan.setPosX(x-1);
 		 
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT)
-			 pan.setPosX(x+10);
-		 if(e.getKeyCode()==KeyEvent.VK_LEFT)
-			 pan.setPosX(x-10);
+		 if(e.getKeyCode()==KeyEvent.VK_UP && y > 0)
+			 pan.setPosY(y-1);
+		 if(e.getKeyCode()==KeyEvent.VK_DOWN && y < 14)
+			 pan.setPosY(y+1);
 		 
-		 if(e.getKeyCode()==KeyEvent.VK_UP)
-			 pan.setPosY(y-10);
-		 if(e.getKeyCode()==KeyEvent.VK_DOWN)
-			 pan.setPosY(y+10);
+		
 	}
 	
 	//Touche lachée
-	public void keyReleased(KeyEvent e){
-	}
+	public void keyReleased(KeyEvent e){}
 	
-	public void keyTyped(KeyEvent e){
-	
-	
-}
+	//Par ex : CTRL + touch
+	public void keyTyped(KeyEvent e){}
 	
 	
-	
-	
-	
-	
-	
-	
+	//Actualise l'affichage
 	private void go(){  
 		while(true){
 			//On redessine notre Panneau

@@ -9,16 +9,18 @@ import javax.swing.JPanel;
 
 public class Panneau extends JPanel {
 	//Position initiale
-	public int posX = 50;
-	public int posY = 50;
+	public int posX = 0;
+	public int posY = 0;
 
   public void paintComponent(Graphics g){
 	  super.paintComponent(g);
-	  this.setBackground(Color.white);
+	  this.setBackground(Color.yellow);
+
+	 
 	
 	  try{
 		  Image img = ImageIO.read(new File("bomberman.png"));
-		  g.drawImage(img, posX, posY, this);
+		  g.drawImage(img, posX*32, posY*32, this);
 	  }catch (IOException e){
 		  e.printStackTrace();
 	  }
