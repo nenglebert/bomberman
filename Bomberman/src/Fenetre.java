@@ -6,9 +6,7 @@ import javax.swing.JFrame;
 
 public class Fenetre extends JFrame implements KeyListener{
 	
-	/**
-	 * 
-	 */
+	//coucou Nico
 	public Panneau pan;
 
 
