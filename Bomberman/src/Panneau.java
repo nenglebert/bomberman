@@ -14,13 +14,13 @@ public class Panneau extends JPanel {
 
   public void paintComponent(Graphics g){
 	  super.paintComponent(g);
-	  this.setBackground(Color.yellow);
+	  this.setBackground(Color.white);
 
 	 
 	
 	  try{
-		  Image img = ImageIO.read(new File("bomberman.png"));
-		  g.drawImage(img, posX*32, posY*32, this);
+		  Image img = ImageIO.read(new File("image1.gif"));
+		  g.drawImage(img, posX*64, posY*64, this);
 	  }catch (IOException e){
 		  e.printStackTrace();
 	  }

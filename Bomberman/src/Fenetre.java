@@ -23,7 +23,7 @@ public class Fenetre extends JFrame implements KeyListener{
 		this.setLocationRelativeTo(null);
 		
 		//Conteneur utile
-		pan.setPreferredSize(new Dimension(480,480));
+		pan.setPreferredSize(new Dimension(960,960));
 		
 		//Ajoute le contenu JPanel
 		this.setContentPane(pan);
