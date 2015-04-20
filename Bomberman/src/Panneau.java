@@ -11,6 +11,7 @@ public class Panneau extends JPanel {
 	//Position initiale
 	public int posX = 0;
 	public int posY = 0;
+	public Bedrock blokk = new Bedrock(5,6);
 
   public void paintComponent(Graphics g){
 	  super.paintComponent(g);
@@ -24,7 +25,18 @@ public class Panneau extends JPanel {
 	  }catch (IOException e){
 		  e.printStackTrace();
 	  }
+	  try{
+		  Image img = ImageIO.read(new File(blokk.skin));
+		  //Image img = ImageIO.read(new File("image1.gif"));
+		  g.drawImage(img, blokk.posx*64, blokk.posy*64, this);
+	  }catch (IOException e){
+		  e.printStackTrace();
+	  }
   }  
+  
+  
+  
+  
   
   // METHODES GET
   public int getPosX() {
