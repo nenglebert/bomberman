@@ -1,10 +1,14 @@
 
-abstract class Element implements Explode {
+abstract class Element {
 	protected String skin;
-	protected Explode explose;
+	protected Explose explose;
 	protected int posx;
 	protected int posy;
 	protected int life;
+	
+	public void loseLife(){
+		
+	}
 	
 	public String getSkin(){
 		return skin;

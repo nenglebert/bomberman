@@ -5,7 +5,12 @@ public class Player extends Element implements IPlayer{
 	private int speed;
 	private int bombBag;
 	
-	public Player(String name){
+	public Player(String name, int posx, int posy){
+		//this.skin = ;
+		this.explose = new PExplose();
+		this.posx = posx;
+		this.posy = posy;
+		this.life = 5;
 		this.name = name;
 		this.speed = 1;
 		this.bombBag = 1;
@@ -22,4 +27,5 @@ public class Player extends Element implements IPlayer{
 	public void setBombBag(int bombBag) {
 		this.bombBag = bombBag;
 	}
+
 }
