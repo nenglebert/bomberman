@@ -34,7 +34,8 @@ public class Panneau extends JPanel {
 			  if(board.table[i][j] != null){
 				  try{
 					  Image img = ImageIO.read(new File(board.table[i][j].skin));
-					  g.drawImage(img, board.table[i][j].getPosx()*64, board.table[i][j].getPosy()*64, this);
+					  g.drawImage(img, board.table[i][j].getPosx()*64,
+							     board.table[i][j].getPosy()*64, this);
 				  }catch (IOException e){
 					  e.printStackTrace();
 				  }
