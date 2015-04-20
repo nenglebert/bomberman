@@ -54,7 +54,11 @@ public class Fenetre extends JFrame implements KeyListener{
 		
 		if(e.getKeyCode()==KeyEvent.VK_DOWN && y < 14)
 			if(check(x,y+1))
-				pan.setPosY(y+1);	 
+				pan.setPosY(y+1);	
+
+		//BOMBAAA
+		if(e.getKeyCode()==KeyEvent.VK_SPACE)
+				pan.board.table[x][y] = new Bomb(x,y);	
 		
 	}
 	
