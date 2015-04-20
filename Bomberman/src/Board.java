@@ -8,6 +8,13 @@ public class Board {
 	
 	// Constructeur par défaut
 	public Board(){
+		for (int i=1; i < table.length; i+=2){
+			for (int j=1; j < table.length; j+=2){
+				table[i][j] = new Bedrock(i,j);
+			}
+			
+		}
+		
 		
 	}
 	
