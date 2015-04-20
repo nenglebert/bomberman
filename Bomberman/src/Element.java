@@ -8,8 +8,9 @@ abstract class Element {
 	protected int posy;
 	protected int life;
 	
-	// Méthode à redéfinir dans les classe
+	// Méthode à redéfinir dans les classes 
 	public void applyExplose(){
+		explose.explose();
 	}
 	
 	// Tous les gettteurs
