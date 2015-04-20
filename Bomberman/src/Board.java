@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class Board {
 	
-	 ArrayList table = new ArrayList();
-	 ArrayList listPlayer = new ArrayList();
+	 Element[][] table = new Element[15][15];
+	 Player[] listPlayer = new Player[5];
 	
 	// Constructeur par défaut
 	public Board(){
@@ -16,12 +16,12 @@ public class Board {
 	
 	
 	// Accesseurs
-	public ArrayList getTable(){
+	public Element[][] getTable(){
 		return table;
 	}
 	
 	// Mutateurs
-	public void setTable(ArrayList pTable){
+	public void setTable(Element[][] pTable){
 		this.table = pTable;
 	}
 	
