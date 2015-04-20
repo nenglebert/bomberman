@@ -16,6 +16,12 @@ public class Player extends Element implements IPlayer{
 		this.bombBag = 1;
 	}
 	
+	// Méthode venant de Element 
+	public void applyExplose(){
+		explose.explose();
+	}
+	
+	// Méthodes de l'interface à redéfinir
 	public void command() {
 		
 	}
