@@ -83,7 +83,7 @@ public class Fenetre extends JFrame implements KeyListener{
 			//On redessine notre Panneau
 		      pan.repaint();
 		      try {
-		        Thread.sleep(3);
+		        Thread.sleep(5);
 		      } catch (InterruptedException e) {
 		        e.printStackTrace();
 		      }
