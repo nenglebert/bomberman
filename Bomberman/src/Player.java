@@ -8,7 +8,7 @@ public class Player extends Element implements IPlayer{
 	
 	// Constructeur de Player
 	public Player(String name, int posx, int posy){
-		//this.skin = ;
+		this.skin = "image1.jpeg";
 		this.explose = new PExplose();
 		this.posx = posx;
 		this.posy = posy;

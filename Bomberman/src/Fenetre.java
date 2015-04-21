@@ -58,8 +58,7 @@ public class Fenetre extends JFrame implements KeyListener{
 
 		//BOMBAAA
 		if(e.getKeyCode()==KeyEvent.VK_SPACE)
-				pan.board.table[x][y] = new Bomb(x,y);	
-		
+				pan.board.table[x][y] = new Bomb(x,y,pan);	// Rajout de pan en argument
 	}
 	
 	//Check si pas de collision

@@ -8,9 +8,9 @@ abstract class Element {
 	protected int posy;
 	protected int life;
 	
-	// Méthode à redéfinir dans les classes 
-	public void applyExplose(){
-		explose.explose();
+	// Méthode qui permet d'appeler la méthode explose des attributs explose des sous-classes
+	public void applyExplose(Panneau pan, int posx, int posy){
+		explose.explose(pan, posx, posy);
 	}
 	
 	// Tous les gettteurs
