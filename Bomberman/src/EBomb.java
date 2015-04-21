@@ -12,16 +12,16 @@ public class EBomb implements Explose {
 		
 		// Et la on fait apparaitre les flammes après conditions
 		pan.board.table[posx][posy] = fireCenter;
-		if (posx+1 <= 14){
+		if (posx+1 <= 14 && !(pan.board.table[posx+1][posy] instanceof Bedrock)){
 			pan.board.table[posx+1][posy] = fireH1;
 		}
-		if (0 <= posx-1){
+		if (0 <= posx-1 && !(pan.board.table[posx-1][posy] instanceof Bedrock)){
 			pan.board.table[posx-1][posy] = fireH2;
 		}
-		if (posy+1 <= 14){
+		if (posy+1 <= 14 && !(pan.board.table[posx][posy+1] instanceof Bedrock)){
 			pan.board.table[posx][posy+1] = fireV1;
 		}
-		if (0 <= posy-1){
+		if (0 <= posy-1 && !(pan.board.table[posx][posy-1] instanceof Bedrock)){
 			pan.board.table[posx][posy-1] = fireV2;
 		}
 	}
