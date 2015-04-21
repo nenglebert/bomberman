@@ -18,15 +18,15 @@ public class Fenetre extends JFrame implements KeyListener{
 		//Propre � JFrame
 		this.setTitle("Bomberman !");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
 		
 		//Conteneur utile
-		pan.setPreferredSize(new Dimension(960,960));
+		pan.setPreferredSize(new Dimension(600,600));
 		
 		//Ajoute le contenu JPanel
 		this.setContentPane(pan);
 		this.pack();
 		this.setVisible(true);
+		this.setLocationRelativeTo(null);
 		
 		//Recharge la page
 		go();

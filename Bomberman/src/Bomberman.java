@@ -5,5 +5,4 @@ public class Bomberman {
 		Fenetre key = new  Fenetre();
 
 	}
-
 }

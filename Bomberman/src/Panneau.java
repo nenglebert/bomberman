@@ -20,8 +20,8 @@ public class Panneau extends JPanel {
 
 	  // Joueur
 	  try{
-		  Image img = ImageIO.read(new File("image1.gif"));
-		  g.drawImage(img, posX*64, posY*64, this);
+		  Image img = ImageIO.read(new File("image1.jpeg"));
+		  g.drawImage(img, posX*40, posY*40, this);
 	  }catch (IOException e){
 		  e.printStackTrace();
 	  }
@@ -34,8 +34,8 @@ public class Panneau extends JPanel {
 			  if(board.table[i][j] != null){
 				  try{
 					  Image img = ImageIO.read(new File(board.table[i][j].skin));
-					  g.drawImage(img, board.table[i][j].getPosx()*64,
-							     board.table[i][j].getPosy()*64, this);
+					  g.drawImage(img, board.table[i][j].getPosx()*40,
+							     board.table[i][j].getPosy()*40, this);
 				  }catch (IOException e){
 					  e.printStackTrace();
 				  }
