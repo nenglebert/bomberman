@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 public class Fenetre extends JFrame implements KeyListener{
 	
 	//coucou Nico // Coucou baby
-	public Panneau pan;
+	public static Panneau pan;
 
 
 	//Constructeur de la simple fenêtre
@@ -29,7 +29,7 @@ public class Fenetre extends JFrame implements KeyListener{
 		this.setLocationRelativeTo(null);
 		
 		//Recharge la page
-		go();
+		update();
 	}
 	
 	/////////////////
@@ -58,12 +58,13 @@ public class Fenetre extends JFrame implements KeyListener{
 
 		//BOMBAAA
 		if(e.getKeyCode()==KeyEvent.VK_SPACE)
-				pan.board.table[x][y] = new Bomb(x,y,pan);	// Rajout de pan en argument
+				pan.setElemInBoard(x,y,new Bomb(x,y,pan));	// Rajout de pan en argument
+		update();
 	}
 	
 	//Check si pas de collision
 	public boolean check(int pX, int pY){
-		if (pan.board.table[pX][pY] == null)
+		if (pan.getElemInBoard(pX,pY) == null)
 			return true;
 		else
 			return false;
@@ -78,17 +79,9 @@ public class Fenetre extends JFrame implements KeyListener{
 	
 	
 	//Actualise l'affichage
-	private void go(){  
-		while(true){
-			//On redessine notre Panneau
-		      pan.repaint();
-		      try {
-		        Thread.sleep(5);
-		      } catch (InterruptedException e) {
-		        e.printStackTrace();
-		      }
-		}
-	}
+	public static void update(){  
+	      pan.repaint();
+	      }
 }
 
   

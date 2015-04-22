@@ -12,7 +12,7 @@ public class Panneau extends JPanel {
 	public int posX = 0;
 	public int posY = 0;
 	public Bedrock blokk = new Bedrock(5,6);
-	public Board board = new Board();
+	private Board board = new Board();
 
   public void paintComponent(Graphics g){
 	  super.paintComponent(g);
@@ -66,5 +66,12 @@ public class Panneau extends JPanel {
   }
   public void setPosY(int posY) {
     this.posY = posY;
-  }        
+  }       
+  public void setElemInBoard(int posx,int posy,Element a){
+	  board.table[posx][posy]=a;
+	  Fenetre.update();
+  }
+  public Element getElemInBoard(int posx,int posy){
+	  return board.table[posx][posy];
+  }
 }
