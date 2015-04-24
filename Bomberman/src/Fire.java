@@ -1,11 +1,12 @@
 
 public class Fire extends Element{
-	// Nos flammes
+	
+		// Nos flammes
 	public Fire(String skin, int posx, int posy){
-	this.skin = skin;
-	this.explose = new EBomb();
-	this.posx = posx;
-	this.posy = posy;
-	this.life = 1;
+		this.skin = skin;
+		this.explosion = new DeleteExplosion();
+		this.posx = posx;
+		this.posy = posy;
 	}
 }
+

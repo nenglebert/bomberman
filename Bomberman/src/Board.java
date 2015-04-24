@@ -1,61 +1,69 @@
 import java.util.ArrayList;
 
-
+	// Plateau de jeu mis sous matrice
 public class Board {
 	
-	 Element[][] table = new Element[15][15];
-	 Player[] listPlayer = new Player[5];
+	private Element[][] elementTable = new Element[15][15];
+	private ArrayList<Player> playerList;
+	private int playerNumber;
+	private GamePanel panel;
+
 	
-	// Constructeur par défaut
-	public Board(){
-		//Placement des blocs incassables
-		for (int i=1; i < table.length; i+=2){
-			for (int j=1; j < table.length; j+=2){
-				table[i][j] = new Bedrock(i,j);
+		// Constructeur par défaut
+	public Board(ArrayList<Player> playerList, GamePanel panel){
+		
+		this.panel = panel;
+			// On récupère les personages 
+		this.playerList = playerList;
+		this.playerNumber = playerList.size();
+		
+			//Placement des blocs incassables
+		for (int x=1; x < elementTable.length; x+=2){
+			for (int y=1; y < elementTable.length; y+=2){
+				elementTable[x][y] = new Bedrock(x,y);
 			}
 		}
-		//Placement des blocs cassables
-		for (int i=0; i < table.length; i++){
-			for (int j=0; j < table.length; j++){
-				
-				//On augmente la probabilité si on est dans une ligne
-				//ou des bedrocks sont présents
+			//Placement des blocs cassables
+		for (int x=0; x < elementTable.length; x++){
+			for (int y=0; y < elementTable.length; y++){
+					
+					//On augmente la probabilité si on est dans une ligne
+					//ou des bedrocks sont présents
 				double proba;
-				if (i%2 != 1)
+				if (x%2 != 1)
 					proba = 0.4;
 				else
 					proba = 0.5;
-				
-				if(table[i][j] == null && Math.random() >= proba)
-				table[i][j] = new Block(i,j);
+					
+				if(elementTable[x][y] == null && Math.random() >= proba)
+					elementTable[x][y] = new Block(x,y);
 			}
 		}
-		
-		//Donne la place aux joueurs
-		table[0][0]  = table[0][1]   = table[1][0]   = table[0][13]  = 
-		table[0][14] = table[1][14]  = table[13][0]  = table[14][0]  = 
-		table[14][1] = table[14][13] = table[14][14] = table[13][14] =
+			
+			//Place les cases libres
+		elementTable[0][0]  = elementTable[0][1]   = elementTable[1][0]   = elementTable[0][13]  = 
+		elementTable[0][14] = elementTable[1][14]  = elementTable[13][0]  = elementTable[14][0]  = 
+		elementTable[14][1] = elementTable[14][13] = elementTable[14][14] = elementTable[13][14] =
 		null;
 		
+			//Place les joueurs
+		int[] posxList = {0,14,14,0};
+		int[] posyList = {0,14,0,14};
+		
+		for (int i=0; i< playerNumber; i++){
+			elementTable[posxList[i]][posyList[i]] = playerList.get(i);
+		}
 	}
 	
-	// Faire constructeur adapté au nombre
-	// de joueurs
-	
-	
-	// Accesseurs
 	public Element[][] getTable(){
-		return table;
+		return elementTable;
 	}
 	
-	// Mutateurs
-	public void setTable(Element[][] pTable){
-		this.table = pTable;
+	public void setElemInBoard(int posx,int posy,Element a){
+		elementTable[posx][posy]=a;
+		panel.update(posx,posy,a);
 	}
-	
-	
-	// Raffraichissement 
-	public void go(){
-		System.out.println("C'est parti les lardons !");
+	public Element getElemInBoard(int posx,int posy){
+		return elementTable[posx][posy];
 	}
 }

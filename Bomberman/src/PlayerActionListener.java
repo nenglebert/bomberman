@@ -5,18 +5,18 @@ import java.awt.event.ActionListener;
 
 public class PlayerActionListener implements ActionListener {
 	
-	GUI frame;
+	GamePanel panel;
 	JPanel subPanel;
 	int playerNumber;
 	
-	public PlayerActionListener(GUI frame, JPanel subPanel, int playerNumber){
-		this.frame = frame;
+	public PlayerActionListener(GamePanel panel, JPanel subPanel, int playerNumber){
+		this.panel = panel;
 		this.subPanel = subPanel;
 		this.playerNumber = playerNumber;
 	}
 
 	public void actionPerformed(ActionEvent arg0){
-		frame.takePlayersName(subPanel, playerNumber);
+		panel.takePlayersName(subPanel, playerNumber);
 	}
 	
 }

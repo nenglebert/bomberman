@@ -6,16 +6,16 @@ import javax.swing.*;
 
 public class StartActionListener implements ActionListener {
 	
-	GUI frame;
+	GamePanel panel;
 	JPanel subPanel;
 	
-	public StartActionListener(GUI frame, JPanel subPanel) {
-		this.frame = frame;
+	public StartActionListener(GamePanel panel, JPanel subPanel) {
+		this.panel = panel;
 		this.subPanel = subPanel;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		frame.playerChooseWindow(subPanel);
+		panel.playerChooseWindow(subPanel);
 	}
 		
 }

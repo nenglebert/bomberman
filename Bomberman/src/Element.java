@@ -1,19 +1,20 @@
 
-abstract class Element {
+	// Classe abstraite dont hérite tous les éléments du plateau
+public class Element {
 	
-	// Initialisation des attributs communs à tous les éléments
+		// Initialisation des attributs communs à tous les éléments
 	protected String skin;
-	protected Explose explose;
+	protected IExplosion explosion;
 	protected int posx;
 	protected int posy;
-	protected int life;
-	
-	// Méthode qui permet d'appeler la méthode explose des attributs explose des sous-classes
-	public void applyExplose(Panneau pan, int posx, int posy){
-		explose.explose(pan, posx, posy);
+		
+		// Méthode qui permet d'appeler la méthode explose 
+		// des attributs explosion des sous-classes
+	public void applyExplose(int posx, int posy, Board board){
+		explosion.explose(posx, posy, board);
 	}
-	
-	// Tous les gettteurs
+		
+		// Tous les gettteurs
 	public String getSkin(){
 		return skin;
 	}
@@ -21,29 +22,22 @@ abstract class Element {
 	public int getPosx(){
 		return posx;
 	}
-	
+		
 	public int getPosy(){
 		return posy;
 	}
-	
-	public int getLife(){
-		return life;
-	}
-	
-	// Tous les setteurs
+		
+		// Tous les setteurs
 	public void setSkin(String skin){
 		this.skin = skin;
 	}
-	
+		
 	public void setPosx(int posx){
 		this.posx = posx;
 	}
-	
+		
 	public void setPosy(int posy){
 		this.posy = posy;
 	}
-	
-	public void setLife(int life){
-		this.life = life;
-	}
+		
 }
