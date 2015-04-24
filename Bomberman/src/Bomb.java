@@ -7,7 +7,7 @@ public class Bomb extends Element {
 	
 	Timer timer = new Timer();
 	
-	public Bomb(int posx, int posy, Board board){
+	public Bomb(final int posx, final int posy, final Board board){
 		this.skin = "bomb.png";
 		this.explosion = new BombExplosion(); 	// L'explosion selon Bomb
 		this.posx = posx;
