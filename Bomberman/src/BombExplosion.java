@@ -16,21 +16,28 @@ public class BombExplosion implements IExplosion{
 		
 				
 				if ((posx+1) <= 14 && !(board.getElemInBoard(posx+1,posy) instanceof Bedrock)){
-					Element currentElement = board.getElemInBoard(posx+1,posy);
+					Element CurrentElem = board.getElemInBoard(posx+1,posy);
 					board.setElemInBoard(posx+1,posy,new Fire("explosionHor.jpg",posx+1,posy,board));
-					
+					if (CurrentElem != null && !(CurrentElem instanceof Fire))
+					CurrentElem.applyExplose(board);
 				}
 				if (0 <= (posx-1) && !(board.getElemInBoard(posx-1,posy) instanceof Bedrock)){
+					Element CurrentElem = board.getElemInBoard(posx-1,posy);
 					board.setElemInBoard(posx-1,posy,new Fire("explosionHor.jpg",posx-1,posy,board));
-
+					if (CurrentElem != null && !(CurrentElem instanceof Fire))
+					CurrentElem.applyExplose(board);
 				}
 				if ((posy+1) <= 14 && !(board.getElemInBoard(posx,posy+1) instanceof Bedrock)){
+					Element CurrentElem = board.getElemInBoard(posx,posy+1);
 					board.setElemInBoard(posx,posy+1,new Fire("explosionVert.jpg",posx,posy+1,board));
-
+					if (CurrentElem != null && !(CurrentElem instanceof Fire))
+					CurrentElem.applyExplose(board);
 				}
 				if (0 <= (posy-1) && !(board.getElemInBoard(posx,posy-1) instanceof Bedrock)){
+					Element CurrentElem = board.getElemInBoard(posx,posy-1);
 					board.setElemInBoard(posx,posy-1,new Fire("explosionVert.jpg",posx,posy-1,board));
-	
+					if (CurrentElem != null && !(CurrentElem instanceof Fire))
+					CurrentElem.applyExplose(board);
 				}
 				
 			}
