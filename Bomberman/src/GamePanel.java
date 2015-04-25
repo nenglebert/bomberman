@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 public class GamePanel extends JPanel implements KeyListener{
 	
-		// Création des différents objets
+		// CrÃ©ation des diffÃ©rents objets
 	private Board board;
 	private Element[][] elementTable;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
@@ -46,7 +46,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private int xelem;
 	private int yelem;
 	private Element elem;
-	private int begin = 0;	// ces deux suivants servent à paint
+	private int begin = 0;	// ces deux suivants servent Ã  paint
 	
 	public GamePanel(){
 		this.initialize();
@@ -67,16 +67,16 @@ public class GamePanel extends JPanel implements KeyListener{
 		player4Button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		validateButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
-		//On prépare le premier affichage
+		//On prÃ©pare le premier affichage
 		subPanel.add(introLabel);
 		subPanel.add(startButton);
 		subPanel.add(tutoButton);
-		subPanel.setOpaque(false);		//C'est pour ne pas avoir de bouton dégueu
-		this.add(subPanel);				//On met tout sur notre panel générale
+		subPanel.setOpaque(false);		//C'est pour ne pas avoir de bouton dÃ©gueu
+		this.add(subPanel);				//On met tout sur notre panel gÃ©nÃ©rale
 		
 		this.setPreferredSize(new Dimension(600, 600));
 		
-		//Définissions des boutons
+		//DÃ©finissions des boutons
 		startButton.addActionListener(new StartActionListener(this,subPanel));
 		player2Button.addActionListener(new PlayerActionListener(this,subPanel,2));
 		player3Button.addActionListener(new PlayerActionListener(this,subPanel,3));
@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	}
 	
 /////////////////
-//Lorsqu'une touche est appuyée
+//Lorsqu'une touche est appuyÃ©e
 //Le check permet de ne rien faire si un block est la ou on
 //veut aller
 	public void keyPressed(KeyEvent e){
@@ -173,14 +173,14 @@ public class GamePanel extends JPanel implements KeyListener{
 }
 
 
-//Touche lach�e
+//Touche lachï¿½e
 public void keyReleased(KeyEvent e){}
 
 //Par ex : CTRL + touch
 public void keyTyped(KeyEvent e){}
 	
 	public void playerChooseWindow(JPanel subPanel){
-		//Fait apparaître la page 2 (choix du nombre de joueur)
+		//Fait apparaÃ®tre la page 2 (choix du nombre de joueur)
 		subPanel.removeAll();
 		subPanel.setLayout(new GridLayout(4,1));
 		
@@ -193,12 +193,12 @@ public void keyTyped(KeyEvent e){}
 	}
 	
 	public void takePlayersName(JPanel subPanel, int playerNumber){
-		//Récupère le nom des joueurs
+		//RÃ©cupÃ¨re le nom des joueurs
 		subPanel.removeAll();
 		subPanel.setLayout(new GridLayout(2*playerNumber + 2,1));
 		
 		subPanel.add(nameLabel);
-		// Création des espaces d'écriture du nom
+		// CrÃ©ation des espaces d'Ã©criture du nom
 			for (int i=1; i<=playerNumber; i++){
 				nameFields.add(new JTextField("Name player " + i));
 				final JTextField nameField = nameFields.get(i-1);	//Pour vider le champ
@@ -275,6 +275,9 @@ public void paintComponent(Graphics g){
 		}
 		if (begin==1){
 			//Plateau de jeu
+			ImageIcon img = new ImageIcon("");
+			super.paintComponent(g); 
+			img.paintIcon(this, g, 0, 0);
 			 this.setBackground(Color.white);
 			 for(int x = 0; x < elementTable.length; x++){
 				 for(int y = 0; y < elementTable.length; y++){
@@ -285,6 +288,10 @@ public void paintComponent(Graphics g){
 									elementTable[x][y].getPosy()*40, this);
 						 }catch (IOException e){
 							 e.printStackTrace();
+							 
+						 }
+						 catch (NullPointerException e){
+							 System.out.println("osef");
 						 }
 					 }
 				 }
