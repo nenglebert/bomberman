@@ -16,7 +16,7 @@ public class Bomb extends Element {
 		// La bombe explosera dans une seconde grâce au timer
 		timer.schedule(new TimerTask() {
 			public void run() {
-				applyExplose(posx,posy,board);	
+				applyExplose(board);	
 						 		// Méthode de Element qui 
 			}					// Appelle les vrais méthode Explose
 		}, 1000);
