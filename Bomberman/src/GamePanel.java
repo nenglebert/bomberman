@@ -125,7 +125,11 @@ public class GamePanel extends JPanel implements KeyListener{
 		}
 //BOMBAAA
 	if(e.getKeyCode()==KeyEvent.VK_SPACE)
-		board.setElemInBoard(x1,y1,new Bomb(x1,y1,board));	// Rajout de pan en argument
+		if (playerList[0].getBombBag() > 0){
+			playerList[0].setBombBag(playerList[0].getBombBag()-1);
+		board.setElemInBoard(x1,y1,new Bomb(x1,y1,board));	
+		}
+		// Rajout de pan en argument
 		// Joueur 1
 		int x2 = playerList[1].getPosx();
 		int y2 = playerList[1].getPosy();
@@ -161,7 +165,10 @@ public class GamePanel extends JPanel implements KeyListener{
 			}
 	//BOMBAAA
 		if(e.getKeyCode()==KeyEvent.VK_A)
-			board.setElemInBoard(x2,y2,new Bomb(x2,y2, board));	// Rajout de pan en argument
+			if (playerList[1].getBombBag() > 0){
+				playerList[1].setBombBag(playerList[1].getBombBag()-1);
+			board.setElemInBoard(x2,y2,new Bomb(x2,y2, board));	}
+		// Rajout de pan en argument
 		}
 
 //Check si pas de collision
