@@ -130,12 +130,13 @@ public class GamePanel extends JPanel implements KeyListener{
 		board.setElemInBoard(x1,y1,new Bomb(x1,y1,board));	
 		}
 		// Rajout de pan en argument
+	
 		// Joueur 1
 		int x2 = playerList[1].getPosx();
 		int y2 = playerList[1].getPosy();
 		
 		if(e.getKeyCode()==KeyEvent.VK_D && x2 < 14)
-			if(check(x2+1,y2,0)){
+			if(check(x2+1,y2,1)){
 				playerList[1].setPosx(x2+1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
@@ -143,21 +144,21 @@ public class GamePanel extends JPanel implements KeyListener{
 			}
 
 		if(e.getKeyCode()==KeyEvent.VK_Q && x2 > 0)
-			if(check(x2-1,y2,0)){
+			if(check(x2-1,y2,1)){
 				playerList[1].setPosx(x2-1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
 				board.setElemInBoard(x2-1, y2, playerList[1]);
 			}
 		if(e.getKeyCode()==KeyEvent.VK_Z && y2 > 0)
-			if(check(x2,y2-1,0)){
+			if(check(x2,y2-1,1)){
 				playerList[1].setPosy(y2-1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
 				board.setElemInBoard(x2, y2-1, playerList[1]);
 			}
 			if(e.getKeyCode()==KeyEvent.VK_S && y2 < 14)
-			if(check(x2,y2+1,0)){
+			if(check(x2,y2+1,1)){
 				playerList[1].setPosy(y2+1);	
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
@@ -175,13 +176,31 @@ public class GamePanel extends JPanel implements KeyListener{
 	public boolean check(int pX, int pY, int pPlayer){
 		if (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus){
 			//Si c'est un bonus, on lui donne
-			if(board.getElemInBoard(pX, pY) instanceof Bonus){
-				playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);}
-				
+			if(board.getElemInBoard(pX, pY) instanceof Bonus)
+				bonus(pX,pY,pPlayer);
 			return true;
 		}
 		else
 			return false;
+}
+	
+// Fonction bonus
+public void bonus(int pX, int pY, int pPlayer){
+	//Je passe par ceci car getType() est propre à la classe bonus, pas de
+	//polymorphisme avec la classe Element (un peu dégueu j'avoue)
+	Bonus boni = (Bonus)board.getElemInBoard(pX, pY);
+	
+	//Bonus bombe
+	if(boni.getType() == 1)
+		playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);	
+	
+	//Bonus vie
+	if(boni.getType() == 2)
+		playerList[pPlayer].setLife(playerList[pPlayer].getLife()+1);	
+
+	//Bonus speed
+	if(boni.getType() == 3)
+		playerList[pPlayer].setSpeed(playerList[pPlayer].getSpeed()+1);	
 }
 
 

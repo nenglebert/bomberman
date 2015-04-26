@@ -2,9 +2,9 @@
 	// Pour les bonus
 public class Bonus extends Element {
 	
-	public String type;
+	public int type;
 	
-	public Bonus(int posx, int posy, String type, String skin){
+	public Bonus(int posx, int posy, int type, String skin){
 		this.skin = skin;
 		this.type = type ;
 		this.explosion = new DeleteExplosion();
@@ -12,7 +12,7 @@ public class Bonus extends Element {
 		this.posy = posy;
 	}
 	
-	public String getType(){
+	public int getType(){
 		return type;
 	}
 }
