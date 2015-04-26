@@ -173,7 +173,7 @@ public class GamePanel extends JPanel implements KeyListener{
 
 //Check si pas de collision
 	public boolean check(int pX, int pY){
-		if (board.getElemInBoard(pX,pY) == null)
+		if (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)
 			return true;
 		else
 			return false;
