@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements KeyListener{
 //Le check permet de ne rien faire si un block est la ou on
 //veut aller
 	public void keyPressed(KeyEvent e){
-
+	if (begin == 1){
 // Joueur 1
 	int x1 = playerList[0].getPosx();
 	int y1 = playerList[0].getPosy();
@@ -178,6 +178,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			board.setElemInBoard(x2,y2,new Bomb(x2,y2, board));	}
 		// Rajout de pan en argument
 		}
+	}
 
 //Check si pas de collision et donne le bonus
 	public boolean check(int pX, int pY, int pPlayer){
