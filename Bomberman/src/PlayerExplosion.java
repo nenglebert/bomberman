@@ -3,7 +3,14 @@
 public class PlayerExplosion implements IExplosion {
 
 	public void explose(int posx, int posy, Board board) {
-		
+		int playerNumber = board.getPlayerNumber();
+		Player[] playerList = GamePanel.getPlayerList();
+		int i=0;
+		while (i < playerNumber && (playerList[i].getPosx() != posx || playerList[i].getPosy() != posy)){
+			i++;
+		}
+		playerList[i].setLife(playerList[i].getLife()-1);
+		System.out.println("Pour le joueur "+String.valueOf(i+1)+", il reste "+playerList[i].getLife()+" vie(s)");
 	}
 
 }

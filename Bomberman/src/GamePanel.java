@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		// CrÃ©ation des diffÃ©rents objets
 	private Board board;
 	private Element[][] elementTable;
-	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private static Player[] playerList;
 	private int playerNumber;
 	
 	private JPanel subPanel = new JPanel();	//Le panel qui va contenir les boutons
@@ -90,74 +90,74 @@ public class GamePanel extends JPanel implements KeyListener{
 	public void keyPressed(KeyEvent e){
 
 // Joueur 1
-	int x1 = playerList.get(0).getPosx();
-	int y1 = playerList.get(0).getPosy();
+	int x1 = playerList[0].getPosx();
+	int y1 = playerList[0].getPosy();
 	
 	System.out.println(x1 + " " + y1);
 	if(e.getKeyCode()==KeyEvent.VK_RIGHT && x1 < 14)
 		if(check(x1+1,y1)){
-			playerList.get(0).setPosx(x1+1);
+			playerList[0].setPosx(x1+1);
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1+1, y1, playerList.get(0));
+			board.setElemInBoard(x1+1, y1, playerList[0]);
 		}
 
 	if(e.getKeyCode()==KeyEvent.VK_LEFT && x1 > 0)
 		if(check(x1-1,y1)){
-			playerList.get(0).setPosx(x1-1);
+			playerList[0].setPosx(x1-1);
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1-1, y1, playerList.get(0));
+			board.setElemInBoard(x1-1, y1, playerList[0]);
 		}
 	if(e.getKeyCode()==KeyEvent.VK_UP && y1 > 0)
 		if(check(x1,y1-1)){
-			playerList.get(0).setPosy(y1-1);
+			playerList[0].setPosy(y1-1);
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1, y1-1, playerList.get(0));
+			board.setElemInBoard(x1, y1-1, playerList[0]);
 		}
 		if(e.getKeyCode()==KeyEvent.VK_DOWN && y1 < 14)
 		if(check(x1,y1+1)){
-			playerList.get(0).setPosy(y1+1);	
+			playerList[0].setPosy(y1+1);	
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1, y1+1, playerList.get(0));
+			board.setElemInBoard(x1, y1+1, playerList[0]);
 		}
 //BOMBAAA
 	if(e.getKeyCode()==KeyEvent.VK_SPACE)
 		board.setElemInBoard(x1,y1,new Bomb(x1,y1,board));	// Rajout de pan en argument
 		// Joueur 1
-		int x2 = playerList.get(1).getPosx();
-		int y2 = playerList.get(1).getPosy();
+		int x2 = playerList[1].getPosx();
+		int y2 = playerList[1].getPosy();
 		
 		if(e.getKeyCode()==KeyEvent.VK_D && x2 < 14)
 			if(check(x2+1,y2)){
-				playerList.get(1).setPosx(x2+1);
+				playerList[1].setPosx(x2+1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2+1, y2, playerList.get(1));
+				board.setElemInBoard(x2+1, y2, playerList[1]);
 			}
 
 		if(e.getKeyCode()==KeyEvent.VK_Q && x2 > 0)
 			if(check(x2-1,y2)){
-				playerList.get(1).setPosx(x2-1);
+				playerList[1].setPosx(x2-1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2-1, y2, playerList.get(1));
+				board.setElemInBoard(x2-1, y2, playerList[1]);
 			}
 		if(e.getKeyCode()==KeyEvent.VK_Z && y2 > 0)
 			if(check(x2,y2-1)){
-				playerList.get(1).setPosy(y2-1);
+				playerList[1].setPosy(y2-1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2, y2-1, playerList.get(1));
+				board.setElemInBoard(x2, y2-1, playerList[1]);
 			}
 			if(e.getKeyCode()==KeyEvent.VK_S && y2 < 14)
 			if(check(x2,y2+1)){
-				playerList.get(1).setPosy(y2+1);	
+				playerList[1].setPosy(y2+1);	
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2, y2+1, playerList.get(1));
+				board.setElemInBoard(x2, y2+1, playerList[1]);
 			}
 	//BOMBAAA
 		if(e.getKeyCode()==KeyEvent.VK_A)
@@ -221,10 +221,10 @@ public void keyTyped(KeyEvent e){}
 		System.out.println(playerNumber);
 		int[] posxList = {0,14,14,0};
 		int[] posyList = {0,14,0,14};
-		
-		for (int i=1;i <= playerNumber;i++){
-			playerList.add(new Player("skin"+String.valueOf(i)+".jpeg", nameList.get(i-1), posxList[i-1], posyList[i-1]));
-			System.out.println(i + ") " + playerList.get(i-1).getName());
+		playerList = new Player[playerNumber];
+		for (int i=0;i < playerNumber;i++){
+			playerList[i] = new Player("skin"+String.valueOf(i+1)+".jpeg", nameList.get(i), posxList[i], posyList[i]);
+			System.out.println(i+1 + ") " + playerList[i].getName());
 		}
 		
 		subPanel.removeAll();
@@ -239,7 +239,7 @@ public void keyTyped(KeyEvent e){}
 		return nameList.get(number);
 	}
 	
-	public ArrayList<Player> getPlayerList(){
+	public static Player[] getPlayerList(){
 		return playerList;
 	}
 	

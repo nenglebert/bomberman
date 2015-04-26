@@ -4,18 +4,18 @@ import java.util.ArrayList;
 public class Board {
 	
 	private Element[][] elementTable = new Element[15][15];
-	private ArrayList<Player> playerList;
+	private Player[] playerList;
 	private int playerNumber;
 	private GamePanel panel;
 
 	
 		// Constructeur par défaut
-	public Board(ArrayList<Player> playerList, GamePanel panel){
+	public Board(Player[] playerList, GamePanel panel){
 		
 		this.panel = panel;
 			// On récupère les personages 
 		this.playerList = playerList;
-		this.playerNumber = playerList.size();
+		this.playerNumber = playerList.length;
 		
 			//Placement des blocs incassables
 		for (int x=1; x < elementTable.length; x+=2){
@@ -51,7 +51,7 @@ public class Board {
 		int[] posyList = {0,14,0,14};
 		
 		for (int i=0; i< playerNumber; i++){
-			elementTable[posxList[i]][posyList[i]] = playerList.get(i);
+			elementTable[posxList[i]][posyList[i]] = playerList[i];
 		}
 	}
 	
@@ -66,4 +66,11 @@ public class Board {
 	public Element getElemInBoard(int posx,int posy){
 		return elementTable[posx][posy];
 	}
+	public int getPlayerNumber(){
+		return playerNumber;
+	}
+	public Player getPlayer(int x){
+		return playerList[x];
+	}
+
 }
