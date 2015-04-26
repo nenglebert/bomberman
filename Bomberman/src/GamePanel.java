@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	
 	System.out.println(x1 + " " + y1);
 	if(e.getKeyCode()==KeyEvent.VK_RIGHT && x1 < 14)
-		if(check(x1+1,y1)){
+		if(check(x1+1,y1,0)){
 			playerList[0].setPosx(x1+1);
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
@@ -103,21 +103,21 @@ public class GamePanel extends JPanel implements KeyListener{
 		}
 
 	if(e.getKeyCode()==KeyEvent.VK_LEFT && x1 > 0)
-		if(check(x1-1,y1)){
+		if(check(x1-1,y1,0)){
 			playerList[0].setPosx(x1-1);
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
 			board.setElemInBoard(x1-1, y1, playerList[0]);
 		}
 	if(e.getKeyCode()==KeyEvent.VK_UP && y1 > 0)
-		if(check(x1,y1-1)){
+		if(check(x1,y1-1,0)){
 			playerList[0].setPosy(y1-1);
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
 			board.setElemInBoard(x1, y1-1, playerList[0]);
 		}
 		if(e.getKeyCode()==KeyEvent.VK_DOWN && y1 < 14)
-		if(check(x1,y1+1)){
+		if(check(x1,y1+1,0)){
 			playerList[0].setPosy(y1+1);	
 			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
 			board.setElemInBoard(x1, y1, null);
@@ -135,7 +135,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		int y2 = playerList[1].getPosy();
 		
 		if(e.getKeyCode()==KeyEvent.VK_D && x2 < 14)
-			if(check(x2+1,y2)){
+			if(check(x2+1,y2,0)){
 				playerList[1].setPosx(x2+1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
@@ -143,21 +143,21 @@ public class GamePanel extends JPanel implements KeyListener{
 			}
 
 		if(e.getKeyCode()==KeyEvent.VK_Q && x2 > 0)
-			if(check(x2-1,y2)){
+			if(check(x2-1,y2,0)){
 				playerList[1].setPosx(x2-1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
 				board.setElemInBoard(x2-1, y2, playerList[1]);
 			}
 		if(e.getKeyCode()==KeyEvent.VK_Z && y2 > 0)
-			if(check(x2,y2-1)){
+			if(check(x2,y2-1,0)){
 				playerList[1].setPosy(y2-1);
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
 				board.setElemInBoard(x2, y2-1, playerList[1]);
 			}
 			if(e.getKeyCode()==KeyEvent.VK_S && y2 < 14)
-			if(check(x2,y2+1)){
+			if(check(x2,y2+1,0)){
 				playerList[1].setPosy(y2+1);	
 				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
 				board.setElemInBoard(x2, y2, null);
@@ -171,10 +171,15 @@ public class GamePanel extends JPanel implements KeyListener{
 		// Rajout de pan en argument
 		}
 
-//Check si pas de collision
-	public boolean check(int pX, int pY){
-		if (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)
+//Check si pas de collision et donne le bonus
+	public boolean check(int pX, int pY, int pPlayer){
+		if (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus){
+			//Si c'est un bonus, on lui donne
+			if(board.getElemInBoard(pX, pY) instanceof Bonus){
+				playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);}
+				
 			return true;
+		}
 		else
 			return false;
 }
