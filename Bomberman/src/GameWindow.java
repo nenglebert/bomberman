@@ -29,7 +29,7 @@ public class GameWindow extends JFrame{
 		
 		
 		this.setLayout(new BorderLayout());
-		this.getContentPane().add(gamePanel, BorderLayout.WEST);	//Pour l'ajouter sur la fenêtre
+		this.getContentPane().add(gamePanel, BorderLayout.EAST);	//Pour l'ajouter sur la fenêtre
 		this.pack();
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);		//Apparaît au milieu de l'écran
@@ -45,7 +45,7 @@ public class GameWindow extends JFrame{
 					+ "<br> bomb : " + playerList[i].getBombBag() + "</html>");
 			dataPanel.add(label);
 		}
-		this.getContentPane().add(dataPanel);
+		this.getContentPane().add(dataPanel, BorderLayout.WEST);
 		this.pack();
 	}
 	
