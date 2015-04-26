@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private Element[][] elementTable;
 	private static Player[] playerList;
 	private int playerNumber;
+	private GameWindow gameWindow;
 	
 	private JPanel subPanel = new JPanel();	//Le panel qui va contenir les boutons
 	
@@ -43,12 +44,10 @@ public class GamePanel extends JPanel implements KeyListener{
 	private ArrayList<JTextField> nameFields = new ArrayList<JTextField>();	//Zone pour les noms
 	private ArrayList<String> nameList = new ArrayList<String>();
 	
-	private int xelem;
-	private int yelem;
-	private Element elem;
 	private int begin = 0;	// ces deux suivants servent Ã  paint
 	
-	public GamePanel(){
+	public GamePanel(GameWindow gameWindow){
+		this.gameWindow = gameWindow;
 		this.initialize();
 		this.addKeyListener(this);
 		this.setFocusable(true);
@@ -284,10 +283,7 @@ public void keyTyped(KeyEvent e){}
 		this.nameList.clear();
 	}
 	
-	public void update(int xelem, int yelem, Element elem){  
-		this.xelem = xelem;
-		this.yelem = yelem;
-		this.elem = elem;
+	public void update(){  
 	    this.repaint();
 	}
 	
@@ -305,6 +301,7 @@ public void paintComponent(Graphics g){
 		img.paintIcon(this, g, 0, 0);
 		}
 		if (begin==1){
+			this.setLayout(new GridLayout(1,2));
 			//Plateau de jeu
 			ImageIcon img = new ImageIcon("");
 			super.paintComponent(g); 
@@ -327,6 +324,8 @@ public void paintComponent(Graphics g){
 					 }
 				 }
 			 }
+			 // Pour le tableau a coté
+			 gameWindow.updateLabel();
 		}
 	}
 }
