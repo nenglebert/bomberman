@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		// CrÃ©ation des diffÃ©rents objets
 	private Board board;
 	private Element[][] elementTable;
-	private static Player[] playerList;
+	protected static Player[] playerList;
 	private int playerNumber;
 	private GameWindow gameWindow;
 	
@@ -134,7 +134,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	if(e.getKeyCode()==KeyEvent.VK_SPACE)
 		if (playerList[0].getBombBag() > 0){
 			playerList[0].setBombBag(playerList[0].getBombBag()-1);
-		board.setElemInBoard(x1,y1,new Bomb(x1,y1,board));	
+		board.setElemInBoard(x1,y1,new Bomb(x1,y1,board,playerList[0]));
 		}
 		// Rajout de pan en argument
 	
@@ -175,7 +175,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		if(e.getKeyCode()==KeyEvent.VK_A)
 			if (playerList[1].getBombBag() > 0){
 				playerList[1].setBombBag(playerList[1].getBombBag()-1);
-			board.setElemInBoard(x2,y2,new Bomb(x2,y2, board));	}
+			board.setElemInBoard(x2,y2,new Bomb(x2,y2, board, playerList[1]));	}
 		// Rajout de pan en argument
 		}
 	}

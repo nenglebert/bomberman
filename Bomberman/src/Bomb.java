@@ -7,7 +7,7 @@ public class Bomb extends Element {
 	
 	Timer timer = new Timer();
 	
-	public Bomb(final int posx, final int posy, final Board board){
+	public Bomb(final int posx, final int posy, final Board board, final Player pPlayer){
 		this.skin = "bomb.png";
 		this.explosion = new BombExplosion(); 	// L'explosion selon Bomb
 		this.posx = posx;
@@ -17,6 +17,8 @@ public class Bomb extends Element {
 		timer.schedule(new TimerTask() {
 			public void run() {
 				applyExplose(board);	
+				pPlayer.setBombBag(pPlayer.getBombBag()+1);
+				
 						 		// Méthode de Element qui 
 			}					// Appelle les vrais méthode Explose
 		}, 1000);
