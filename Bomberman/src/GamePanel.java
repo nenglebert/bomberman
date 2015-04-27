@@ -11,7 +11,6 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -360,7 +359,6 @@ public void keyTyped(KeyEvent e){}
 	
 	// Fonction qui va se charger de dessiner notre matrice
 public void paintComponent(Graphics g){
-		
 		if (begin==0){
 		ImageIcon img = new ImageIcon("Background.jpg");
 		super.paintComponent(g); 
