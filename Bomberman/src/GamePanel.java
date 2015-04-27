@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -18,7 +20,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -34,9 +35,8 @@ public class GamePanel extends JPanel implements KeyListener{
 	private Element[][] elementTable;
 	protected static Player[] playerList;
 	private int playerNumber;
-	private int[][] commandKeys = {{KeyEvent.VK_D,KeyEvent.VK_Q,KeyEvent.VK_S,KeyEvent.VK_Z,KeyEvent.VK_A},{KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_DOWN,KeyEvent.VK_UP,KeyEvent.VK_ENTER},{KeyEvent.VK_L,KeyEvent.VK_J,KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_U},{KeyEvent.VK_N,KeyEvent.VK_V,KeyEvent.VK_B,KeyEvent.VK_G,KeyEvent.VK_F}};
-	private GameWindow gameWindow;
-	
+	private Map<Integer,Tuple<Integer,Direction>> commandKeys = new HashMap<Integer,Tuple<Integer, Direction>>();
+	// = {KeyEvent.VK_D:new Tuple<Integer, String>(1,"d") ,KeyEvent.VK_Q,KeyEvent.VK_S,KeyEvent.VK_Z,KeyEvent.VK_A,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_DOWN,KeyEvent.VK_UP,KeyEvent.VK_ENTER},{KeyEvent.VK_L,KeyEvent.VK_J,KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_U},{KeyEvent.VK_N,KeyEvent.VK_V,KeyEvent.VK_B,KeyEvent.VK_G,KeyEvent.VK_F}};	private GameWindow gameWindow;
 	private JPanel subPanel = new JPanel();	//Le panel qui va contenir les boutons
 	
 	private JButton startButton = new JButton("Start game");	//Bouton "Start"
@@ -54,7 +54,8 @@ public class GamePanel extends JPanel implements KeyListener{
 	private ArrayList<String> nameList = new ArrayList<String>();
 	
 	private int begin = 0;	// ces deux suivants servent Ã  paint
-	
+	private GameWindow gameWindow;
+	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	public GamePanel(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -63,6 +64,26 @@ public class GamePanel extends JPanel implements KeyListener{
 	}
 
 	public void initialize() {
+		commandKeys.put(KeyEvent.VK_Z, new Tuple<Integer, Direction>(0,Direction.UP));
+		commandKeys.put(KeyEvent.VK_Q, new Tuple<Integer, Direction>(0,Direction.LEFT));
+		commandKeys.put(KeyEvent.VK_S, new Tuple<Integer, Direction>(0,Direction.DOWN));
+		commandKeys.put(KeyEvent.VK_D, new Tuple<Integer, Direction>(0,Direction.RIGHT));
+		commandKeys.put(KeyEvent.VK_UP, new Tuple<Integer, Direction>(1,Direction.UP));
+		commandKeys.put(KeyEvent.VK_LEFT, new Tuple<Integer, Direction>(1,Direction.LEFT));
+		commandKeys.put(KeyEvent.VK_DOWN, new Tuple<Integer, Direction>(1,Direction.DOWN));
+		commandKeys.put(KeyEvent.VK_RIGHT, new Tuple<Integer, Direction>(1,Direction.RIGHT));
+		commandKeys.put(KeyEvent.VK_I, new Tuple<Integer, Direction>(2,Direction.UP));
+		commandKeys.put(KeyEvent.VK_J, new Tuple<Integer, Direction>(2,Direction.LEFT));
+		commandKeys.put(KeyEvent.VK_K, new Tuple<Integer, Direction>(2,Direction.DOWN));
+		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction>(2,Direction.RIGHT));
+		commandKeys.put(KeyEvent.VK_G, new Tuple<Integer, Direction>(3,Direction.UP));
+		commandKeys.put(KeyEvent.VK_V, new Tuple<Integer, Direction>(3,Direction.LEFT));
+		commandKeys.put(KeyEvent.VK_B, new Tuple<Integer, Direction>(3,Direction.DOWN));
+		commandKeys.put(KeyEvent.VK_N, new Tuple<Integer, Direction>(3,Direction.RIGHT));
+		commandKeys.put(KeyEvent.VK_A, new Tuple<Integer, Direction>(0,Direction.BOMB));
+		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction>(2,Direction.BOMB));
+		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction>(3,Direction.BOMB));
+		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction>(1,Direction.BOMB));
 		
 		//On sectionne le panel pour avoir 3 lignes et 1 colonne
 		subPanel.setLayout(new GridLayout(3,1));
@@ -96,46 +117,45 @@ public class GamePanel extends JPanel implements KeyListener{
 //Le check permet de ne rien faire si un block est la ou on
 //veut aller
 	public void keyPressed(KeyEvent e){
-	if (begin == 1){		
-		int[][] playerPos = new int[playerNumber][2];
-		int[] bordure = {14,0};
-		for(int i=0;i<playerNumber;i++){
-			playerPos[i][0] = playerList[i].getPosx();
-			playerPos[i][1] = playerList[i].getPosy();
-			if(e.getKeyCode()==commandKeys[i][4]){
-				if (playerList[i].getBombBag() > 0){
-					playerList[i].setBombBag(playerList[i].getBombBag()-1);
-				board.setElemInBoard(playerPos[i][0],playerPos[i][1],new Bomb(playerPos[i][0],playerPos[i][1],board,playerList[i]));
-				update();
-				}
-				return ;
-			}
-			for(int j = 0; j<2;j++){
-				if (e.getKeyCode()==commandKeys[i][j] && (int)Math.pow(-1, j)*playerPos[i][0] < bordure[j]){
-					if(check(playerPos[i][0]+(int)Math.pow(-1, j),playerPos[i][1],i)){
-						playerList[i].setPosx(playerPos[i][0]+(int)Math.pow(-1, j));
-						if (!(board.getElemInBoard(playerPos[i][0], playerPos[i][1]) instanceof Bomb))
-						board.setElemInBoard(playerPos[i][0], playerPos[i][1], null);
-						board.setElemInBoard(playerPos[i][0]+(int)Math.pow(-1, j), playerPos[i][1], playerList[i]);
-						update();
-					}
-					return;
-				}
-				if (e.getKeyCode()==commandKeys[i][j+2] && (int)Math.pow(-1, j)*playerPos[i][1] < bordure[j]){
-					if(check(playerPos[i][0],playerPos[i][1]+(int)Math.pow(-1, j),i)){
-						playerList[i].setPosy(playerPos[i][1]+(int)Math.pow(-1, j));
-						if (!(board.getElemInBoard(playerPos[i][0], playerPos[i][1]) instanceof Bomb))
-						board.setElemInBoard(playerPos[i][0], playerPos[i][1], null);
-						board.setElemInBoard(playerPos[i][0], playerPos[i][1]+(int)Math.pow(-1, j), playerList[i]);
-						update();
-					}
-					return;
-				}
-			}
-			  
+	if (begin == 1){	
+		Tuple<Integer,Direction> playerAction = commandKeys.get(e.getKeyCode());
+		if(playerAction == null)
+			return;
+		if (playerAction.second().equals(Direction.UP) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()-1,playerAction.first())){
+			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()-1, playerList[playerAction.first()]);
+			playerList[playerAction.first()].setPosy(playerList[playerAction.first()].getPosy()-1);
+			update();
 		}
-/*
-		
+		else if(playerAction.second().equals(Direction.DOWN) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()+1,playerAction.first())){
+			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()+1, playerList[playerAction.first()]);
+			playerList[playerAction.first()].setPosy(playerList[playerAction.first()].getPosy()+1);
+			update();
+		}
+		else if(playerAction.second().equals(Direction.LEFT)  && check(playerList[playerAction.first()].getPosx()-1,playerList[playerAction.first()].getPosy(),playerAction.first())){
+			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
+			board.setElemInBoard(playerList[playerAction.first()].getPosx()-1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
+			playerList[playerAction.first()].setPosx(playerList[playerAction.first()].getPosx()-1);
+			update();
+		}
+		else if(playerAction.second().equals(Direction.RIGHT) && check(playerList[playerAction.first()].getPosx()+1,playerList[playerAction.first()].getPosy(),playerAction.first())){
+			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
+			board.setElemInBoard(playerList[playerAction.first()].getPosx()+1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
+			playerList[playerAction.first()].setPosx(playerList[playerAction.first()].getPosx()+1);
+			update();
+		}
+		else if(playerAction.second().equals(Direction.BOMB) && playerList[playerAction.first()].getBombBag() > 0){
+			playerList[playerAction.first()].setBombBag(playerList[playerAction.first()].getBombBag()-1);
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),new Bomb(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),board,playerList[playerAction.first()]));
+			update();
+			
+		}
+		/*
 // Joueur 1
 	int x1 = playerList[0].getPosx();
 	int y1 = playerList[0].getPosy();
@@ -223,7 +243,7 @@ public class GamePanel extends JPanel implements KeyListener{
 
 //Check si pas de collision et donne le bonus
 	public boolean check(int pX, int pY, int pPlayer){
-		if (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus){
+		if (-1<pX && pX<15 && -1< pY && pY <15 && (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)){
 			//Si c'est un bonus, on lui donne
 			if(board.getElemInBoard(pX, pY) instanceof Bonus)
 				bonus(pX,pY,pPlayer);
