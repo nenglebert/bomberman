@@ -385,7 +385,7 @@ public void paintComponent(Graphics g){
 							 
 						 }
 						 catch (NullPointerException e){
-							 System.out.println("osef");
+							 System.out.println("Méchant NullPointerExeption !");
 						 }
 					 }
 				 }
