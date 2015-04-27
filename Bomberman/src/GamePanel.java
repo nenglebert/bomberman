@@ -106,8 +106,9 @@ public class GamePanel extends JPanel implements KeyListener{
 				if (playerList[i].getBombBag() > 0){
 					playerList[i].setBombBag(playerList[i].getBombBag()-1);
 				board.setElemInBoard(playerPos[i][0],playerPos[i][1],new Bomb(playerPos[i][0],playerPos[i][1],board,playerList[i]));
+				update();
 				}
-				return;
+				return ;
 			}
 			for(int j = 0; j<2;j++){
 				if (e.getKeyCode()==commandKeys[i][j] && (int)Math.pow(-1, j)*playerPos[i][0] < bordure[j]){
@@ -116,6 +117,7 @@ public class GamePanel extends JPanel implements KeyListener{
 						if (!(board.getElemInBoard(playerPos[i][0], playerPos[i][1]) instanceof Bomb))
 						board.setElemInBoard(playerPos[i][0], playerPos[i][1], null);
 						board.setElemInBoard(playerPos[i][0]+(int)Math.pow(-1, j), playerPos[i][1], playerList[i]);
+						update();
 					}
 					return;
 				}
@@ -125,6 +127,7 @@ public class GamePanel extends JPanel implements KeyListener{
 						if (!(board.getElemInBoard(playerPos[i][0], playerPos[i][1]) instanceof Bomb))
 						board.setElemInBoard(playerPos[i][0], playerPos[i][1], null);
 						board.setElemInBoard(playerPos[i][0], playerPos[i][1]+(int)Math.pow(-1, j), playerList[i]);
+						update();
 					}
 					return;
 				}
@@ -349,7 +352,8 @@ public void keyTyped(KeyEvent e){}
 	}
 	
 	public void update(){  
-	    this.repaint();
+	    //this.paintComponent(this.getGraphics());
+		repaint();
 	}
 	
 	public Board getBoard(){
@@ -364,7 +368,7 @@ public void paintComponent(Graphics g){
 		super.paintComponent(g); 
 		img.paintIcon(this, g, 0, 0);
 		}
-		if (begin==1){
+		else {
 			this.setLayout(new GridLayout(1,2));
 			//Plateau de jeu
 			ImageIcon img = new ImageIcon("");

@@ -6,7 +6,6 @@ import java.util.TimerTask;
 public class BombExplosion implements IExplosion{
 	
 	public void explose(final int posx, final int posy, final Board board) {
-		// Création de chaque objet flamme (par case, centrale, horizontale, verticale)
 		Fire fireCenter = new Fire("explosionCentre.jpg",posx,posy, board);
 		Timer timer = new Timer();
 				
@@ -16,30 +15,37 @@ public class BombExplosion implements IExplosion{
 		
 				
 				if ((posx+1) <= 14 && !(board.getElemInBoard(posx+1,posy) instanceof Bedrock)){
-					Element CurrentElem = board.getElemInBoard(posx+1,posy);
+					Element CurrentElem1 = board.getElemInBoard(posx+1,posy);
 					board.setElemInBoard(posx+1,posy,new Fire("explosionHor.jpg",posx+1,posy,board));
-					if (CurrentElem != null && !(CurrentElem instanceof Fire))
-					CurrentElem.applyExplose(board);
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
+					CurrentElem1.applyExplose(board);
 				}
 				if (0 <= (posx-1) && !(board.getElemInBoard(posx-1,posy) instanceof Bedrock)){
-					Element CurrentElem = board.getElemInBoard(posx-1,posy);
+					Element CurrentElem1 = board.getElemInBoard(posx-1,posy);
 					board.setElemInBoard(posx-1,posy,new Fire("explosionHor.jpg",posx-1,posy,board));
-					if (CurrentElem != null && !(CurrentElem instanceof Fire))
-					CurrentElem.applyExplose(board);
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
+					CurrentElem1.applyExplose(board);
 				}
 				if ((posy+1) <= 14 && !(board.getElemInBoard(posx,posy+1) instanceof Bedrock)){
-					Element CurrentElem = board.getElemInBoard(posx,posy+1);
+					Element CurrentElem1 = board.getElemInBoard(posx,posy+1);
 					board.setElemInBoard(posx,posy+1,new Fire("explosionVert.jpg",posx,posy+1,board));
-					if (CurrentElem != null && !(CurrentElem instanceof Fire))
-					CurrentElem.applyExplose(board);
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
+					CurrentElem1.applyExplose(board);
 				}
 				if (0 <= (posy-1) && !(board.getElemInBoard(posx,posy-1) instanceof Bedrock)){
-					Element CurrentElem = board.getElemInBoard(posx,posy-1);
+					Element CurrentElem1 = board.getElemInBoard(posx,posy-1);
 					board.setElemInBoard(posx,posy-1,new Fire("explosionVert.jpg",posx,posy-1,board));
-					if (CurrentElem != null && !(CurrentElem instanceof Fire))
-					CurrentElem.applyExplose(board);
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
+					CurrentElem1.applyExplose(board);
+					
+					
 				}
-				
+				board.getPanel().update();
+				timer.schedule(new TimerTask() {
+					  public void run() {				  
+						  board.getPanel().update();
+							  }										
+							}, 1050); 
 			}
 
 }

@@ -61,7 +61,6 @@ public class Board {
 	
 	public void setElemInBoard(int posx,int posy,Element a){
 		elementTable[posx][posy]=a;
-		panel.update();
 	}
 	public Element getElemInBoard(int posx,int posy){
 		return elementTable[posx][posy];
@@ -71,6 +70,10 @@ public class Board {
 	}
 	public Player getPlayer(int x){
 		return playerList[x];
+	}
+
+	public GamePanel getPanel() {
+		return this.panel;
 	}
 
 }
