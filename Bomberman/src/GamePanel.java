@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -34,6 +35,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private Element[][] elementTable;
 	protected static Player[] playerList;
 	private int playerNumber;
+	private int[][] commandKeys = {{KeyEvent.VK_D,KeyEvent.VK_Q,KeyEvent.VK_S,KeyEvent.VK_Z,KeyEvent.VK_A},{KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_DOWN,KeyEvent.VK_UP,KeyEvent.VK_ENTER},{KeyEvent.VK_L,KeyEvent.VK_J,KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_U},{KeyEvent.VK_N,KeyEvent.VK_V,KeyEvent.VK_B,KeyEvent.VK_G,KeyEvent.VK_F}};
 	private GameWindow gameWindow;
 	
 	private JPanel subPanel = new JPanel();	//Le panel qui va contenir les boutons
@@ -95,7 +97,43 @@ public class GamePanel extends JPanel implements KeyListener{
 //Le check permet de ne rien faire si un block est la ou on
 //veut aller
 	public void keyPressed(KeyEvent e){
-	if (begin == 1){
+	if (begin == 1){		
+		int[][] playerPos = new int[playerNumber][2];
+		int[] bordure = {14,0};
+		for(int i=0;i<playerNumber;i++){
+			playerPos[i][0] = playerList[i].getPosx();
+			playerPos[i][1] = playerList[i].getPosy();
+			if(e.getKeyCode()==commandKeys[i][4]){
+				if (playerList[i].getBombBag() > 0){
+					playerList[i].setBombBag(playerList[i].getBombBag()-1);
+				board.setElemInBoard(playerPos[i][0],playerPos[i][1],new Bomb(playerPos[i][0],playerPos[i][1],board,playerList[i]));
+				}
+				return;
+			}
+			for(int j = 0; j<2;j++){
+				if (e.getKeyCode()==commandKeys[i][j] && (int)Math.pow(-1, j)*playerPos[i][0] < bordure[j]){
+					if(check(playerPos[i][0]+(int)Math.pow(-1, j),playerPos[i][1],i)){
+						playerList[i].setPosx(playerPos[i][0]+(int)Math.pow(-1, j));
+						if (!(board.getElemInBoard(playerPos[i][0], playerPos[i][1]) instanceof Bomb))
+						board.setElemInBoard(playerPos[i][0], playerPos[i][1], null);
+						board.setElemInBoard(playerPos[i][0]+(int)Math.pow(-1, j), playerPos[i][1], playerList[i]);
+					}
+					return;
+				}
+				if (e.getKeyCode()==commandKeys[i][j+2] && (int)Math.pow(-1, j)*playerPos[i][1] < bordure[j]){
+					if(check(playerPos[i][0],playerPos[i][1]+(int)Math.pow(-1, j),i)){
+						playerList[i].setPosy(playerPos[i][1]+(int)Math.pow(-1, j));
+						if (!(board.getElemInBoard(playerPos[i][0], playerPos[i][1]) instanceof Bomb))
+						board.setElemInBoard(playerPos[i][0], playerPos[i][1], null);
+						board.setElemInBoard(playerPos[i][0], playerPos[i][1]+(int)Math.pow(-1, j), playerList[i]);
+					}
+					return;
+				}
+			}
+			  
+		}
+/*
+		
 // Joueur 1
 	int x1 = playerList[0].getPosx();
 	int y1 = playerList[0].getPosy();
@@ -176,9 +214,10 @@ public class GamePanel extends JPanel implements KeyListener{
 			if (playerList[1].getBombBag() > 0){
 				playerList[1].setBombBag(playerList[1].getBombBag()-1);
 			board.setElemInBoard(x2,y2,new Bomb(x2,y2, board, playerList[1]));	}
-		// Rajout de pan en argument
-		}
+		// Rajout de pan en argument*/
+		
 	}
+}
 
 //Check si pas de collision et donne le bonus
 	public boolean check(int pX, int pY, int pPlayer){
