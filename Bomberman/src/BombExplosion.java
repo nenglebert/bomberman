@@ -42,7 +42,11 @@ public class BombExplosion implements IExplosion{
 				}
 				board.getPanel().update();
 				timer.schedule(new TimerTask() {
-					  public void run() {				  
+					  public void run() {	
+						 for (int i=0;i<board.getPlayerNumber();i++)
+							 if((board.getPlayer(i).getPosx() == posx && board.getPlayer(i).getPosy()==posy) || (board.getPlayer(i).getPosx() == posx+1 && board.getPlayer(i).getPosy()==posy) || (board.getPlayer(i).getPosx() == posx-1 && board.getPlayer(i).getPosy()==posy) || (board.getPlayer(i).getPosx() == posx && board.getPlayer(i).getPosy()==posy-1) || (board.getPlayer(i).getPosx() == posx && board.getPlayer(i).getPosy()==posy+1)){
+								 board.setElemInBoard(board.getPlayer(i).getPosx(), board.getPlayer(i).getPosy(), board.getPlayer(i));
+							 }
 						  board.getPanel().update();
 							  }										
 							}, 1050); 
