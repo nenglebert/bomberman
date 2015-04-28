@@ -121,6 +121,10 @@ public class GamePanel extends JPanel implements KeyListener{
 		Tuple<Integer,Direction> playerAction = commandKeys.get(e.getKeyCode());
 		if(playerAction == null)
 			return;
+		if (playerList[playerAction.first()].getLife()==0){
+			commandKeys.remove(e.getKeyCode());
+			return;
+		}
 		if (playerAction.second().equals(Direction.UP) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()-1,playerAction.first())){
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
