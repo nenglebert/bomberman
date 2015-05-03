@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -245,43 +246,78 @@ public class GamePanel extends JPanel implements KeyListener{
 	}
 }
 
-//Check si pas de collision et donne le bonus
-	public boolean check(int pX, int pY, int pPlayer){
-		if (-1<pX && pX<15 && -1< pY && pY <15 && (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)){
-			//Si c'est un bonus, on lui donne
-			if(board.getElemInBoard(pX, pY) instanceof Bonus)
-				bonus(pX,pY,pPlayer);
-			return true;
+	//Check si pas de collision et donne le bonus
+		public boolean check(int pX, int pY, int pPlayer){
+			boolean verif = true;
+			if (-1<pX && pX<15 && -1< pY && pY <15 && (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)){
+				//Si c'est un bonus, on lui donne
+				if(board.getElemInBoard(pX, pY) instanceof Bonus)
+					verif = bonus(pX,pY,pPlayer);
+			}
+			else
+				verif = false;
+			return verif;
+	}
+	
+	// Fonction bonus
+	public boolean bonus(int pX, int pY, int pPlayer){
+		//Je passe par ceci car getType() est propre à la classe bonus, pas de
+		//polymorphisme avec la classe Element (un peu dégueu j'avoue)
+		Bonus boni = (Bonus)board.getElemInBoard(pX, pY);
+		boolean verif = true;
+		//Bonus bombe
+		if(boni.getType() == 1)
+			playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);	
+		
+		//Bonus vie
+		if(boni.getType() == 2)
+			playerList[pPlayer].setLife(playerList[pPlayer].getLife()+1);	
+	
+		//Bonus taille bombe
+		if(boni.getType() == 3)
+			playerList[pPlayer].setBombSize(playerList[pPlayer].getBombSize()+1);
+		
+		//Bonus bombe atomique
+		if(boni.getType() == 4){
+			for (int i=0; i<playerList.length; i++){
+				if (playerList[i] != playerList[pPlayer])
+					playerList[i].setLife(playerList[i].getLife() - 1);
+			}
 		}
-		else
-			return false;
-}
+		
+		//Bonus téléportation
+		if(boni.getType() == 5){
+			ArrayList<Integer> posxList = new ArrayList<Integer>();
+			ArrayList<Integer> posyList = new ArrayList<Integer>();
+			for (int i=0; i<=14; i++){
+				for (int j=0; j<=14; j++){
+					if (elementTable[i][j] == null){
+						posxList.add(i);
+						posyList.add(j);
+					}
+				}
+			}
+			Random random = new Random();
+			int randomNumber = random.nextInt(posxList.size());
+			board.setElemInBoard(playerList[pPlayer].getPosx(), playerList[pPlayer].getPosy(), null);
+			board.setElemInBoard(pX, pY,null);
+			playerList[pPlayer].setPosx(posxList.get(randomNumber));
+			playerList[pPlayer].setPosy(posyList.get(randomNumber));
+			board.setElemInBoard(playerList[pPlayer].getPosx(),playerList[pPlayer].getPosy(),playerList[pPlayer]);
+			verif = false;
+			update();
+		}
+		return verif;
+	}
+
+
+
+
+	//Touche lachï¿½e
+	public void keyReleased(KeyEvent e){}
 	
-// Fonction bonus
-public void bonus(int pX, int pY, int pPlayer){
-	//Je passe par ceci car getType() est propre à la classe bonus, pas de
-	//polymorphisme avec la classe Element (un peu dégueu j'avoue)
-	Bonus boni = (Bonus)board.getElemInBoard(pX, pY);
-	
-	//Bonus bombe
-	if(boni.getType() == 1)
-		playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);	
-	
-	//Bonus vie
-	if(boni.getType() == 2)
-		playerList[pPlayer].setLife(playerList[pPlayer].getLife()+1);	
-
-	//Bonus taille bombe
-	if(boni.getType() == 3)
-		playerList[pPlayer].setBombSize(playerList[pPlayer].getBombSize()+1);	
-}
-
-
-//Touche lachï¿½e
-public void keyReleased(KeyEvent e){}
-
-//Par ex : CTRL + touch
-public void keyTyped(KeyEvent e){}
+	//Par ex : CTRL + touch
+	public void keyTyped(KeyEvent e){}
 	
 	public void playerChooseWindow(JPanel subPanel){
 		//Fait apparaÃ®tre la page 2 (choix du nombre de joueur)
