@@ -422,9 +422,10 @@ public void keyTyped(KeyEvent e){}
 	}
 	
 	public void update(){  
-	   // this.paintComponent(this.getGraphics());
+	   
 		this.begin = 2;
-		repaint();
+		 this.paintComponent(this.getGraphics());
+		//repaint();
 	}
 	
 	public Board getBoard(){

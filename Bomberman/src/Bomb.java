@@ -23,6 +23,6 @@ public class Bomb extends Element {
 				
 						 		// Méthode de Element qui 
 			}					// Appelle les vrais méthode Explose
-		}, 1000);
+		}, 1500);
 	}
 }

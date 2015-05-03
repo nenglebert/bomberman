@@ -1,3 +1,9 @@
+import java.awt.Color;
+
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 	// Plateau de jeu mis sous matrice
 public class Board {
 	
@@ -85,6 +91,12 @@ public class Board {
 		while (playerList[i].getPosx() == -10 ) {
 			i++	;	
 		}
+		JOptionPane dialog = new JOptionPane();
+		 UIManager UI=new UIManager();
+		 UI.put("OptionPane.background", Color.white);
+		 UI.put("Panel.background", Color.white);
+		ImageIcon img = new ImageIcon("winner.jpeg");
+		dialog.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);
 		System.out.println(playerList[i].getName()+" a gagné");
 	}
 }
