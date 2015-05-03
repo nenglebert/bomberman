@@ -271,9 +271,9 @@ public void bonus(int pX, int pY, int pPlayer){
 	if(boni.getType() == 2)
 		playerList[pPlayer].setLife(playerList[pPlayer].getLife()+1);	
 
-	//Bonus speed
+	//Bonus taille bombe
 	if(boni.getType() == 3)
-		playerList[pPlayer].setSpeed(playerList[pPlayer].getSpeed()+1);	
+		playerList[pPlayer].setBombSize(playerList[pPlayer].getBombSize()+1);	
 }
 
 
