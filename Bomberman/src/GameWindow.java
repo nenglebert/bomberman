@@ -54,7 +54,7 @@ public class GameWindow extends JFrame{
 			dataPanel.add(label);
 		}
 		this.getContentPane().add(dataPanel, BorderLayout.WEST);
-		this.pack();
+	//	this.pack();
 	}
 	
 	public static void main(String args[]) {

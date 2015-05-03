@@ -11,8 +11,11 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -56,6 +59,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private int begin = 0;	// ces deux suivants servent Ã  paint
 	private GameWindow gameWindow;
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
+	private Element[][] oldElementTable;
 	public GamePanel(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -117,9 +121,9 @@ public class GamePanel extends JPanel implements KeyListener{
 //Le check permet de ne rien faire si un block est la ou on
 //veut aller
 	public void keyPressed(KeyEvent e){
-	if (begin == 1){	
+	if (begin == 1 || begin == 2){	
 		Tuple<Integer,Direction> playerAction = commandKeys.get(e.getKeyCode());
-		if(playerAction == null)
+		if(playerAction == null || playerAction.first()+1>playerNumber)
 			return;
 		if (playerList[playerAction.first()].getLife()==0){
 			commandKeys.remove(e.getKeyCode());
@@ -159,27 +163,33 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 			
 		}
-		/*
+		
+		
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Joueur 1
-	int x1 = playerList[0].getPosx();
-	int y1 = playerList[0].getPosy();
+	//int x1 = playerList[0].getPosx();
+	//int y1 = playerList[0].getPosy();
 	
-	System.out.println(x1 + " " + y1);
-	if(e.getKeyCode()==KeyEvent.VK_RIGHT && x1 < 14)
-		if(check(x1+1,y1,0)){
-			playerList[0].setPosx(x1+1);
-			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
-			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1+1, y1, playerList[0]);
-		}
 
-	if(e.getKeyCode()==KeyEvent.VK_LEFT && x1 > 0)
-		if(check(x1-1,y1,0)){
-			playerList[0].setPosx(x1-1);
-			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
-			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1-1, y1, playerList[0]);
-		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+
+	
+	
+	/*
 	if(e.getKeyCode()==KeyEvent.VK_UP && y1 > 0)
 		if(check(x1,y1-1,0)){
 			playerList[0].setPosy(y1-1);
@@ -376,7 +386,8 @@ public void keyTyped(KeyEvent e){}
 	}
 	
 	public void update(){  
-	    //this.paintComponent(this.getGraphics());
+	   // this.paintComponent(this.getGraphics());
+		this.begin = 2;
 		repaint();
 	}
 	
@@ -386,19 +397,24 @@ public void keyTyped(KeyEvent e){}
 	
 	
 	// Fonction qui va se charger de dessiner notre matrice
-public void paintComponent(Graphics g){
+public void paintComponent(final Graphics g){
 		if (begin==0){
 		ImageIcon img = new ImageIcon("Background.jpg");
 		super.paintComponent(g); 
 		img.paintIcon(this, g, 0, 0);
 		}
-		else {
+		//Seulement pour le premier affichage
+		else if(begin==1) {
 			this.setLayout(new GridLayout(1,2));
 			//Plateau de jeu
-			ImageIcon img = new ImageIcon("");
+			//ImageIcon img = new ImageIcon("");
 			super.paintComponent(g); 
-			img.paintIcon(this, g, 0, 0);
-			 this.setBackground(Color.white);
+			//img.paintIcon(this, g, 0, 0);
+			this.setBackground(Color.white);
+			
+			 g.setColor(Color.white);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			
 			 for(int x = 0; x < elementTable.length; x++){
 				 for(int y = 0; y < elementTable.length; y++){
 					 if(elementTable[x][y] != null){
@@ -416,8 +432,73 @@ public void paintComponent(Graphics g){
 					 }
 				 }
 			 }
+			 
 			 // Pour le tableau a coté
+			 
 			 gameWindow.updateLabel();
+				/*Timer timer = new Timer();
+				timer.schedule(new TimerTask() {
+				  public void run() {							
+							}, 5000);*/ 	
+							
+				
+		oldElementTable = dcopy(elementTable);
+			return;
 		}
-	}
+		else if (begin ==2){
+			System.out.println(elementTable+"   "+elementTable[0][0]);
+			
+			System.out.println(oldElementTable+"   "+oldElementTable[0][0]);
+			for(int x = 0; x < elementTable.length; x++){
+				 for(int y = 0; y < elementTable.length; y++){
+					// System.out.println(x);
+					// System.out.println(y);
+					 if(elementTable[x][y] != null){
+						 System.out.println(1);
+						 if (!elementTable[x][y].equals(oldElementTable[x][y])){
+							 System.out.println(2);
+							 try{
+						 			Image img1 = ImageIO.read(new File(elementTable[x][y].skin));
+						 			g.drawImage(img1, elementTable[x][y].getPosx()*40,
+						 					elementTable[x][y].getPosy()*40, this);
+						 		}catch (IOException e){
+						 			e.printStackTrace();
+								 
+						 		}
+						 		catch (NullPointerException e){
+						 			System.out.println("Méchant NullPointerExeption !");
+						 		}							 
+						 }
+					 }
+					 else if(oldElementTable[x][y]!=null) {
+						 System.out.println(4);
+						 try{
+					 			Image img1 = ImageIO.read(new File("blanc.jpeg"));
+					 			g.drawImage(img1, x*40, y*40, this);
+					 		}catch (IOException e){
+					 			e.printStackTrace();
+							 
+					 		}
+					 		catch (NullPointerException e){
+					 			System.out.println("Méchant NullPointerExeption !");
+					 		}						 
+					 }
+				}
+		 }
+			//gameWindow.updateLabel();
+			oldElementTable = dcopy(elementTable); return;
+			//this.begin = 1;
+}
+}
+
+
+public Element[][] dcopy(Element[][] input) {
+    Element[][] target = new Element[input.length][];
+    for (int i=0; i <input.length; i++) {
+      target[i] = Arrays.copyOf(input[i], input[i].length);
+    }
+    return target;
+}
+
+
 }

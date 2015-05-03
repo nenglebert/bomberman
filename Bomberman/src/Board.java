@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 	// Plateau de jeu mis sous matrice
 public class Board {
 	
