@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -396,8 +397,7 @@ public void keyTyped(KeyEvent e){}
 	}
 	
 	
-	// Fonction qui va se charger de dessiner notre matrice
-public void paintComponent(final Graphics g){
+public void paintComponent(Graphics g){
 		if (begin==0){
 		ImageIcon img = new ImageIcon("Background.jpg");
 		super.paintComponent(g); 
@@ -410,11 +410,7 @@ public void paintComponent(final Graphics g){
 			//ImageIcon img = new ImageIcon("");
 			super.paintComponent(g); 
 			//img.paintIcon(this, g, 0, 0);
-			this.setBackground(Color.white);
-			
-			 g.setColor(Color.white);
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());
-			
+			 this.setBackground(Color.white);
 			 for(int x = 0; x < elementTable.length; x++){
 				 for(int y = 0; y < elementTable.length; y++){
 					 if(elementTable[x][y] != null){

@@ -2,7 +2,7 @@
 // La classe qui contient la méthode qui gère l'explosion du joueur
 public class PlayerExplosion implements IExplosion {
 
-	public void explose(int posx, int posy, Board board) {
+	public void explose(int posx, int posy, Board board, Player player) {
 		int playerNumber = board.getPlayerNumber();
 		Player[] playerList = GamePanel.getPlayerList();
 		int i=0;
@@ -16,6 +16,10 @@ public class PlayerExplosion implements IExplosion {
 			board.setElemInBoard(posx, posy, null);
 			playerList[i].setPosx(-10);
 			playerList[i].setPosy(-10);
+			board.addPlayerDeath();
+			if (board.getPlayerNumber() - board.getPlayerDeath()<2)
+				board.end();
+			
 		}
 	}
 }

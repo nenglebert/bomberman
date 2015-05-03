@@ -10,8 +10,8 @@ public class Element {
 		
 		// Méthode qui permet d'appeler la méthode explose 
 		// des attributs explosion des sous-classes
-	public void applyExplose(Board board){
-		explosion.explose(this.posx, this.posy, board);
+	public void applyExplose(Board board, Player player){
+		explosion.explose(this.posx, this.posy, board, player);
 	}
 		
 		// Tous les gettteurs
