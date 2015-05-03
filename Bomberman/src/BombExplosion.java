@@ -9,38 +9,65 @@ public class BombExplosion implements IExplosion{
 		Fire fireCenter = new Fire("explosionCentre.jpg",posx,posy, board, player);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
-				
+		
+		// Variables de condition pour que les flammes n'apparaissent pas si la première case est un objet qui a explosé
+		int pass1 = 1;
+		int pass2 = 1;
+		int pass3 = 1;
+		int pass4 = 1;
+		
 		// Et la on fait apparaitre les flammes après conditions
 		board.setElemInBoard(posx,posy,fireCenter);
 		// Pour que les cases disparaissent
 		
 			for (int i=1; i<=bombSize; i++){
-				if ((posx+i) <= 14 && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock)){
+				if ((posx+i) <= 14 && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx+i,posy);
 					board.setElemInBoard(posx+i,posy,new Fire("explosionHor.jpg",posx+i,posy,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
-					CurrentElem1.applyExplose(board, player);
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+						pass1 = 0;
+						CurrentElem1.applyExplose(board, player);
+					}
 				}
-				if (0 <= (posx-i) && !(board.getElemInBoard(posx-i,posy) instanceof Bedrock)){
+				
+				else if ((posx+i) <= 14 && board.getElemInBoard(posx+i,posy) instanceof Bedrock) 
+				pass1 =0;
+				
+				if (0 <= (posx-i) && !(board.getElemInBoard(posx-i,posy) instanceof Bedrock) && pass2 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx-i,posy);
 					board.setElemInBoard(posx-i,posy,new Fire("explosionHor.jpg",posx-i,posy,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
-					CurrentElem1.applyExplose(board, player);
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+						pass2 = 0;
+						CurrentElem1.applyExplose(board, player);
+					}
 				}
-				if ((posy+i) <= 14 && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock)){
+				
+				else if (0 <= (posx-i) && board.getElemInBoard(posx-i,posy) instanceof Bedrock) 
+					pass2 =0;
+				
+				if ((posy+i) <= 14 && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx,posy+i);
 					board.setElemInBoard(posx,posy+i,new Fire("explosionVert.jpg",posx,posy+i,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
-					CurrentElem1.applyExplose(board, player);
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+						pass3 = 0;
+						CurrentElem1.applyExplose(board, player);
+					}
 				}
-				if (0 <= (posy-i) && !(board.getElemInBoard(posx,posy-i) instanceof Bedrock)){
+				
+				else if ((posy+i) <= 14 && board.getElemInBoard(posx,posy+i) instanceof Bedrock) 
+					pass3 =0;
+				
+				if (0 <= (posy-i) && !(board.getElemInBoard(posx,posy-i) instanceof Bedrock) && pass4 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx,posy-i);
 					board.setElemInBoard(posx,posy-i,new Fire("explosionVert.jpg",posx,posy-i,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire))
-					CurrentElem1.applyExplose(board, player);
-					
-					
+					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+						pass4 = 0;
+						CurrentElem1.applyExplose(board, player);
+					}	
 				}
+				
+				else if (0 <= (posy-i) && board.getElemInBoard(posx,posy-i) instanceof Bedrock) 
+					pass4 =0;
 			}
 				board.getPanel().update();
 				timer.schedule(new TimerTask() {

@@ -19,7 +19,7 @@ public class Player extends Element implements IPlayer{
 		this.life = 5;
 		this.speed = 1;
 		this.bombBag = 1;
-		this.bombSize = 2;
+		this.bombSize = 4;
 	}
 		
 		// Méthodes de l'interface IPlayer à redéfinir
