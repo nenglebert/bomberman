@@ -1,7 +1,7 @@
 
 public class NonExplosion implements IExplosion{
 	
-	public void explose(int posx, int posy, Board board) {
+	public void explose(int posx, int posy, Board board, Player player) {
 		Double proba = 0.6;
 		if(Math.random() >= proba){
 			//Une chance sur 3 d'avoir un bonus

@@ -7,6 +7,7 @@ public class Player extends Element implements IPlayer{
 	private int life;
 	private int speed;
 	private int bombBag;
+	private int bombSize;
 		
 		// Constructeur de Player
 	public Player(String skin, String name, int posx, int posy){
@@ -18,6 +19,7 @@ public class Player extends Element implements IPlayer{
 		this.life = 5;
 		this.speed = 1;
 		this.bombBag = 1;
+		this.bombSize = 2;
 	}
 		
 		// Méthodes de l'interface IPlayer à redéfinir
@@ -39,6 +41,14 @@ public class Player extends Element implements IPlayer{
 	
 	public int getBombBag() {
 		return bombBag;
+	}
+	
+	public int getBombSize() {
+		return bombSize;
+	}
+
+	public void setBombSize(int bombSize) {
+		this.bombSize = bombSize;
 	}
 
 	public void setName(String name) {

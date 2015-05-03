@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	
 	private int begin = 0;	// ces deux suivants servent Ã  paint
 	private GameWindow gameWindow;
-	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
+	private enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	public GamePanel(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
 		this.initialize();
