@@ -16,6 +16,10 @@ public class PlayerExplosion implements IExplosion {
 			board.setElemInBoard(posx, posy, null);
 			playerList[i].setPosx(-10);
 			playerList[i].setPosy(-10);
+			board.addPlayerDeath();
+			if (board.getPlayerNumber() - board.getPlayerDeath()<2)
+				board.end();
+			
 		}
 	}
 }

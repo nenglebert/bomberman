@@ -395,9 +395,9 @@ public void paintComponent(Graphics g){
 		else {
 			this.setLayout(new GridLayout(1,2));
 			//Plateau de jeu
-			ImageIcon img = new ImageIcon("");
+			//ImageIcon img = new ImageIcon("");
 			super.paintComponent(g); 
-			img.paintIcon(this, g, 0, 0);
+			//img.paintIcon(this, g, 0, 0);
 			 this.setBackground(Color.white);
 			 for(int x = 0; x < elementTable.length; x++){
 				 for(int y = 0; y < elementTable.length; y++){

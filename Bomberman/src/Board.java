@@ -7,7 +7,7 @@ public class Board {
 	private Player[] playerList;
 	private int playerNumber;
 	private GamePanel panel;
-
+	private int playerDeath = 0;
 	
 		// Constructeur par défaut
 	public Board(Player[] playerList, GamePanel panel){
@@ -75,5 +75,18 @@ public class Board {
 	public GamePanel getPanel() {
 		return this.panel;
 	}
-
+	public int getPlayerDeath(){
+		return this.playerDeath;
+	}
+	public void addPlayerDeath(){
+		this.playerDeath++;
+	}
+	public void end(){
+		System.out.println("Jeu terminé");
+		int i = 0;
+		while (playerList[i].getPosx() == -10 ) {
+			i++	;	
+		}
+		System.out.println(playerList[i].getName()+" a gagné");
+	}
 }
