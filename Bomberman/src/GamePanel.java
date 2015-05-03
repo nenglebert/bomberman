@@ -33,15 +33,15 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GamePanel extends JPanel implements KeyListener{
-	
-		// CrÃ©ation des diffÃ©rents objets
+	//Création des différents objets
 	private Board board;
 	private Element[][] elementTable;
 	protected static Player[] playerList;
 	private int playerNumber;
 	private Map<Integer,Tuple<Integer,Direction>> commandKeys = new HashMap<Integer,Tuple<Integer, Direction>>();
-	// = {KeyEvent.VK_D:new Tuple<Integer, String>(1,"d") ,KeyEvent.VK_Q,KeyEvent.VK_S,KeyEvent.VK_Z,KeyEvent.VK_A,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_DOWN,KeyEvent.VK_UP,KeyEvent.VK_ENTER},{KeyEvent.VK_L,KeyEvent.VK_J,KeyEvent.VK_K,KeyEvent.VK_I,KeyEvent.VK_U},{KeyEvent.VK_N,KeyEvent.VK_V,KeyEvent.VK_B,KeyEvent.VK_G,KeyEvent.VK_F}};	private GameWindow gameWindow;
-	private JPanel subPanel = new JPanel();	//Le panel qui va contenir les boutons
+	
+	// Interface JPanel (conteneur de boutons)
+	private JPanel subPanel = new JPanel();	
 	
 	private JButton startButton = new JButton("Start game");	//Bouton "Start"
 	private JButton tutoButton = new JButton("Tutorial");		//Bouton "Tutorial"
@@ -50,6 +50,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private JButton player4Button = new JButton("4 Players");	//Bouton "4 players"
 	private JButton validateButton = new JButton("Validate");	//Bouton "Validate"
 	
+	// Gestion des labels	
 	private JLabel introLabel = new JLabel("Take up the challenge and play !");
 	private JLabel playerLabel = new JLabel("Choose the number of player");
 	private JLabel nameLabel = new JLabel("Enter the players name");
@@ -57,7 +58,8 @@ public class GamePanel extends JPanel implements KeyListener{
 	private ArrayList<JTextField> nameFields = new ArrayList<JTextField>();	//Zone pour les noms
 	private ArrayList<String> nameList = new ArrayList<String>();
 	
-	private int begin = 0;	// ces deux suivants servent Ã  paint
+	//Affichage du menu
+	private int begin = 0;	// Indique qu'il faut afficher le menu
 	private GameWindow gameWindow;
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
@@ -105,12 +107,12 @@ public class GamePanel extends JPanel implements KeyListener{
 		subPanel.add(introLabel);
 		subPanel.add(startButton);
 		subPanel.add(tutoButton);
-		subPanel.setOpaque(false);		//C'est pour ne pas avoir de bouton dÃ©gueu
-		this.add(subPanel);				//On met tout sur notre panel gÃ©nÃ©rale
+		subPanel.setOpaque(false);		//Mise en forme des boutons
+		this.add(subPanel);				//Placement sur la fenêtre
 		
 		this.setPreferredSize(new Dimension(600, 600));
 		
-		//DÃ©finissions des boutons
+		// Boutons
 		startButton.addActionListener(new StartActionListener(this,subPanel));
 		player2Button.addActionListener(new PlayerActionListener(this,subPanel,2));
 		player3Button.addActionListener(new PlayerActionListener(this,subPanel,3));
@@ -118,9 +120,8 @@ public class GamePanel extends JPanel implements KeyListener{
 	}
 	
 /////////////////
-//Lorsqu'une touche est appuyÃ©e
-//Le check permet de ne rien faire si un block est la ou on
-//veut aller
+
+	//Gestion des touches
 	public void keyPressed(KeyEvent e){
 	if (begin == 1 || begin == 2){	
 		Tuple<Integer,Direction> playerAction = commandKeys.get(e.getKeyCode());
@@ -164,173 +165,93 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 			
 		}
-		
-		
+	}	
+}	// Fin de keyPressed
+	
+	
+	
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Joueur 1
-	//int x1 = playerList[0].getPosx();
-	//int y1 = playerList[0].getPosy();
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
-
-	
-	
-	/*
-	if(e.getKeyCode()==KeyEvent.VK_UP && y1 > 0)
-		if(check(x1,y1-1,0)){
-			playerList[0].setPosy(y1-1);
-			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
-			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1, y1-1, playerList[0]);
-		}
-		if(e.getKeyCode()==KeyEvent.VK_DOWN && y1 < 14)
-		if(check(x1,y1+1,0)){
-			playerList[0].setPosy(y1+1);	
-			if (!(board.getElemInBoard(x1, y1) instanceof Bomb))
-			board.setElemInBoard(x1, y1, null);
-			board.setElemInBoard(x1, y1+1, playerList[0]);
-		}
-//BOMBAAA
-	if(e.getKeyCode()==KeyEvent.VK_SPACE)
-		if (playerList[0].getBombBag() > 0){
-			playerList[0].setBombBag(playerList[0].getBombBag()-1);
-		board.setElemInBoard(x1,y1,new Bomb(x1,y1,board,playerList[0]));
-		}
-		// Rajout de pan en argument
-	
-		// Joueur 1
-		int x2 = playerList[1].getPosx();
-		int y2 = playerList[1].getPosy();
 		
-		if(e.getKeyCode()==KeyEvent.VK_D && x2 < 14)
-			if(check(x2+1,y2,1)){
-				playerList[1].setPosx(x2+1);
-				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
-				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2+1, y2, playerList[1]);
-			}
+	
 
-		if(e.getKeyCode()==KeyEvent.VK_Q && x2 > 0)
-			if(check(x2-1,y2,1)){
-				playerList[1].setPosx(x2-1);
-				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
-				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2-1, y2, playerList[1]);
-			}
-		if(e.getKeyCode()==KeyEvent.VK_Z && y2 > 0)
-			if(check(x2,y2-1,1)){
-				playerList[1].setPosy(y2-1);
-				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
-				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2, y2-1, playerList[1]);
-			}
-			if(e.getKeyCode()==KeyEvent.VK_S && y2 < 14)
-			if(check(x2,y2+1,1)){
-				playerList[1].setPosy(y2+1);	
-				if (!(board.getElemInBoard(x2, y2) instanceof Bomb))
-				board.setElemInBoard(x2, y2, null);
-				board.setElemInBoard(x2, y2+1, playerList[1]);
-			}
-	//BOMBAAA
-		if(e.getKeyCode()==KeyEvent.VK_A)
-			if (playerList[1].getBombBag() > 0){
-				playerList[1].setBombBag(playerList[1].getBombBag()-1);
-			board.setElemInBoard(x2,y2,new Bomb(x2,y2, board, playerList[1]));	}
-		// Rajout de pan en argument*/
-		
+
+	//Vérification des collisons et ajout bonus
+	public boolean check(int pX, int pY, int pPlayer){
+		boolean verif = true;
+		if (-1<pX && pX<15 && -1< pY && pY <15 && (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)){
+			//Si c'est un bonus, on lui donne
+			if(board.getElemInBoard(pX, pY) instanceof Bonus)
+				verif = bonus(pX,pY,pPlayer);
+		}
+		else
+			verif = false;
+		return verif;
 	}
-}
-
-	//Check si pas de collision et donne le bonus
-			public boolean check(int pX, int pY, int pPlayer){
-				boolean verif = true;
-				if (-1<pX && pX<15 && -1< pY && pY <15 && (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)){
-					//Si c'est un bonus, on lui donne
-					if(board.getElemInBoard(pX, pY) instanceof Bonus)
-						verif = bonus(pX,pY,pPlayer);
-				}
-				else
-					verif = false;
-				return verif;
+		
+	// Fonction bonus. Renvoie True, sauf pour une téléportation.
+	public boolean bonus(int pX, int pY, int pPlayer){
+		// On caste pour utiliser getType()
+		Bonus boni = (Bonus)board.getElemInBoard(pX, pY);
+		boolean verif = true;
+		
+		//Bonus bombe
+		if(boni.getType() == 1)
+			playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);	
+		
+		//Bonus vie
+		if(boni.getType() == 2)
+			playerList[pPlayer].setLife(playerList[pPlayer].getLife()+1);	
+	
+		//Bonus taille bombe
+		if(boni.getType() == 3)
+			playerList[pPlayer].setBombSize(playerList[pPlayer].getBombSize()+1);
+		
+		//Bonus bombe atomique
+		if(boni.getType() == 4){
+			for (int i=0; i<playerList.length; i++){
+				if (playerList[i] != playerList[pPlayer])
+					playerList[i].setLife(playerList[i].getLife() - 1);
+			}
 		}
 		
-		// Fonction bonus
-		public boolean bonus(int pX, int pY, int pPlayer){
-			//Je passe par ceci car getType() est propre à la classe bonus, pas de
-			//polymorphisme avec la classe Element (un peu dégueu j'avoue)
-			Bonus boni = (Bonus)board.getElemInBoard(pX, pY);
-			boolean verif = true;
-			//Bonus bombe
-			if(boni.getType() == 1)
-				playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);	
-			
-			//Bonus vie
-			if(boni.getType() == 2)
-				playerList[pPlayer].setLife(playerList[pPlayer].getLife()+1);	
-		
-			//Bonus taille bombe
-			if(boni.getType() == 3)
-				playerList[pPlayer].setBombSize(playerList[pPlayer].getBombSize()+1);
-			
-			//Bonus bombe atomique
-			if(boni.getType() == 4){
-				for (int i=0; i<playerList.length; i++){
-					if (playerList[i] != playerList[pPlayer])
-						playerList[i].setLife(playerList[i].getLife() - 1);
-				}
-			}
-			
-			//Bonus téléportation
-			if(boni.getType() == 5){
-				ArrayList<Integer> posxList = new ArrayList<Integer>();
-				ArrayList<Integer> posyList = new ArrayList<Integer>();
-				for (int i=0; i<=14; i++){
-					for (int j=0; j<=14; j++){
-						if (elementTable[i][j] == null){
-							posxList.add(i);
-							posyList.add(j);
-						}
+		//Bonus téléportation
+		if(boni.getType() == 5){
+			ArrayList<Integer> posxList = new ArrayList<Integer>();
+			ArrayList<Integer> posyList = new ArrayList<Integer>();
+			for (int i=0; i<=14; i++){
+				for (int j=0; j<=14; j++){
+					if (elementTable[i][j] == null){
+						posxList.add(i);
+						posyList.add(j);
 					}
 				}
-				Random random = new Random();
-				int randomNumber = random.nextInt(posxList.size());
-				board.setElemInBoard(playerList[pPlayer].getPosx(), playerList[pPlayer].getPosy(), null);
-				board.setElemInBoard(pX, pY,null);
-				playerList[pPlayer].setPosx(posxList.get(randomNumber));
-				playerList[pPlayer].setPosy(posyList.get(randomNumber));
-				board.setElemInBoard(playerList[pPlayer].getPosx(),playerList[pPlayer].getPosy(),playerList[pPlayer]);
-				verif = false;
-				update();
 			}
-			return verif;
+			// Choisi une position au hasard.
+			Random random = new Random();
+			int randomNumber = random.nextInt(posxList.size());
+			board.setElemInBoard(playerList[pPlayer].getPosx(), playerList[pPlayer].getPosy(), null);
+			board.setElemInBoard(pX, pY,null);
+			playerList[pPlayer].setPosx(posxList.get(randomNumber));
+			playerList[pPlayer].setPosy(posyList.get(randomNumber));
+			board.setElemInBoard(playerList[pPlayer].getPosx(),playerList[pPlayer].getPosy(),playerList[pPlayer]);
+			verif = false; //Ne bouge pas après la téléportation
+			update();
 		}
+		return verif;
+	}
 
 
 
 
-//Touche lachï¿½e
-public void keyReleased(KeyEvent e){}
+	//Touche lachée
+	public void keyReleased(KeyEvent e){}
 
-//Par ex : CTRL + touch
-public void keyTyped(KeyEvent e){}
+	//Par ex : CTRL + touch
+	public void keyTyped(KeyEvent e){}
 	
 	public void playerChooseWindow(JPanel subPanel){
-		//Fait apparaÃ®tre la page 2 (choix du nombre de joueur)
+		//Fait apparaître la page 2 (nombre de joueur)
 		subPanel.removeAll();
 		subPanel.setLayout(new GridLayout(4,1));
 		
@@ -342,13 +263,13 @@ public void keyTyped(KeyEvent e){}
 		subPanel.revalidate();
 	}
 	
+	//Récupère le nom des joueurs.
 	public void takePlayersName(JPanel subPanel, int playerNumber){
-		//RÃ©cupÃ¨re le nom des joueurs
 		subPanel.removeAll();
 		subPanel.setLayout(new GridLayout(2*playerNumber + 2,1));
 		
 		subPanel.add(nameLabel);
-		// CrÃ©ation des espaces d'Ã©criture du nom
+		// Création des espaces d'ériture du nom
 			for (int i=1; i<=playerNumber; i++){
 				nameFields.add(new JTextField("Name player " + i));
 				final JTextField nameField = nameFields.get(i-1);	//Pour vider le champ
@@ -366,6 +287,7 @@ public void keyTyped(KeyEvent e){}
 		subPanel.revalidate();
 	}
 	
+	// Crée et place les joueurs
 	public void createPlayers(int playerNumber){
 		this.playerNumber = playerNumber;
 		System.out.println(playerNumber);
@@ -432,21 +354,35 @@ public void keyTyped(KeyEvent e){}
 		return board;
 	}
 	
+
+	//Permet la "deepcopy" de la matrice
+	public Element[][] dcopy(Element[][] input) {
+	    Element[][] target = new Element[input.length][];
+	    for (int i=0; i <input.length; i++) {
+	      target[i] = Arrays.copyOf(input[i], input[i].length);
+	    }
+	    return target;
+	}
 	
-public void paintComponent(Graphics g){
+
+	//Affichage
+	public void paintComponent(Graphics g){
+		
+		//Ecran d'accueil
 		if (begin==0){
 		ImageIcon img = new ImageIcon("Background.jpg");
 		super.paintComponent(g); 
 		img.paintIcon(this, g, 0, 0);
 		}
-		//Seulement pour le premier affichage
+		// Seulement pour le premier affichage
+		
+		// Premier affichage : charge l'intégralité du plateau
 		else if(begin==1) {
 			this.setLayout(new GridLayout(1,2));
-			//Plateau de jeu
-			//ImageIcon img = new ImageIcon("");
 			super.paintComponent(g); 
-			//img.paintIcon(this, g, 0, 0);
 			 this.setBackground(Color.white);
+			 
+			 // Passe la grille en revue & place les éléments
 			 for(int x = 0; x < elementTable.length; x++){
 				 for(int y = 0; y < elementTable.length; y++){
 					 if(elementTable[x][y] != null){
@@ -465,30 +401,24 @@ public void paintComponent(Graphics g){
 				 }
 			 }
 			 
-			 // Pour le tableau a coté
-			 
-			 gameWindow.updateLabel();
-				/*Timer timer = new Timer();
-				timer.schedule(new TimerTask() {
-				  public void run() {							
-							}, 5000);*/ 	
-							
-				
+		// Pour le tableau latéral
+		gameWindow.updateLabel();
+		
+		// Copie plateau de jeu
 		oldElementTable = dcopy(elementTable);
-			return;
+		return;
 		}
+		
+		// Ne redessine que les modifications en comparants les changements
+		// avec la copie du plateau de jeu précédent.
 		else if (begin ==2){
-			System.out.println(elementTable+"   "+elementTable[0][0]);
-			
-			System.out.println(oldElementTable+"   "+oldElementTable[0][0]);
 			for(int x = 0; x < elementTable.length; x++){
 				 for(int y = 0; y < elementTable.length; y++){
-					// System.out.println(x);
-					// System.out.println(y);
+					 
+					 // Si les éléments ne sont pas les mêmes dans chaque plateau,
+					 // il y a eu modification : on affiche la modification.
 					 if(elementTable[x][y] != null){
-						 System.out.println(1);
 						 if (!elementTable[x][y].equals(oldElementTable[x][y])){
-							 System.out.println(2);
 							 try{
 						 			Image img1 = ImageIO.read(new File(elementTable[x][y].skin));
 						 			g.drawImage(img1, elementTable[x][y].getPosx()*40,
@@ -502,6 +432,9 @@ public void paintComponent(Graphics g){
 						 		}							 
 						 }
 					 }
+					 
+					 // Si l'ancien élément n'est pas null mais que le nouveau 
+					 // l'est, on redessine une case blanche dessus.
 					 else if(oldElementTable[x][y]!=null) {
 						 System.out.println(4);
 						 try{
@@ -516,21 +449,10 @@ public void paintComponent(Graphics g){
 					 		}						 
 					 }
 				}
-		 }
-			//gameWindow.updateLabel();
-			oldElementTable = dcopy(elementTable); return;
-			//this.begin = 1;
-}
-}
-
-
-public Element[][] dcopy(Element[][] input) {
-    Element[][] target = new Element[input.length][];
-    for (int i=0; i <input.length; i++) {
-      target[i] = Arrays.copyOf(input[i], input[i].length);
-    }
-    return target;
-}
-
-
+			}
+		//gameWindow.updateLabel();
+		oldElementTable = dcopy(elementTable); 
+		return;
+		}
+	}
 }
