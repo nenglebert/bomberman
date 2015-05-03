@@ -16,9 +16,9 @@ public class Bomb extends Element {
 		// La bombe explosera dans une seconde grâce au timer
 		timer.schedule(new TimerTask() {
 			public void run() {
-				applyExplose(board);
+				applyExplose(board, pPlayer);
 				if (pPlayer.getPosx() == posx && pPlayer.getPosy() == posy)
-					pPlayer.applyExplose(board);
+					pPlayer.applyExplose(board, pPlayer);
 				pPlayer.setBombBag(pPlayer.getBombBag()+1);
 				
 						 		// Méthode de Element qui 

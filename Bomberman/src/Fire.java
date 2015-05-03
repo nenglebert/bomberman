@@ -5,7 +5,7 @@ import java.util.TimerTask;
 public class Fire extends Element{
 	
 		// Nos flammes
-	public Fire(String skin, final int posx, final int posy, final Board board){
+	public Fire(String skin, final int posx, final int posy, final Board board, final Player player){
 		this.skin = skin;
 		this.explosion = new DeleteExplosion();
 		this.posx = posx;
@@ -15,7 +15,7 @@ public class Fire extends Element{
 		timer.schedule(new TimerTask() {
 			  public void run() {				  
 				if (board.getElemInBoard(posx, posy) != null && board.getElemInBoard(posx, posy).toString().equals(ref))
-				applyExplose(board);
+				applyExplose(board, player);
 					  }										
 					}, 1000); 
 	}
