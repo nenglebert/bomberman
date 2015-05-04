@@ -3,6 +3,7 @@
 \defcounter {refsection}{0}\relax 
 \select@language {english}
 \select@language {french}
+\select@language {english}
 \contentsline {section}{\numberline {1}Architecture}{1}{section.1}
 \contentsline {subsection}{\numberline {1.1}Model-View-Controller}{1}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Impl\IeC {\'e}mentation du MVC \IeC {\`a} notre projet}{1}{subsection.1.2}
