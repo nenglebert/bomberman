@@ -6,6 +6,8 @@ import java.util.TimerTask;
 public class BombExplosion implements IExplosion{
 	
 	public void explose(final int posx, final int posy, final Board board, final Player player) {
+		
+			
 		Fire fireCenter = new Fire("explosionCentre.jpg",posx,posy, board, player);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
@@ -16,19 +18,17 @@ public class BombExplosion implements IExplosion{
 		int pass4 = 1;
 		
 		// Et la on fait apparaitre les flammes après conditions
-		if (posx>-1){
-			board.getElemInBoard(posx, posy).setPosx(-10);
-			board.getElemInBoard(posx, posy).setPosy(-10);
-			board.setElemInBoard(posx,posy,fireCenter);
-		}
-		// Pour que les cases disparaissent
 		
+			board.setElemInBoard(posx,posy,fireCenter);
+		// Pour que les cases disparaissent
 			for (int i=1; i<=bombSize; i++){
 				if ((posx+i) <= 14 && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx+i,posy);
 					board.setElemInBoard(posx+i,posy,new Fire("explosionHor.jpg",posx+i,posy,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass1 = 0;
+						if (CurrentElem1 instanceof Bomb)
+							((Bomb)CurrentElem1).ImExploding();
 						CurrentElem1.applyExplose(board, player);
 					}
 				}
@@ -41,6 +41,8 @@ public class BombExplosion implements IExplosion{
 					board.setElemInBoard(posx-i,posy,new Fire("explosionHor.jpg",posx-i,posy,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass2 = 0;
+						if (CurrentElem1 instanceof Bomb)
+							((Bomb)CurrentElem1).ImExploding();
 						CurrentElem1.applyExplose(board, player);
 					}
 				}
@@ -53,6 +55,8 @@ public class BombExplosion implements IExplosion{
 					board.setElemInBoard(posx,posy+i,new Fire("explosionVert.jpg",posx,posy+i,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass3 = 0;
+						if (CurrentElem1 instanceof Bomb)
+							((Bomb)CurrentElem1).ImExploding();
 						CurrentElem1.applyExplose(board, player);
 					}
 				}
@@ -65,6 +69,8 @@ public class BombExplosion implements IExplosion{
 					board.setElemInBoard(posx,posy-i,new Fire("explosionVert.jpg",posx,posy-i,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass4 = 0;
+						if (CurrentElem1 instanceof Bomb)
+							((Bomb)CurrentElem1).ImExploding();
 						CurrentElem1.applyExplose(board, player);
 					}	
 				}

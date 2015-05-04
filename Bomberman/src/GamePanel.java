@@ -210,7 +210,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		//Bonus bombe atomique
 		if(boni.getType() == 4){
 			for (int i=0; i<playerList.length; i++){
-				if (playerList[i] != playerList[pPlayer])
+				if (playerList[i] != playerList[pPlayer] && playerList[i].getLife()>0)
 					playerList[i].applyExplose(board, playerList[i]);
 			}
 		}
