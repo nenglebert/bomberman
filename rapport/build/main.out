@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Architecture}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Model-View-Controller}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Impl\351mentation du MVC \340 notre projet}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{View}{subsection.1.2}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Controller}{subsection.1.2}% 5
+\BOOKMARK [3][-]{subsubsection.1.2.3}{Model}{subsection.1.2}% 6
+\BOOKMARK [1][-]{section.2}{Fonctionnalit\351s}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{Initialisation du jeu}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{D\351roulement de la partie}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Les bonus}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Diagrammes UML}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{Diagramme des classes}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Diagramme des s\351quences}{section.3}% 13

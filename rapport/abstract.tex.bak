@@ -1,0 +1,23 @@
+\section*{\centering Abstract}
+
+\selectlanguage{french}
+\begin{large}
+“Bomberman”, par Nicolas Englebert, Cédric Hannotier et Enes Ulusoy\\ Université Libre de Bruxelles, 2014 - 2015\end{large}\\
+
+Le but de ce projet est de développer un prototype du jeu Bomberman en JAVA. Si JAVA
+a été choisi pour ce projet, c'est pour son côté orienté objet. La programmation orientée
+objet n'est qu'un paradigme de programmation comme la programmation procéduale en est 
+un autre. Ce paradigme - né au début des années 60 par Dahl et Nygaard - est basé sur 
+l'interactions d'objet représentant une idée, un concept, ... possédant sa  propre 
+structure lui permettant de communiquer avec d'autre. Cette interaction entre objets
+permet la conception de programmes évolués.
+Le modélisation de ces interactions condit à l'utilisation d'un design pattern, ici 
+le modèle MVC. En adoptant un tel modèle, notre programme se voit diviser en trois 
+parties distinctes : le modèle, véritable coeur du projet ; la vue, responsable de 
+l'interface graphique et le controlleur, vérifiant les entrées de l'utilisateur. 
+Ce rapport détaille le choix de la structure ainsi que la modélisation des interactions
+de nos objets. \\\\
+Mots clefs : bomberman, JAVA, programmation orientée-objet, design pattern, modèle MVC \\
+
+\tableofcontents
+

@@ -1,0 +1,21 @@
+\section{Fonctionnalités}
+\subsection{Initialisation du jeu}
+Premièrement, puisque la gestion des IA n'est pas imposée, l'utilisateur doit pouvoir jouer en \textit{multijoueur}. C'est pour cela que le programme débute avec une interaction avec l'utilisateur, à l'aide d'une interface graphique composée de \textit{boutons} et de \textit{champs de texte}, afin de recueillir le nombre de joueurs désirés ainsi que leur nom. \\
+Ensuite, la fenêtre affiche le plateau de jeu sur lequel les différents éléments ont été initialisés, en tenant compte des choix de l'utilisateur. La disposition des personnages se fait sur les coins du plateau et la position des blocs incassables est fixe, alors que celle des blocs cassables est choisie aléatoirement. 
+
+\subsection{Déroulement de la partie}
+Comme tout \textit{Bomberman}, chaque joueur est capable de contrôler son personnage à l'aide des touches du clavier. Les touches directionnelles et de dépôt de bombe pour chaque joueur seront spécifiées à l'avance. \\
+Le programme est capable de gérer la collision entre les joueurs et les blocs, mais pas avec les autres personnages et les bombes. Le personnage se contentera donc de traverser ces éléments sans interaction. \\
+Lorsqu'une bombe explose, une \textit{croix de flamme} influe sur tous les éléments se trouvant sur son chemin, sauf la brique non cassable. En outre, les joueurs touchés perdront une vie et les briques cassables seront détruites. Le rayon d'action de la flamme est initialement de 1 case, mais peut augmenter à l'aide des différents bonus disponibles durant la partie. 
+
+\subsection{Les bonus}
+Une brique cassable ne se contente pas d'être détruite lors d'une explosion. En effet, elle peut entraîner l'apparition de divers bonus choisi aléatoirement parmi ceux implémentés dans le code. Ces derniers sont classés de la sorte : 
+
+\begin{itemize}
+    \item \textbf{Augmentation de vitesse :} le joueur pourra se déplacer plus rapidement sur le plateau de jeu.
+    \item \textbf{Augmentation du nombre de bombes :} le joueur se verra attribuer un nombre plus grand de bombes à déposer simultanément. 
+    \item \textbf{Augmentation du nombre de vies :} le joueur pourra récupérer une vie à l'acquisition de ce bonus.
+    \item \textbf{Le "freeze" :} le joueur qui obtient ce bonus "gèle" tous les autres joueurs qui ne pourront effectuer aucune action durant un temps déterminé.
+\end{itemize}
+
+Cependant, un bonus n'apparaît pas tout le temps. En effet, le principe repose sur le fait d'effectuer une opération aléatoire à l'aide de la méthode \textit{random} de la class \textit{math} et si le résultat est un nombre supérieur à 0.5, un bonus apparaîtra. Dans le cas contraire, le bloc se contente d'exploser. 
