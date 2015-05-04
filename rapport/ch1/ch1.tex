@@ -1,31 +1,29 @@
 \newpage
-\section{Architecture}
-Avant m\^eme de commencer le développement du \textit{Bomberman}, il a fallu s'intéresser
-sur comment les objets issus de nos différentes classes allaient interagir entre eux. 
-Même si cette étape n'est pas fondamentalement indispensable, veiller à adopter un 
-\textit{design pattern} structuré s'avère l'\^etre si l'on désire s'affranchir au maximum 
-de toute redondance, lourdeur dans la gestion des classes ...
+\section{Designs Patterns}
+Alors qu'initialement nous comptions adopter le modèle MVC, nous avons connu quelques 
+soucis lors de sa mise en place. Du à notre manque d'expérience dans le monde de la  
+programmation orientée objet, nous n'avons pas réussi à scinder de façon complète 
+le contrôleur de le vue. Ne ne sommes pas parvenu à dissocier la gestion des
+entrées utilisateurs de l'actualisation de l'affichage produit par ces mêmes actions.
+Étant quelque peu en manque de connaissance et surtout en manque de temps, nous avons
+préféré trouver une solution alternative, à savoir le regroupement de ces deux entités.
 
-\subsection{Model-View-Controller}
-\begin{wrapfigure}[7]{r}{3cm}
-\includegraphics[scale=0.1]{ch1/image1.png}
-
-\captionof{figure}{MVC}
-\end{wrapfigure}
+\subsection{Model \& ViewController}
 Le design pattern que nous avons choisi pour notre projet est le modèle-vue-contrôleur, 
 MVC en abrégé. L'intérêt de l'utilisation de ce patron est de séparer notre programme 
 en trois parties différentes, ayant chacune un objectif particulier :
 \begin{enumerate}
 \item Un modèle
-\item Une vue
-\item Un contr\^oleur
+\item Une vue-contrôleur
 \end{enumerate}\ \\
 Le \textit{modèle} se charge de la gestion des données : les objets qui le constituent sont 
 chargés de leurs traitements. Après avoir mis à jour les données, le modèle informera la  
-vue de se mettre à jour. La \textit{vue} concerne l'interface graphique de notre programme, 
-chargé d'interagir avec l'utilisateur. Le \textit{contr\^oleur} reçoit les actions de 
-l'utilisateur entrées via la vue. Son but est de vérifier la validité de ces données pour 
-ensuite prévenir le modèle d'en prendre compte.\\
+vue-contrôleur de se mettre à jour. La \textit{vue-contrôleur} est chargée d'un double 
+rôle. Son premier consiste en la mise à jour de l'interface graphique sur demande du modèle.
+Le deuxième rôle qu'elle tient est de vérifier la validité des données entrées par l'utilisateur
+et des les transmettre au modèle si celles-ci s'avèrent valides. La seule différence entre 
+ce modèle et le modèle MVC est que, pour des raisons purement techniques, nous n'avons pas été en 
+mesurer de séparer la vue du contrôleur en deux classes distinctes.\\
 
 La motivation à utiliser ce design pattern découle de la séparation claire entre 
 l'interface graphique gérée par la vue et le traitement des données par le modèle. 
@@ -38,20 +36,22 @@ au niveau de la conception.
 
 
 	\subsection{Implémentation du MVC à notre projet}
-		\subsubsection{View}
-		Notre \textit{view} se compose de deux classes : 
+		\subsubsection{ViewController}
+		Notre \textit{ViewController} se compose de deux classes : 
 		\begin{multicols}{2}
         \begin{enumerate}
-            \item \texttt{Window}
-            \item \texttt{Panel}
+            \item \texttt{GameWindow}
+            \item \texttt{GamePanel}
         \end{enumerate}
 	    \end{multicols}
-	    La classe \texttt{Window} hérite de la classe \texttt{JFrame}. C'est elle 
+	    La classe \texttt{GameWindow} hérite de la classe \texttt{GameJFrame}. C'est elle 
 	    qui se charge d'afficher une fenêtre à une taille pré configurée. Le contenu
-	    de cette fenêtre est géré par la classe \texttt{Panel} qui hérite de la 
+	    de cette fenêtre est géré par la classe \texttt{GamePanel} qui hérite de la 
 	    classe \texttt{JPanel}. Celle-ci récupère les modifications effectuées par le 
 	    modèle après que celui-ci lui ait informé de se mettre à jour pour ensuite 
-	    les afficher.
+	    les afficher mais cette classe se charge également de récupérer les entrées 
+	    utilisateurs pour les transmettre
+	    au modèle.
 	    
 		
 		\begin{figure}[H]
@@ -59,20 +59,9 @@ au niveau de la conception.
             \subfigure [View]{\includegraphics[scale=0.17]{ch1/View}}
         \quad
             \subfigure [Controller]{\includegraphics[scale=0.17]{ch1/Controller}}
-            \caption {Diagramme des classes : View/Controller}
+            \caption {Diagramme des classes : View/Controller \textbf{A CHANGER}}
         \end{figure}		
-        
-        \subsubsection{Controller}
-        Notre \textit{controller} ne se compose que d'une unique classe pour l'instant :
-        \begin{enumerate}
-        \item \texttt{Controller}
-        \end{enumerate}
-        S'il n'y a qu'une seule classe, c'est parce que le nombre d'actions 
-        susceptibles d'\^etre effectuées par l'utilisateur est assez limité. En effet,
-        la classe \texttt{Controller} se contente de récupérer les touches
-        rentrées par l'utilisateur (par exemple, les touches directionnelles) et de 
-        les transmettre au modèle si cette dernière déclenche bien une action. Cette figure est encore incomplète dans la mesure où il va falloir ajouter les différents \textit{ActionListener}. Ceux-ci concernent les différents boutons qui seront présents dans l'interface graphique avant le lancement du jeu. "L'esthétique" du projet n'ayant pas encore été approfondie, le groupe a préféré garder un modèle purifié, qui sera plus détaillé pour le rapport final.
-        
+            
         
         \subsubsection{Model}
         Notre \textit{model} se compose de deux interfaces :
@@ -138,7 +127,8 @@ au niveau de la conception.
         Afin de gérer les explosions de façon la plus efficace que possible, 
         la méthode \texttt{explode()} a été définie au sein de la classe 
         \texttt{Element}. Or, cette méthode n'a pas le même comportement pour
-        un objet de la classe \texttt{Bedrock} que pour un de la classe \texttt{Bomb} mais a le m\^eme pour un objet de la classe \texttt{Bonus}. 
+        un objet de la classe \texttt{Bedrock} que pour un de la classe \texttt{Bomb} 
+        mais a le m\^eme pour un objet de la classe \texttt{Bonus}. 
         Afin que cette méthode puisse être utilisée de façon polymorphe et pour
         éviter les doublons de code, l'interface \texttt{Explosion} implémentée 
         à \texttt{Element} permet de définir un comportement adapté à l'objet

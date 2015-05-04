@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.18)  4 MAY 2015 20:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.18)  4 MAY 2015 21:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2015,7 +2015,7 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 \c__siunitx_mathtt_int=\count388
 
 (./titlepage/titlepage.tex
-<titlepage/logo.jpg, id=59, 2262.4525pt x 468.75125pt>
+<titlepage/logo.jpg, id=71, 2262.4525pt x 468.75125pt>
 File: titlepage/logo.jpg Graphic file (type jpg)
 
 <use titlepage/logo.jpg>
@@ -2023,7 +2023,7 @@ Package pdftex.def Info: titlepage/logo.jpg used on input line 6.
 (pdftex.def)             Requested size: 248.87054pt x 51.56279pt.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 12.
- <ulb.jpg, id=60, 597.23125pt x 845.1575pt>
+ <ulb.jpg, id=72, 597.23125pt x 845.1575pt>
 File: ulb.jpg Graphic file (type jpg)
 
 <use ulb.jpg>
@@ -2071,80 +2071,86 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 <to be read again> 
                    \relax 
 l.15 \newpage
-              [1] (./ch1/ch1.tex
+              [1] (./ch4/ch4.tex
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 9.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 6.
 
-<ch1/image1.png, id=86, 806.01125pt x 889.3225pt>
-File: ch1/image1.png Graphic file (type png)
- <use ch1/image1.png>
-Package pdftex.def Info: ch1/image1.png used on input line 11.
-(pdftex.def)             Requested size: 80.60583pt x 88.93745pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 22--29
+Underfull \hbox (badness 10000) in paragraph at lines 11--15
 
  []
 
-<ch1/View.png, id=88, 1270.7475pt x 641.39626pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--15
+
+ []
+
+) (./ch2/ch2.tex [1
+
+]
+LaTeX Font Info:    Try loading font information for TS1+ppl on input line 16.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)) (./ch1/ch1.tex [2]
+Underfull \hbox (badness 10000) in paragraph at lines 18--27
+
+ []
+
+<ch1/View.png, id=109, 1270.7475pt x 641.39626pt>
 File: ch1/View.png Graphic file (type png)
  <use ch1/View.png>
 Package pdftex.def Info: ch1/View.png used on input line 59.
 (pdftex.def)             Requested size: 216.02422pt x 109.03592pt.
 
-<ch1/Controller.png, id=89, 1246.6575pt x 629.35126pt>
+<ch1/Controller.png, id=111, 1246.6575pt x 629.35126pt>
 File: ch1/Controller.png Graphic file (type png)
 
 <use ch1/Controller.png>
 Package pdftex.def Info: ch1/Controller.png used on input line 61.
 (pdftex.def)             Requested size: 211.92897pt x 106.9883pt.
- [1
+ [3]
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 78.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 78.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 78.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 78.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 78.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 78.
 
- <./ch1/image1.png>]
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 89.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 89.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 89.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 89.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 89.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 89.
-
-Overfull \hbox (20.08748pt too wide) in paragraph at lines 85--91
+Overfull \hbox (20.08748pt too wide) in paragraph at lines 74--80
 \T1/ppl/m/n/10.95 tions d'interfaces sont représen-tées par $\OMS/zplm/m/n/10.9
 5 !$\T1/ppl/m/n/10.95 , les classes filles par une sous-liste (-) et l'implémen
 tation
  []
 
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 93.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
-File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 117--125
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--114
 
  []
 
-[2 <./ch1/View.png> <./ch1/Controller.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 138--146
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--136
 
  []
 
-<ch1/Model.png, id=120, 1255.69125pt x 638.385pt>
+[4 <./ch1/View.png> <./ch1/Controller.png>]
+<ch1/Model.png, id=140, 1255.69125pt x 638.385pt>
 File: ch1/Model.png Graphic file (type png)
  <use ch1/Model.png>
-Package pdftex.def Info: ch1/Model.png used on input line 153.
+Package pdftex.def Info: ch1/Model.png used on input line 143.
 (pdftex.def)             Requested size: 439.49852pt x 223.43808pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 154.
+(caption)                particular \caption on input line 144.
 See the caption package documentation for explanation.
 
-) (./ch2/ch2.tex [3 <./ch1/Model.png>]) (./ch3/ch3.tex [4]
-<ch3/Diagrammedeclasses.png, id=132, 2526.43875pt x 1309.89375pt>
+) (./ch3/ch3.tex [5 <./ch1/Model.png>]
+<ch3/Diagrammedeclasses.png, id=147, 2526.43875pt x 1309.89375pt>
 File: ch3/Diagrammedeclasses.png Graphic file (type png)
 
 <use ch3/Diagrammedeclasses.png>
@@ -2166,7 +2172,7 @@ Overfull \hbox (52.31091pt too wide) in paragraph at lines 6--7
 [] 
  []
 
-<ch3/DiagrammeSeq.jpg, id=133, 1850.915pt x 935.495pt>
+<ch3/DiagrammeSeq.jpg, id=148, 1850.915pt x 935.495pt>
 File: ch3/DiagrammeSeq.jpg Graphic file (type jpg)
 
 <use ch3/DiagrammeSeq.jpg>
@@ -2184,12 +2190,12 @@ Overfull \hbox (9.75972pt too wide) in paragraph at lines 12--13
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 45.
- [5 <./ch3/Diagrammedeclasses.png> <./ch3/DiagrammeSeq.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 45.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 47.
+ [6 <./ch3/Diagrammedeclasses.png> <./ch3/DiagrammeSeq.jpg>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 47.
  (build/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 45.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 45.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 47.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 47.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 Package logreq Info: Writing requests to 'main.run.xml'.
@@ -2197,24 +2203,27 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43764 strings out of 493304
- 958383 string characters out of 6139871
- 1247648 words of memory out of 5000000
- 46377 multiletter control sequences out of 15000+600000
+ 43766 strings out of 493304
+ 958364 string characters out of 6139871
+ 1246648 words of memory out of 5000000
+ 46375 multiletter control sequences out of 15000+600000
  53984 words of font info for 112 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  58i,13n,74p,10450b,2723s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pal
-atino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8
-a.pfb>
-Output written on build/main.pdf (7 pages, 790432 bytes).
+pdfTeX warning (dest): name{subsubsection.3.2.3} has been referenced but does
+ not exist, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palat
+ino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.
+pfb>
+Output written on build/main.pdf (8 pages, 738082 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 147 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 191 PDF objects out of 1000 (max. 8388607)
+ 162 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 

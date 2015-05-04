@@ -4,16 +4,18 @@
 \select@language {english}
 \select@language {french}
 \select@language {english}
-\contentsline {section}{\numberline {1}Architecture}{1}{section.1}
-\contentsline {subsection}{\numberline {1.1}Model-View-Controller}{1}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Impl\IeC {\'e}mentation du MVC \IeC {\`a} notre projet}{1}{subsection.1.2}
-\contentsline {subsubsection}{\numberline {1.2.1}View}{1}{subsubsection.1.2.1}
-\contentsline {subsubsection}{\numberline {1.2.2}Controller}{2}{subsubsection.1.2.2}
-\contentsline {subsubsection}{\numberline {1.2.3}Model}{2}{subsubsection.1.2.3}
-\contentsline {section}{\numberline {2}Fonctionnalit\IeC {\'e}s}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Initialisation du jeu}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}D\IeC {\'e}roulement de la partie}{4}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Les bonus}{4}{subsection.2.3}
-\contentsline {section}{\numberline {3}Diagrammes UML}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}Diagramme des classes}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Diagramme des s\IeC {\'e}quences}{5}{subsection.3.2}
+\contentsline {section}{\numberline {1}Probl\IeC {\'e}matique et approche}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Probl\IeC {\'e}matique}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}R\IeC {\'e}partition du travail}{1}{subsection.1.2}
+\contentsline {section}{\numberline {2}Fonctionnalit\IeC {\'e}s}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Initialisation du jeu}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}D\IeC {\'e}roulement de la partie}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Les bonus}{2}{subsection.2.3}
+\contentsline {section}{\numberline {3}Designs Patterns}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Model \& ViewController}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Impl\IeC {\'e}mentation du MVC \IeC {\`a} notre projet}{3}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}ViewController}{3}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Model}{4}{subsubsection.3.2.2}
+\contentsline {section}{\numberline {4}Diagrammes UML}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Diagramme des classes}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Diagramme des s\IeC {\'e}quences}{6}{subsection.4.2}
