@@ -9,8 +9,6 @@ public class BombExplosion implements IExplosion{
 		Fire fireCenter = new Fire("explosionCentre.jpg",posx,posy, board, player);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
-		board.getElemInBoard(posx, posy).setPosx(-10);
-		board.getElemInBoard(posx, posy).setPosy(-10);
 		// Variables de condition pour que les flammes n'apparaissent pas si la première case est un objet qui a explosé
 		int pass1 = 1;
 		int pass2 = 1;
@@ -18,7 +16,11 @@ public class BombExplosion implements IExplosion{
 		int pass4 = 1;
 		
 		// Et la on fait apparaitre les flammes après conditions
-		board.setElemInBoard(posx,posy,fireCenter);
+		if (posx>-1){
+			board.getElemInBoard(posx, posy).setPosx(-10);
+			board.getElemInBoard(posx, posy).setPosy(-10);
+			board.setElemInBoard(posx,posy,fireCenter);
+		}
 		// Pour que les cases disparaissent
 		
 			for (int i=1; i<=bombSize; i++){
@@ -81,7 +83,7 @@ public class BombExplosion implements IExplosion{
 							 } 
 						 }		
 					  }								
-				 }, 1050);
+				 }, 1100);
 					 
 				
 			}

@@ -17,7 +17,7 @@ public class Fire extends Element{
 				if (board.getElemInBoard(posx, posy) != null && board.getElemInBoard(posx, posy).toString().equals(ref))
 				applyExplose(board, player);
 					  }										
-					}, 1000); 
+					}, 1050); 
 	}
 }
 
