@@ -211,7 +211,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		if(boni.getType() == 4){
 			for (int i=0; i<playerList.length; i++){
 				if (playerList[i] != playerList[pPlayer])
-					playerList[i].setLife(playerList[i].getLife() - 1);
+					playerList[i].applyExplose(board, playerList[i]);
 			}
 		}
 		
@@ -412,17 +412,18 @@ public class GamePanel extends JPanel implements KeyListener{
 		// Ne redessine que les modifications en comparants les changements
 		// avec la copie du plateau de jeu précédent.
 		else if (begin ==2){
-			for(int x = 0; x < elementTable.length; x++){
-				 for(int y = 0; y < elementTable.length; y++){
+			Element [][] newElementTable = dcopy(elementTable);
+			for(int x = 0; x < newElementTable.length; x++){
+				 for(int y = 0; y < newElementTable.length; y++){
 					 
 					 // Si les éléments ne sont pas les mêmes dans chaque plateau,
 					 // il y a eu modification : on affiche la modification.
-					 if(elementTable[x][y] != null){
-						 if (!elementTable[x][y].equals(oldElementTable[x][y])){
+					 if(newElementTable[x][y] != null){
+						 if (!newElementTable[x][y].equals(oldElementTable[x][y])){
 							 try{
-						 			Image img1 = ImageIO.read(new File(elementTable[x][y].skin));
-						 			g.drawImage(img1, elementTable[x][y].getPosx()*40,
-						 					elementTable[x][y].getPosy()*40, this);
+						 			Image img1 = ImageIO.read(new File(newElementTable[x][y].skin));
+						 			g.drawImage(img1, newElementTable[x][y].getPosx()*40,
+						 					newElementTable[x][y].getPosy()*40, this);
 						 		}catch (IOException e){
 						 			e.printStackTrace();
 								 
@@ -451,7 +452,7 @@ public class GamePanel extends JPanel implements KeyListener{
 				}
 			}
 		//gameWindow.updateLabel();
-		oldElementTable = dcopy(elementTable); 
+		oldElementTable = dcopy(newElementTable); 
 		return;
 		}
 	}

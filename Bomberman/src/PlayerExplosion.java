@@ -11,7 +11,7 @@ public class PlayerExplosion implements IExplosion {
 		}
 		playerList[i].setLife(playerList[i].getLife()-1);
 		System.out.println("Pour le joueur "+String.valueOf(i+1)+", il reste "+playerList[i].getLife()+" vie(s)");
-		if (playerList[i].getLife()==0){
+		if (playerList[i].getLife()<= 0){
 			System.out.println("Le joueur "+String.valueOf(i+1)+" est mort");
 			board.setElemInBoard(posx, posy, null);
 			playerList[i].setPosx(-10);

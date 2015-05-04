@@ -9,7 +9,8 @@ public class BombExplosion implements IExplosion{
 		Fire fireCenter = new Fire("explosionCentre.jpg",posx,posy, board, player);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
-		
+		board.getElemInBoard(posx, posy).setPosx(-10);
+		board.getElemInBoard(posx, posy).setPosy(-10);
 		// Variables de condition pour que les flammes n'apparaissent pas si la première case est un objet qui a explosé
 		int pass1 = 1;
 		int pass2 = 1;
