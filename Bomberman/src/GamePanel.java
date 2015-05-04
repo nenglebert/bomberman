@@ -435,7 +435,6 @@ public class GamePanel extends JPanel implements KeyListener{
 					 // Si l'ancien élément n'est pas null mais que le nouveau 
 					 // l'est, on redessine une case blanche dessus.
 					 else if(oldElementTable[x][y]!=null) {
-						 System.out.println(4);
 						 try{
 					 			Image img1 = ImageIO.read(new File("blanc.jpeg"));
 					 			g.drawImage(img1, x*40, y*40, this);
