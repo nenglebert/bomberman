@@ -28,7 +28,6 @@ public class Sound extends Thread{
 				audioClip.loop(Clip.LOOP_CONTINUOUSLY);
 			else{
 				audioClip.start();
-				System.out.println("Coucou");
 				Thread.sleep(((int)audioClip.getMicrosecondLength()/1000));
 				audioClip.stop();
 				audioClip.close();
