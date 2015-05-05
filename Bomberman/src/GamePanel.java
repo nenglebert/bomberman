@@ -22,13 +22,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets
@@ -302,22 +295,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		board = new Board(playerList,this);
 		elementTable = board.getTable();
 		begin = 1;
-		File audioFile = new File("test.wav");
-		AudioInputStream audioStream;
-		try {
-			audioStream = AudioSystem.getAudioInputStream(audioFile);
-			AudioFormat format = audioStream.getFormat();
-			DataLine.Info info = new DataLine.Info(Clip.class, format); 
-			Clip audioClip = (Clip) AudioSystem.getLine(info); 
-			audioClip.open(audioStream);
-			audioClip.loop((int) audioClip.getMicrosecondLength());
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
+		new Sound("test.wav",false);
 		
 		
 	}

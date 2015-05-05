@@ -6,7 +6,7 @@ import java.util.TimerTask;
 public class BombExplosion implements IExplosion{
 	
 	public void explose(final int posx, final int posy, final Board board, final Player player) {
-		
+		new Sound("bomb.wav",false);
 			
 		Fire fireCenter = new Fire("explosionCentre.jpg",posx,posy, board, player);
 		Timer timer = new Timer();
