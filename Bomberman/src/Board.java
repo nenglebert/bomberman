@@ -103,5 +103,6 @@ public class Board {
 		gameWindow.getContentPane().removeAll();
 		gameWindow.dispose();
 		System.gc();
+		new GameWindow();
 	}
 }

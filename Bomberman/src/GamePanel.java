@@ -126,6 +126,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			return;
 		}
 		if (playerAction.second().equals(Direction.UP) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()-1,playerAction.first())){
+			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+"_h.png");
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()-1, playerList[playerAction.first()]);
@@ -133,6 +134,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 		}
 		else if(playerAction.second().equals(Direction.DOWN) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()+1,playerAction.first())){
+			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+".png");
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()+1, playerList[playerAction.first()]);
@@ -140,6 +142,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 		}
 		else if(playerAction.second().equals(Direction.LEFT)  && check(playerList[playerAction.first()].getPosx()-1,playerList[playerAction.first()].getPosy(),playerAction.first())){
+			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+"_g.png");
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx()-1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
@@ -147,6 +150,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 		}
 		else if(playerAction.second().equals(Direction.RIGHT) && check(playerList[playerAction.first()].getPosx()+1,playerList[playerAction.first()].getPosy(),playerAction.first())){
+			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+"_d.png");
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx()+1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
@@ -305,7 +309,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		int[] posyList = {0,14,0,14};
 		playerList = new Player[playerNumber];
 		for (int i=0;i < playerNumber;i++){
-			playerList[i] = new Player("skin"+String.valueOf(i+1)+".jpeg", nameList.get(i), posxList[i], posyList[i]);
+			playerList[i] = new Player("skin"+String.valueOf(i+1)+".png", nameList.get(i), posxList[i], posyList[i]);
 			System.out.println(i+1 + ") " + playerList[i].getName());
 		}
 		
