@@ -12,40 +12,62 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Sound extends Thread{
 	Clip audioClip;
 	File audioFile;
+	int duration;
 	boolean loop;
 	public Sound(String audiofile, boolean loop){
 		 this.audioFile= new File(audiofile);
 		 this.loop = loop;
+		 AudioInputStream audioStream;
+		try {
+			audioStream = AudioSystem.getAudioInputStream(audioFile);
+			 AudioFormat format = audioStream.getFormat();
+			 DataLine.Info info = new DataLine.Info(Clip.class, format); 
+			 this.audioClip = (Clip) AudioSystem.getLine(info); 
+			 audioClip.open(audioStream);
+			 this.duration = ((int)audioClip.getMicrosecondLength()/1000);
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	public void run() {
 		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-			AudioFormat format = audioStream.getFormat();
-			DataLine.Info info = new DataLine.Info(Clip.class, format); 
-			this.audioClip = (Clip) AudioSystem.getLine(info); 
-			audioClip.open(audioStream);
 			if (loop)
 				audioClip.loop(Clip.LOOP_CONTINUOUSLY);
 			else{
 				audioClip.start();
-				Thread.sleep(((int)audioClip.getMicrosecondLength()/1000));
+				Thread.sleep(duration);
 				stopClip();
 			}
 		}
 			catch (InterruptedException e) {
 			e.printStackTrace();
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
 		}
 		
 	}
 public void stopClip(){
-	audioClip.stop();
+	audioClip.stop();;
 	audioClip.close();
 }
+public void pause(){
+	audioClip.stop();
+}
+public void restart(){
+	if(loop)
+		audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+	else
+		audioClip.start();
+}
 
+ public int getDuration(){
+	 System.out.println(duration);
+	return duration;
+}
 }

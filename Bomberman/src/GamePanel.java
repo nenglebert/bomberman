@@ -203,8 +203,11 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		//Bonus bombe atomique
 		if(boni.getType() == 4){
-			Thread t3 = new Thread(new Sound("nuke.wav",false));
+			Sound nukesound = new Sound("nuke.wav",false);
+			Thread t3 = new Thread(nukesound);
+			sound.pause();
 			t3.start();
+			int duration = nukesound.getDuration();
 			Timer timer = new Timer();
 			final int nPlayer = pPlayer;
 			timer.schedule(new TimerTask() {
@@ -215,6 +218,11 @@ public class GamePanel extends JPanel implements KeyListener{
 						}
 					 }
 				  }, 4000);
+			timer.schedule(new TimerTask() {
+				  public void run() {	
+					  sound.restart();
+					 }
+				  }, duration+200);
 			}
 		
 		//Bonus téléportation
@@ -306,7 +314,8 @@ public class GamePanel extends JPanel implements KeyListener{
 		board = new Board(playerList,this,gameWindow);
 		elementTable = board.getTable();
 		begin = 1;
-		Thread t1 = new Thread(sound = new Sound("test.wav",true));
+		sound = new Sound("test.wav",true);
+		Thread t1 = new Thread(sound);
 		t1.start();
 		
 		
