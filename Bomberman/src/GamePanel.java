@@ -302,7 +302,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		subPanel.removeAll();
 		this.revalidate();
-		board = new Board(playerList,this);
+		board = new Board(playerList,this,gameWindow);
 		elementTable = board.getTable();
 		begin = 1;
 		Thread t1 = new Thread(new Sound("test.wav",true));
