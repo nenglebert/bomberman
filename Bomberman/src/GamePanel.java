@@ -56,6 +56,8 @@ public class GamePanel extends JPanel implements KeyListener{
 	private GameWindow gameWindow;
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
+	private Sound sound;
+	
 	public GamePanel(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -301,10 +303,10 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		subPanel.removeAll();
 		this.revalidate();
-		board = new Board(playerList,this);
+		board = new Board(playerList,this,gameWindow);
 		elementTable = board.getTable();
 		begin = 1;
-		new Sound("test.wav",true);
+		sound = new Sound("test.wav",true);
 		
 		
 	}
@@ -322,6 +324,10 @@ public class GamePanel extends JPanel implements KeyListener{
 	//Les setteurs
 	public void setName(String name){
 		this.nameList.add(name);
+	}
+	
+	public void setSound(Sound sound){
+		this.sound = sound;
 	}
 	
 	public void resetName(){

@@ -12,10 +12,11 @@ public class Board {
 	private int playerNumber;
 	private GamePanel panel;
 	private int playerDeath = 0;
+	private GameWindow gameWindow;
 	
 		// Constructeur par défaut
-	public Board(Player[] playerList, GamePanel panel){
-		
+	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow){
+		this.gameWindow = gameWindow;
 		this.panel = panel;
 			// On récupère les personages 
 		this.playerList = playerList;
@@ -98,5 +99,8 @@ public class Board {
 		ImageIcon img = new ImageIcon("winner.jpeg");
 		dialog.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);
 		System.out.println(playerList[i].getName()+" a gagné");
+		gameWindow.getContentPane().removeAll();
+		gameWindow.dispose();
+		System.gc();
 	}
 }

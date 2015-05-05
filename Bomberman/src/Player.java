@@ -16,7 +16,7 @@ public class Player extends Element implements IPlayer{
 		this.posx = posx;
 		this.posy = posy;
 		this.name = name;
-		this.life = 5;
+		this.life = 3;
 		this.speed = 1;
 		this.bombBag = 1;
 		this.bombSize = 1;
