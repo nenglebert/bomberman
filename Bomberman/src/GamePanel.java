@@ -295,7 +295,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		board = new Board(playerList,this);
 		elementTable = board.getTable();
 		begin = 1;
-		new Sound("test.wav",false);
+		new Sound("test.wav",true);
 		
 		
 	}
