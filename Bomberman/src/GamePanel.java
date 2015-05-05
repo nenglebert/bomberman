@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -200,11 +202,18 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		//Bonus bombe atomique
 		if(boni.getType() == 4){
-			for (int i=0; i<playerList.length; i++){
-				if (playerList[i] != playerList[pPlayer] && playerList[i].getLife()>0)
-					playerList[i].applyExplose(board, playerList[i]);
+			new Sound("nuke.wav",false);
+			Timer timer = new Timer();
+			final int nPlayer = pPlayer;
+			timer.schedule(new TimerTask() {
+				  public void run() {	
+					  for (int i=0; i<playerList.length; i++){
+							if (playerList[i] != playerList[nPlayer] && playerList[i].getLife()>0)
+								playerList[i].applyExplose(board, playerList[i]);
+						}
+					 }
+				  }, 4000);
 			}
-		}
 		
 		//Bonus téléportation
 		if(boni.getType() == 5){
