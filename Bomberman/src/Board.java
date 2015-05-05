@@ -99,6 +99,7 @@ public class Board {
 		ImageIcon img = new ImageIcon("winner.jpeg");
 		dialog.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);
 		System.out.println(playerList[i].getName()+" a gagné");
+		panel.getSound().stopClip();
 		gameWindow.getContentPane().removeAll();
 		gameWindow.dispose();
 		System.gc();

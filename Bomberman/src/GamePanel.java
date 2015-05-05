@@ -56,6 +56,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private GameWindow gameWindow;
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
+	private Sound sound;
 	public GamePanel(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -152,7 +153,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			playerList[playerAction.first()].setPosx(playerList[playerAction.first()].getPosx()+1);
 			update();
 		}
-		else if(playerAction.second().equals(Direction.BOMB) && playerList[playerAction.first()].getBombBag() > 0){
+		else if(playerAction.second().equals(Direction.BOMB) && playerList[playerAction.first()].getBombBag() > 0 && !(board.getElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()) instanceof Bomb)){
 			playerList[playerAction.first()].setBombBag(playerList[playerAction.first()].getBombBag()-1);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),new Bomb(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),board,playerList[playerAction.first()]));
 			update();
@@ -305,7 +306,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		board = new Board(playerList,this,gameWindow);
 		elementTable = board.getTable();
 		begin = 1;
-		Thread t1 = new Thread(new Sound("test.wav",true));
+		Thread t1 = new Thread(sound = new Sound("test.wav",true));
 		t1.start();
 		
 		
@@ -442,4 +443,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		return;
 		}
 	}
+public Sound getSound(){
+	return sound;
+}
 }

@@ -29,8 +29,7 @@ public class Sound extends Thread{
 			else{
 				audioClip.start();
 				Thread.sleep(((int)audioClip.getMicrosecondLength()/1000));
-				audioClip.stop();
-				audioClip.close();
+				stopClip();
 			}
 		}
 			catch (InterruptedException e) {
@@ -44,5 +43,9 @@ public class Sound extends Thread{
 		}
 		
 	}
+public void stopClip(){
+	audioClip.stop();
+	audioClip.close();
+}
 
 }
