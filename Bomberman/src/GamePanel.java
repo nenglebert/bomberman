@@ -63,7 +63,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private Sound sound;
 	private URL nukeSound = getClass().getResource("nuke.wav");
 	private URL playback = getClass().getResource("test.wav");
-	private Image whiteSquare = ImageIO.read(getClass().getResource("blanc.jpeg"));
+	private Image whiteSquare = ImageIO.read(getClass().getResource("blanc.png"));
 	
 	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
