@@ -1,7 +1,7 @@
 import java.awt.Image;
 
 
-	// Pour les bonus
+	//Gère les bonus
 public class Bonus extends Element {
 	
 	public int type;

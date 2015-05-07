@@ -1,14 +1,17 @@
 import java.awt.Color;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-	// Plateau de jeu mis sous matrice
+//Gestion du tableau
+
+
+// Plateau de jeu mis sous matrice
 public class Board {
 	
 	private Element[][] elementTable = new Element[15][15];
@@ -24,7 +27,7 @@ public class Board {
 	Image[] bonusSkin = {ImageIO.read(getClass().getResource("bonus1.png")), ImageIO.read(getClass().getResource("bonus2.png")),
 			ImageIO.read(getClass().getResource("bonus3.png")), ImageIO.read(getClass().getResource("bonus4.jpeg")),
 			ImageIO.read(getClass().getResource("zaap1.png"))};
-	File bombSound = new File("bomb.wav");
+	URL bombSound = getClass().getResource("bomb.wav");
 		// Constructeur par défaut
 	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
@@ -104,7 +107,7 @@ public class Board {
 		return bonusSkin[i];
 	}
 	
-	public File getBombSound(){
+	public URL getBombSound(){
 		return bombSound;
 	}
 	
@@ -119,12 +122,11 @@ public class Board {
 		while (playerList[i].getPosx() == -10 ) {
 			i++	;	
 		}
-		JOptionPane dialog = new JOptionPane();
-		 UIManager UI=new UIManager();
-		 UI.put("OptionPane.background", Color.white);
-		 UI.put("Panel.background", Color.white);
-		ImageIcon img = new ImageIcon("winner.jpeg");
-		dialog.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);		
+		UIManager.put("OptionPane.background", Color.white);
+		 UIManager.put("Panel.background", Color.white);
+		 
+		ImageIcon img = new ImageIcon(getClass().getResource("winner.jpeg"));
+		JOptionPane.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);		
 		panel.getSound().stopClip();
 		gameWindow.getContentPane().removeAll();
 		gameWindow.dispose();

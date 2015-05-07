@@ -2,7 +2,7 @@ import java.awt.Image;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+//Gère les blocs se détruisant lors d'une explosion
 public class Fire extends Element{
 	
 		// Nos flammes

@@ -1,11 +1,8 @@
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 
-
-	// Les blocks cassables
+	//Gère les blocs se détruisant lors d'une explosion
 public class Block extends Element{
 	
 	public Block(int posx, int posy, Image skin) throws IOException{

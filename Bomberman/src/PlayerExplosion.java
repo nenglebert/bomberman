@@ -1,8 +1,10 @@
+import java.io.IOException;
+
 
 // La classe qui contient la méthode qui gère l'explosion du joueur
 public class PlayerExplosion implements IExplosion {
 
-	public void explose(int posx, int posy, Board board, Player player) {
+	public void explose(int posx, int posy, Board board, Player player) throws IOException {
 		int playerNumber = board.getPlayerNumber();
 		Player[] playerList = GamePanel.getPlayerList();
 		int i=0;

@@ -1,11 +1,11 @@
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.imageio.ImageIO;
-
+// Défini la méthode explose() pour les élements de type "Bomb".
+// Elle cause la suppression des blocs touchés et l'apparition 
+// de flamme (voir classe Fire) à ces endroits.
 
 // La classe qui va contenir la méthode qui gère l'explosion de la bombe
 public class BombExplosion  implements IExplosion {
@@ -18,7 +18,9 @@ public class BombExplosion  implements IExplosion {
 		Fire fireCenter = new Fire(explosionCentre,posx,posy, board, player);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
-		// Variables de condition pour que les flammes n'apparaissent pas si la première case est un objet qui a explosé
+		
+		// Variables de condition pour que les flammes n'apparaissent pas si la première 
+		// case est un objet qui a explosé
 		int pass1 = 1;
 		int pass2 = 1;
 		int pass3 = 1;
