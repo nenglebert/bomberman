@@ -87,8 +87,8 @@ public class Board {
 	public int getPlayerNumber(){
 		return playerNumber;
 	}
-	public Player getPlayer(int x){
-		return playerList[x];
+	public Player[] getPlayer(){
+		return playerList;
 	}
 
 	public GamePanel getPanel() {

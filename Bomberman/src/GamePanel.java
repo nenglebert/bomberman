@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets
 	private Board board;
 	private Element[][] elementTable;
-	protected static Player[] playerList;
+	protected Player[] playerList;
 	private int playerNumber;
 	private Map<Integer,Tuple<Integer,Direction,Image>> commandKeys = new HashMap<Integer,Tuple<Integer, Direction,Image>>();
 	
@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		commandKeys.put(KeyEvent.VK_I, new Tuple<Integer, Direction,Image>(2,Direction.UP,ImageIO.read(getClass() .getResource("skin3_h.png"))));
 		commandKeys.put(KeyEvent.VK_J, new Tuple<Integer, Direction,Image>(2,Direction.LEFT,ImageIO.read(getClass().getResource("skin3_g.png"))));
 		commandKeys.put(KeyEvent.VK_K, new Tuple<Integer, Direction,Image>(2,Direction.DOWN,ImageIO.read(getClass().getResource("skin3.png"))));
-		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction,Image>(2,Direction.RIGHT,ImageIO.read(getClass().getResource("skin1_d.png"))));
+		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction,Image>(2,Direction.RIGHT,ImageIO.read(getClass().getResource("skin3_d.png"))));
 		commandKeys.put(KeyEvent.VK_G, new Tuple<Integer, Direction,Image>(3,Direction.UP,ImageIO.read(getClass().getResource("skin4_h.png"))));
 		commandKeys.put(KeyEvent.VK_V, new Tuple<Integer, Direction,Image>(3,Direction.LEFT,ImageIO.read(getClass().getResource("skin4_g.png"))));
 		commandKeys.put(KeyEvent.VK_B, new Tuple<Integer, Direction,Image>(3,Direction.DOWN,ImageIO.read(getClass().getResource("skin4.png"))));
@@ -356,7 +356,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		return nameList.get(number);
 	}
 	
-	public static Player[] getPlayerList(){
+	public Player[] getPlayerList(){
 		return playerList;
 	}
 	

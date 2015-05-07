@@ -41,7 +41,7 @@ public class GameWindow extends JFrame{
 	
 	public void updateLabel(){
 		System.out.println("coucou");
-		playerList = GamePanel.getPlayerList();
+		playerList = gamePanel.getPlayerList();
 		subPanel.clear();
 		dataPanel.removeAll();
 		dataPanel.setLayout(new GridLayout(playerList.length,1));
