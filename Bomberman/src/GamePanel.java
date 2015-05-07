@@ -396,6 +396,7 @@ public class GamePanel extends JPanel implements KeyListener{
 							 Image img1 = elementTable[x][y].getSkin();
 							 g.drawImage(img1, elementTable[x][y].getPosx()*40,
 									elementTable[x][y].getPosy()*40, this);
+
 						 }catch (NullPointerException e){
 							 System.out.println("Méchant NullPointerExeption !");
 						 }
@@ -453,7 +454,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		return;
 		}
 	}
-public Sound getSound(){
+	public Sound getSound(){
 	return sound;
-}
+	}
 }

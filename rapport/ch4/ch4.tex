@@ -1,19 +1,72 @@
 \newpage
 \section{Problématique et approche}
-Texte d'introduction sur les n00b que nous sommes
+Bien que chacun des membres de notre groupe avait une certaine 
+connaissance de l'informatique (notamment grâce au cours de 
+première), aucun d'entre nous n'avait la moindre connaissance 
+en programmation orientée objet.
 
 
 	\subsection{Problématique}
-	On parle comme quoi le pré rapport à été utile, ...
-	Parler de l'optimisaton graphique
+	N'ayant aucune connaissance dans ce paradigme qu'est la 
+	programmation orientée objet, notre première problématique
+	a été d'acquérir les bases théoriques nécessaire.\\
+	Après avoir acquis celles-ci, nous avions une bonne compréhension
+	théoriques des concepts mais aucune expérience au niveau 
+	pratique. Afin de ne pas se lancer dans l'inconnu et pour 
+	exploiter au maximum nos connaissances théoriques, nous avons 
+	commencé, avant même d'écrire une seule ligne de code, par 
+	réaliser le diagramme des classes que nous avons présenté 
+	dans notre pré-rapport.\\
+	Ce travail préliminaire nous a été d'une grande utilité car 
+	nous avons pu développer le jeu de façon rapide et structuré.
+	A l'exception de quelques bonus rajouté et l'une ou l'autre
+	légère modification, notre diagramme de classe final est 
+	semblable à 85\% à l'initial.\\
+	
+	Le fait que la structure ai été pensée avant toute chose nous
+	as permit de ne rencontrer qu'un faible nombre de bug lors du
+	développement. Cependant, nous avons été confronté à une autre
+	problématique importante : notre jeu était extrêmement gourmand 
+	en ressources. Le problème était lié à la fréquence de 
+	rafraîchissement de notre interface graphique. Pour résoudre ce
+	problème, nous avons optimisé l'affichage par trois changements :
+	\begin{enumerate}
+	\item La grille complète n'est chargée qu'une seule fois, lors 
+	de l'initialisation du jeu.
+	\item L'affichage n'est plus actualisé de façon continue.
+	\item Plutôt que de rafraîchir l'intégralité de la fenêtre, 
+	seul les modifications du plateau de jeu sont \textit{repaint}.
+	\end{enumerate}
+	
+	Les deux points présentés ici étaient de loin les plus grosses
+	problématiques rencontrées. Bien sur nous avons connu plusieurs
+	problèmes isolés, mais ceux-ci étaient plus des "petits bugs" 
+	qu'une véritable problématique.
+	
 	
 	\subsection{Répartition du travail}
-	Comment on s'est trop bien organisé.\\
-	\\
-	\\
-	content car à 90\% semblable au pré-rapport. \textbf{Conclusion?}
-
-
+	Au niveau de la répartition du travail, nous n'avons pas 
+	séquencé le projet en partie distinctes mais nous avons 
+	travaillé parallèlement sur chacune des parties du projet (
+	la collaboration nous étant grandement facilité par l'
+	utilisation de \textit{git}	). Par exemple, au niveau de la 
+	gestion de la bombe, nous avons procédé de la façon suivante :
+	\begin{description}
+	\item[Nico] s'est chargé du dépôt de la bombe et de l'auto-
+	destruction de cette dernière.
+	\item[Enes] s'est chargé de la destruction des blocs causés 
+	par l’explosion de la bombe ainsi que la génération aléatoire
+	des bonus.
+	\item[Cédric] s'est chargé de l'auto-déclenchement d'une bombe
+	lorsque celle-ci se fait elle-même explosée par une autre 
+	bombe.
+	\end{description}
+	
+	Cet approche nous as permis de chacun avoir une connaissance 
+	de l'intégralité du code et d'ainsi savoir nous aider de 
+	façon rapide lors de l'apparition d'un bug.
+	
+	
 
 
 
