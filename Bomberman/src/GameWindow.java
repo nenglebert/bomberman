@@ -40,7 +40,6 @@ public class GameWindow extends JFrame{
 	}
 	
 	public void updateLabel(){
-		System.out.println("coucou");
 		playerList = gamePanel.getPlayerList();
 		subPanel.clear();
 		dataPanel.removeAll();
