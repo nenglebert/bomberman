@@ -2,8 +2,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-
 
 public class TutoActionListener implements ActionListener {
 	GameWindow gameWindow;
