@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 
 public class TutoActionListener implements ActionListener {
-	GamePanel gamePanel;
+	private GamePanel gamePanel;
 	
 	public TutoActionListener(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
