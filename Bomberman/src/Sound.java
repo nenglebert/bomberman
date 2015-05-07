@@ -65,7 +65,6 @@ public void restart(){
 }
 }
  public int getDuration(){
-	 System.out.println(duration);
 	return duration;
 }
 }
