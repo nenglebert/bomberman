@@ -3,7 +3,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-	// La bombe
+//Gestion de la case bombe
 public class Bomb extends Element {	
 	boolean canIExplose = true;
 	public Bomb(final int posx, final int posy, final Board board, final Player pPlayer, Image skin){
