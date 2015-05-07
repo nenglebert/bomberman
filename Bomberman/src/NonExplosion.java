@@ -1,4 +1,4 @@
-import java.io.IOException;
+
 
 
 
@@ -7,7 +7,7 @@ import java.io.IOException;
 	// à la place de celui-ci.
 public class NonExplosion implements IExplosion {
 
-	public void explose(int posx, int posy, Board board, Player player) throws IOException {
+	public void explose(int posx, int posy, Board board, Player player){
 		
 	}
 }

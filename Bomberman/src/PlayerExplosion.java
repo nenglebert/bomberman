@@ -3,7 +3,7 @@ public class PlayerExplosion implements IExplosion {
 
 	public void explose(int posx, int posy, Board board, Player player){
 		int playerNumber = board.getPlayerNumber();
-		Player[] playerList = GamePanel.getPlayerList();
+		Player[] playerList = board.getPlayer();
 		int i=0;
 		while (i < playerNumber && (playerList[i].getPosx() != posx || playerList[i].getPosy() != posy)){
 			i++;

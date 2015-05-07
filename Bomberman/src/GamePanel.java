@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets
 	private Board board;
 	private Element[][] elementTable;
-	protected static Player[] playerList;
+	protected Player[] playerList;
 	private int playerNumber;
 	private Map<Integer,Tuple<Integer,Direction,Image>> commandKeys = new HashMap<Integer,Tuple<Integer, Direction,Image>>();
 	
@@ -356,7 +356,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		return nameList.get(number);
 	}
 	
-	public static Player[] getPlayerList(){
+	public Player[] getPlayerList(){
 		return playerList;
 	}
 	

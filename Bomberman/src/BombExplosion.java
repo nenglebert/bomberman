@@ -1,5 +1,4 @@
 import java.awt.Image;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +8,7 @@ import java.util.TimerTask;
 
 // La classe qui va contenir la méthode qui gère l'explosion de la bombe
 public class BombExplosion  implements IExplosion {
-	public void explose(final int posx, final int posy, final Board board, final Player player) throws IOException{
+	public void explose(final int posx, final int posy, final Board board, final Player player){
 		Image explosionCentre = board.getFireSkin(0);
 		Image explosionHor = board.getFireSkin(2);
 		Image explosionVert = board.getFireSkin(1);
@@ -32,13 +31,13 @@ public class BombExplosion  implements IExplosion {
 		// Pour que les cases disparaissent
 			for (int i=1; i<=bombSize; i++){
 				if ((posx+i) <= 14 && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
-					Element CurrentElem1 = board.getElemInBoard(posx+i,posy);
+					Element currentElem1 = board.getElemInBoard(posx+i,posy);
 					board.setElemInBoard(posx+i,posy,new Fire(explosionHor,posx+i,posy,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass1 = 0;
-						if (CurrentElem1 instanceof Bomb)
-							((Bomb)CurrentElem1).ImExploding();
-						CurrentElem1.applyExplose(board, player);
+						if (currentElem1 instanceof Bomb)
+							((Bomb)currentElem1).ImExploding();
+						currentElem1.applyExplose(board, player);
 					}
 				}
 				
@@ -46,13 +45,13 @@ public class BombExplosion  implements IExplosion {
 				pass1 =0;
 				
 				if (0 <= (posx-i) && !(board.getElemInBoard(posx-i,posy) instanceof Bedrock) && pass2 == 1){
-					Element CurrentElem1 = board.getElemInBoard(posx-i,posy);
+					Element currentElem1 = board.getElemInBoard(posx-i,posy);
 					board.setElemInBoard(posx-i,posy,new Fire(explosionHor,posx-i,posy,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass2 = 0;
-						if (CurrentElem1 instanceof Bomb)
-							((Bomb)CurrentElem1).ImExploding();
-						CurrentElem1.applyExplose(board, player);
+						if (currentElem1 instanceof Bomb)
+							((Bomb)currentElem1).ImExploding();
+						currentElem1.applyExplose(board, player);
 					}
 				}
 				
@@ -60,13 +59,13 @@ public class BombExplosion  implements IExplosion {
 					pass2 =0;
 				
 				if ((posy+i) <= 14 && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
-					Element CurrentElem1 = board.getElemInBoard(posx,posy+i);
+					Element currentElem1 = board.getElemInBoard(posx,posy+i);
 					board.setElemInBoard(posx,posy+i,new Fire(explosionVert,posx,posy+i,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass3 = 0;
-						if (CurrentElem1 instanceof Bomb)
-							((Bomb)CurrentElem1).ImExploding();
-						CurrentElem1.applyExplose(board, player);
+						if (currentElem1 instanceof Bomb)
+							((Bomb)currentElem1).ImExploding();
+						currentElem1.applyExplose(board, player);
 					}
 				}
 				
@@ -74,13 +73,13 @@ public class BombExplosion  implements IExplosion {
 					pass3 =0;
 				
 				if (0 <= (posy-i) && !(board.getElemInBoard(posx,posy-i) instanceof Bedrock) && pass4 == 1){
-					Element CurrentElem1 = board.getElemInBoard(posx,posy-i);
+					Element currentElem1 = board.getElemInBoard(posx,posy-i);
 					board.setElemInBoard(posx,posy-i,new Fire(explosionVert,posx,posy-i,board, player));
-					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
+					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass4 = 0;
-						if (CurrentElem1 instanceof Bomb)
-							((Bomb)CurrentElem1).ImExploding();
-						CurrentElem1.applyExplose(board, player);
+						if (currentElem1 instanceof Bomb)
+							((Bomb)currentElem1).ImExploding();
+						currentElem1.applyExplose(board, player);
 					}	
 				}
 				
@@ -92,8 +91,8 @@ public class BombExplosion  implements IExplosion {
 					  public void run() {	
 						 for (int i=0;i<board.getPlayerNumber();i++){
 							 for (int j=1; j<=player.getBombSize(); j++){
-								 if((board.getPlayer(i).getPosx() == posx && board.getPlayer(i).getPosy()==posy) || (board.getPlayer(i).getPosx() == posx+j && board.getPlayer(i).getPosy()==posy) || (board.getPlayer(i).getPosx() == posx-j && board.getPlayer(i).getPosy()==posy) || (board.getPlayer(i).getPosx() == posx && board.getPlayer(i).getPosy()==posy-j) || (board.getPlayer(i).getPosx() == posx && board.getPlayer(i).getPosy()==posy+j))
-									 board.setElemInBoard(board.getPlayer(i).getPosx(), board.getPlayer(i).getPosy(), board.getPlayer(i));
+								 if((board.getPlayer()[i].getPosx() == posx && board.getPlayer()[i].getPosy()==posy) || (board.getPlayer()[i].getPosx() == posx+j && board.getPlayer()[i].getPosy()==posy) || (board.getPlayer()[i].getPosx() == posx-j && board.getPlayer()[i].getPosy()==posy) || (board.getPlayer()[i].getPosx() == posx && board.getPlayer()[i].getPosy()==posy-j) || (board.getPlayer()[i].getPosx() == posx && board.getPlayer()[i].getPosy()==posy+j))
+									 board.setElemInBoard(board.getPlayer()[i].getPosx(), board.getPlayer()[i].getPosy(), board.getPlayer()[i]);
 						  board.getPanel().update();
 							 } 
 						 }		
