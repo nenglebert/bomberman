@@ -60,6 +60,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private ArrayList<ArrayList<Image>> skin = new ArrayList<ArrayList<Image>>();
 	private File nukeSound = new File("nuke.wav");
 	private File playback = new File("test.wav");
+	private Image whiteSquare = ImageIO.read(getClass().getResource("blanc.jpeg"));
 	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -68,26 +69,26 @@ public class GamePanel extends JPanel implements KeyListener{
 	}
 
 	public void initialize() throws IOException {
-		commandKeys.put(KeyEvent.VK_Z, new Tuple<Integer, Direction,Image>(0,Direction.UP,ImageIO.read(new File("skin1_h.png"))));
-		commandKeys.put(KeyEvent.VK_Q, new Tuple<Integer, Direction,Image>(0,Direction.LEFT,ImageIO.read(new File("skin1_g.png"))));
-		commandKeys.put(KeyEvent.VK_S, new Tuple<Integer, Direction,Image>(0,Direction.DOWN,ImageIO.read(new File("skin1.png"))));
-		commandKeys.put(KeyEvent.VK_D, new Tuple<Integer, Direction,Image>(0,Direction.RIGHT,ImageIO.read(new File("skin1_d.png"))));
-		commandKeys.put(KeyEvent.VK_UP, new Tuple<Integer, Direction,Image>(1,Direction.UP,ImageIO.read(new File("skin2_h.png"))));
-		commandKeys.put(KeyEvent.VK_LEFT, new Tuple<Integer, Direction,Image>(1,Direction.LEFT,ImageIO.read(new File("skin2_g.png"))));
-		commandKeys.put(KeyEvent.VK_DOWN, new Tuple<Integer, Direction,Image>(1,Direction.DOWN,ImageIO.read(new File("skin2.png"))));
-		commandKeys.put(KeyEvent.VK_RIGHT, new Tuple<Integer, Direction,Image>(1,Direction.RIGHT,ImageIO.read(new File("skin2_d.png"))));
-		commandKeys.put(KeyEvent.VK_I, new Tuple<Integer, Direction,Image>(2,Direction.UP,ImageIO.read(new File("skin3_h.png"))));
-		commandKeys.put(KeyEvent.VK_J, new Tuple<Integer, Direction,Image>(2,Direction.LEFT,ImageIO.read(new File("skin3_g.png"))));
-		commandKeys.put(KeyEvent.VK_K, new Tuple<Integer, Direction,Image>(2,Direction.DOWN,ImageIO.read(new File("skin3.png"))));
-		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction,Image>(2,Direction.RIGHT,ImageIO.read(new File("skin1_d.png"))));
-		commandKeys.put(KeyEvent.VK_G, new Tuple<Integer, Direction,Image>(3,Direction.UP,ImageIO.read(new File("skin4_h.png"))));
-		commandKeys.put(KeyEvent.VK_V, new Tuple<Integer, Direction,Image>(3,Direction.LEFT,ImageIO.read(new File("skin4_g.png"))));
-		commandKeys.put(KeyEvent.VK_B, new Tuple<Integer, Direction,Image>(3,Direction.DOWN,ImageIO.read(new File("skin4.png"))));
-		commandKeys.put(KeyEvent.VK_N, new Tuple<Integer, Direction,Image>(3,Direction.RIGHT,ImageIO.read(new File("skin4_d.png"))));
-		commandKeys.put(KeyEvent.VK_A, new Tuple<Integer, Direction,Image>(0,Direction.BOMB,ImageIO.read(new File("bomb1.png"))));
-		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction,Image>(2,Direction.BOMB,ImageIO.read(new File("bomb2.png"))));
-		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction,Image>(3,Direction.BOMB,ImageIO.read(new File("bomb3.png"))));
-		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction,Image>(1,Direction.BOMB,ImageIO.read(new File("bomb4.png"))));
+		commandKeys.put(KeyEvent.VK_Z, new Tuple<Integer, Direction,Image>(0,Direction.UP,ImageIO.read(getClass().getResource("skin1_h.png"))));
+		commandKeys.put(KeyEvent.VK_Q, new Tuple<Integer, Direction,Image>(0,Direction.LEFT,ImageIO.read(getClass().getResource("skin1_g.png"))));
+		commandKeys.put(KeyEvent.VK_S, new Tuple<Integer, Direction,Image>(0,Direction.DOWN,ImageIO.read(getClass().getResource("skin1.png"))));
+		commandKeys.put(KeyEvent.VK_D, new Tuple<Integer, Direction,Image>(0,Direction.RIGHT,ImageIO.read(getClass().getResource("skin1_d.png"))));
+		commandKeys.put(KeyEvent.VK_UP, new Tuple<Integer, Direction,Image>(1,Direction.UP,ImageIO.read(getClass().getResource("skin2_h.png"))));
+		commandKeys.put(KeyEvent.VK_LEFT, new Tuple<Integer, Direction,Image>(1,Direction.LEFT,ImageIO.read(getClass().getResource("skin2_g.png"))));
+		commandKeys.put(KeyEvent.VK_DOWN, new Tuple<Integer, Direction,Image>(1,Direction.DOWN,ImageIO.read(getClass().getResource("skin2.png"))));
+		commandKeys.put(KeyEvent.VK_RIGHT, new Tuple<Integer, Direction,Image>(1,Direction.RIGHT,ImageIO.read(getClass().getResource("skin2_d.png"))));
+		commandKeys.put(KeyEvent.VK_I, new Tuple<Integer, Direction,Image>(2,Direction.UP,ImageIO.read(getClass() .getResource("skin3_h.png"))));
+		commandKeys.put(KeyEvent.VK_J, new Tuple<Integer, Direction,Image>(2,Direction.LEFT,ImageIO.read(getClass().getResource("skin3_g.png"))));
+		commandKeys.put(KeyEvent.VK_K, new Tuple<Integer, Direction,Image>(2,Direction.DOWN,ImageIO.read(getClass().getResource("skin3.png"))));
+		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction,Image>(2,Direction.RIGHT,ImageIO.read(getClass().getResource("skin1_d.png"))));
+		commandKeys.put(KeyEvent.VK_G, new Tuple<Integer, Direction,Image>(3,Direction.UP,ImageIO.read(getClass().getResource("skin4_h.png"))));
+		commandKeys.put(KeyEvent.VK_V, new Tuple<Integer, Direction,Image>(3,Direction.LEFT,ImageIO.read(getClass().getResource("skin4_g.png"))));
+		commandKeys.put(KeyEvent.VK_B, new Tuple<Integer, Direction,Image>(3,Direction.DOWN,ImageIO.read(getClass().getResource("skin4.png"))));
+		commandKeys.put(KeyEvent.VK_N, new Tuple<Integer, Direction,Image>(3,Direction.RIGHT,ImageIO.read(getClass().getResource("skin4_d.png"))));
+		commandKeys.put(KeyEvent.VK_A, new Tuple<Integer, Direction,Image>(0,Direction.BOMB,ImageIO.read(getClass().getResource("bomb1.png"))));
+		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction,Image>(2,Direction.BOMB,ImageIO.read(getClass().getResource("bomb2.png"))));
+		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction,Image>(3,Direction.BOMB,ImageIO.read(getClass().getResource("bomb3.png"))));
+		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction,Image>(1,Direction.BOMB,ImageIO.read(getClass().getResource("bomb4.png"))));
 		//On sectionne le panel pour avoir 3 lignes et 1 colonne
 		subPanel.setLayout(new GridLayout(3,1));
 		
@@ -376,7 +377,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		//Ecran d'accueil
 		if (begin==0){
-		ImageIcon img = new ImageIcon("Background.jpg");
+		ImageIcon img = new ImageIcon(getClass().getResource("Background.jpg"));
 		super.paintComponent(g); 
 		img.paintIcon(this, g, 0, 0);
 		}
@@ -438,11 +439,7 @@ public class GamePanel extends JPanel implements KeyListener{
 					 // l'est, on redessine une case blanche dessus.
 					 else if(oldElementTable[x][y]!=null) {
 						 try{
-					 			Image img1 = ImageIO.read(new File("blanc.jpeg"));
-					 			g.drawImage(img1, x*40, y*40, this);
-					 		}catch (IOException e){
-					 			e.printStackTrace();
-							 
+					 			g.drawImage(whiteSquare, x*40, y*40, this);
 					 		}
 					 		catch (NullPointerException e){
 					 			System.out.println("Méchant NullPointerExeption !");
