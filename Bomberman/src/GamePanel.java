@@ -111,6 +111,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		// Boutons
 		startButton.addActionListener(new StartActionListener(this,subPanel));
+		tutoButton.addActionListener(new TutoActionListener(gameWindow));
 		player2Button.addActionListener(new PlayerActionListener(this,subPanel,2));
 		player3Button.addActionListener(new PlayerActionListener(this,subPanel,3));
 		player4Button.addActionListener(new PlayerActionListener(this,subPanel,4));
@@ -374,6 +375,13 @@ public class GamePanel extends JPanel implements KeyListener{
 
 	//Affichage
 	public void paintComponent(Graphics g){
+		
+		//Page de tutorial
+		if (begin==-1){
+			ImageIcon img = new ImageIcon(getClass().getResource("tutorial.png"));
+			super.paintComponent(g); 
+			img.paintIcon(this, g, 0, 0);
+		}
 		
 		//Ecran d'accueil
 		if (begin==0){
