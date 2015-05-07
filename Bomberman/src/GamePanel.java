@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// Gère les entrées utilisateur et l'affichage graphique (ViewController)
 public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets
 	private Board board;

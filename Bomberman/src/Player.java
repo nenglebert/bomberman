@@ -2,7 +2,7 @@ import java.awt.Image;
 
 
 	// Classe de l'élément joueur
-public class Player extends Element implements IPlayer{
+public class Player extends Element{
 
 		// Attributs propres à Player
 	private String name;
