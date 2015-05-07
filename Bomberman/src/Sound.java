@@ -17,6 +17,7 @@ public class Sound extends Thread{
 	public Sound(File audiofile, boolean loop){
 		 this.loop = loop;
 		 AudioInputStream audioStream;
+		 this.audioFile = audiofile;
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
 			 AudioFormat format = audioStream.getFormat();
