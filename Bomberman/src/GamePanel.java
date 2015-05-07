@@ -300,6 +300,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		tutoWindow.setVisible(true);
 		tutoWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE );
 		tutoWindow.setLocationRelativeTo(null);
+		tutoWindow.setResizable(false);
 	}
 	
 	//Récupère le nom des joueurs.
