@@ -84,15 +84,15 @@ public class GamePanel extends JPanel implements KeyListener{
 		commandKeys.put(KeyEvent.VK_I, new Tuple<Integer, Direction,Image>(2,Direction.UP,ImageIO.read(getClass() .getResource("skin3_h.png"))));
 		commandKeys.put(KeyEvent.VK_J, new Tuple<Integer, Direction,Image>(2,Direction.LEFT,ImageIO.read(getClass().getResource("skin3_g.png"))));
 		commandKeys.put(KeyEvent.VK_K, new Tuple<Integer, Direction,Image>(2,Direction.DOWN,ImageIO.read(getClass().getResource("skin3.png"))));
-		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction,Image>(2,Direction.RIGHT,ImageIO.read(getClass().getResource("skin1_d.png"))));
+		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction,Image>(2,Direction.RIGHT,ImageIO.read(getClass().getResource("skin3_d.png"))));
 		commandKeys.put(KeyEvent.VK_G, new Tuple<Integer, Direction,Image>(3,Direction.UP,ImageIO.read(getClass().getResource("skin4_h.png"))));
 		commandKeys.put(KeyEvent.VK_V, new Tuple<Integer, Direction,Image>(3,Direction.LEFT,ImageIO.read(getClass().getResource("skin4_g.png"))));
 		commandKeys.put(KeyEvent.VK_B, new Tuple<Integer, Direction,Image>(3,Direction.DOWN,ImageIO.read(getClass().getResource("skin4.png"))));
 		commandKeys.put(KeyEvent.VK_N, new Tuple<Integer, Direction,Image>(3,Direction.RIGHT,ImageIO.read(getClass().getResource("skin4_d.png"))));
 		commandKeys.put(KeyEvent.VK_A, new Tuple<Integer, Direction,Image>(0,Direction.BOMB,ImageIO.read(getClass().getResource("bomb1.png"))));
-		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction,Image>(2,Direction.BOMB,ImageIO.read(getClass().getResource("bomb2.png"))));
-		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction,Image>(3,Direction.BOMB,ImageIO.read(getClass().getResource("bomb3.png"))));
-		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction,Image>(1,Direction.BOMB,ImageIO.read(getClass().getResource("bomb4.png"))));
+		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction,Image>(2,Direction.BOMB,ImageIO.read(getClass().getResource("bomb3.png"))));
+		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction,Image>(3,Direction.BOMB,ImageIO.read(getClass().getResource("bomb4.png"))));
+		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction,Image>(1,Direction.BOMB,ImageIO.read(getClass().getResource("bomb2.png"))));
 		//On sectionne le panel pour avoir 3 lignes et 1 colonne
 		subPanel.setLayout(new GridLayout(3,1));
 		
