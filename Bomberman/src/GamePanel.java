@@ -379,7 +379,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		// Premier affichage : charge l'intégralité du plateau
 		else if(begin==1) {
-			//this.setLayout(new GridLayout(1,2));
+			this.setLayout(new GridLayout(1,2));
 			super.paintComponent(g); 
 			this.setBackground(Color.white);
 			 
@@ -393,7 +393,6 @@ public class GamePanel extends JPanel implements KeyListener{
 									elementTable[x][y].getPosy()*40, this);
 						 }catch (IOException e){
 							 e.printStackTrace();
-							 
 						 }
 						 catch (NullPointerException e){
 							 System.out.println("Méchant NullPointerExeption !");
@@ -456,7 +455,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		return;
 		}
 	}
-public Sound getSound(){
+	public Sound getSound(){
 	return sound;
-}
+	}
 }
