@@ -1,27 +1,27 @@
 \newpage
 \section{Fonctionnalités}
 \subsection{Initialisation du jeu}
-La première fonctionalité de notre application est la gestion d'un mode \textit{multijoueur}. 
-L'initialisation commence par une une interaction avec les différents joueurs via une interface 
+La première fonctionnalité de notre application est la gestion d'un mode \textit{multijoueur}. 
+L'initialisation commence par une interaction avec les différents joueurs via une interface 
 graphique (composée de \textit{boutons} et de \textit{champs de texte}) afin de recueillir leur 
 nombre ainsi que leurs noms. Un tutoriel est également disponible, afin d'informer les joueurs 
-des règles du jeu ainsi que les commandes.\\
+des règles du jeu ainsi que des commandes.\\
 Le choix des joueurs étant fait, le plateau de jeu s'initialise. La disposition des personnages 
-se fait sur les coins de celui-ci, la position des blocs incassables est fixe mais celle des 
-blocs cassables se fait de façon aléatoire.
+se fait sur les coins de celui-ci, la position des blocs incassables est fixe, mais celle des 
+blocs cassables se fait de façon aléatoire, tout en faisant attention à garder vides les cases adjacentes aux cases d'apparition des joueurs.
 
 \subsection{Déroulement de la partie}
 Comme tout \textit{Bomberman}, chaque joueur est capable de contrôler son personnage à l'aide 
 du clavier. Les touches directionnelles et de dépôt de bombe pour chaque joueur seront spécifiées 
 préalablement dans le tutoriel. \\
 Le programme est capable de gérer la collision entre les joueurs et les blocs, mais également entre
-les différents personnages sans oublier les bombes.\\
+les différents personnages et, sans oublier, les bombes.\\
 Lorsqu'une bombe explose, une \textit{croix de flamme} influe sur tous les éléments se trouvant sur 
 son chemin, sauf s'il s'agit d'un bloc incassable. En outre, les joueurs touchés perdront une vie 
-et les autres blocs seront détruits. Le rayon d'action de la flamme est initialement d'une case, 
-mais peut augmenter si le joueur gagne le bonus adéquat.\\
-Lorsqu'un joueur gagne la partie, une boîte de dialogue apparaît et l'informe de sa victoire pour 
-ensuite redirigé les joueurs vers l'écran d'accueil.
+et les autres blocs seront détruits, laissant place, avec une certaine probabilité, à un bonus aléatoire parmi tous ceux implémentés. Le rayon d'action de la flamme est initialement d'une case, 
+mais peut augmenter si le joueur gagne le bonus adéquat, tout comme le nombre de bombes et de vies peut être augmenté à l'aide des bonus.\\
+Lorsqu'il ne reste plus qu'un joueur sur le plateau, la partie se termine et  une boîte de dialogue apparaît et informe le joueur restant de sa victoire, pour 
+ensuite rediriger les joueurs vers l'écran d'accueil, où ils pourront relancer une nouvelle partie ou quitter le jeu.
 
 \subsection{Bonus et améliorations}
 Une brique cassable ne se contente pas toujours d'être détruite lors d'une explosion. En effet, elle 
@@ -33,7 +33,7 @@ de l'avantage qu'il donne. Ces derniers sont classés de la sorte :
      de bombes à déposer simultanément. 
     \item \textbf{Augmentation du nombre de vies :} le joueur pourra récupérer une vie à l'acquisition 
     de ce bonus.
-    \item \textbf{Portée de la bombe :} augmente la portée destructives de la bombe.
+    \item \textbf{Portée de la bombe :} augmente la portée destructive de la bombe.
     \item \textbf{La bombe atomique :} tous les autres joueurs perdent une vie.
     \item \textbf{Le téléporteur :} le joueur est téléporté de façon aléatoire sur une case vide.
 
@@ -42,3 +42,5 @@ de l'avantage qu'il donne. Ces derniers sont classés de la sorte :
 Afin de donner un peu plus de vie au jeu, la musique de fond \textit{leekspin} est jouée. L'explosion
 d'une bombe produit le son d'une explosion et le bonus \textit{bombe atomique} suspend la musique de 
 fond et joue un son des plus lugubres qu'il puisse exister.
+
+

@@ -1,52 +1,57 @@
 \newpage
 \section{Problématique et approche}
+Comme cité dans l'abstract, la problématique posée dans le cadre de ce projet est de réaliser un prototype du jeu \textit{Bomberman}, en utilisant les concepts de l'orientée objet que nous avons rencontrés au cours oral et lors des travaux pratiques. Le jeu doit être conçu dans le but d'y jouer en multijoueur uniquement, les concepts d'intelligence artificielle n'ayant pas été abordés. Tout en fournissant les fonctionnalités de base du \textit{Bomberman}, les étudiants sont libres d'implémenter les fonctionnalités qu'ils veulent. \\
 Bien que chacun des membres de notre groupe avait une certaine 
 connaissance de l'informatique (notamment grâce au cours de 
-première), aucun d'entre nous n'avait la moindre connaissance 
-en programmation orientée objet.
+première), aucun d'entre nous n'avait auparavant pratiqué la  programmation orientée objet.
 
 
-	\subsection{Problématique}
+	\subsection{Approche}
 	N'ayant aucune connaissance dans ce paradigme qu'est la 
-	programmation orientée objet, notre première problématique
-	a été d'acquérir les bases théoriques nécessaire.\\
-	Après avoir acquis celles-ci, nous avions une bonne compréhension
-	théoriques des concepts mais aucune expérience au niveau 
-	pratique. Afin de ne pas se lancer dans l'inconnu et pour 
+	programmation orientée objet, notre première approche
+	a été d'acquérir les bases théoriques nécessaires.\\
+	Après cela, nous avions une bonne compréhension
+	théorique des concepts, mais aucune expérience au niveau 
+	pratique. Afin de ne pas nous lancer dans l'inconnu et pour 
 	exploiter au maximum nos connaissances théoriques, nous avons 
 	commencé, avant même d'écrire une seule ligne de code, par 
 	réaliser le diagramme des classes que nous avons présenté 
-	dans notre pré-rapport.\\
-	Ce travail préliminaire nous a été d'une grande utilité car 
-	nous avons pu développer le jeu de façon rapide et structuré.
-	A l'exception de quelques bonus rajouté et l'une ou l'autre
+	dans notre prérapport.\\
+	Ce travail préliminaire nous a été d'une grande utilité, car 
+	nous avons pu développer le jeu de façon rapide et structurée.
+	À l'exception de quelques bonus rajoutés et l'une ou l'autre
 	légère modification, notre diagramme de classe final est 
 	semblable à 85\% à l'initial.\\
 	
-	Le fait que la structure ai été pensée avant toute chose nous
-	as permit de ne rencontrer qu'un faible nombre de bug lors du
-	développement. Cependant, nous avons été confronté à une autre
-	problématique importante : notre jeu était extrêmement gourmand 
-	en ressources. Le problème était lié à la fréquence de 
-	rafraîchissement de notre interface graphique. Pour résoudre ce
-	problème, nous avons optimisé l'affichage par trois changements :
+	Le fait que la structure ait été pensée avant toute chose nous
+	a permis de ne rencontrer qu'un faible nombre de bugs lors du
+	développement, mais aussi de pouvoir coder assez rapidement les bases
+	du jeu. Cependant, par la suite, nous avons été confrontés à un problème
+	autre que
+	le manque de connaissance : notre jeu était extrêmement gourmand 
+	en ressources. Le problème était lié au 
+	rafraîchissement de notre interface graphique qui se faisait à l'aide d'un
+	\textit{Thread} à petit intervalle de temps. Pour résoudre ce
+	problème, nous avons procédé à trois changements
+	majeurs :
 	\begin{enumerate}
 	\item La grille complète n'est chargée qu'une seule fois, lors 
-	de l'initialisation du jeu.
-	\item L'affichage n'est plus actualisé de façon continue.
+	de l'initialisation du jeu. 
+	\item L'affichage n'est plus actualisé de façon continue
 	\item Plutôt que de rafraîchir l'intégralité de la fenêtre, 
-	seul les modifications du plateau de jeu sont \textit{repaint}.
+	seules les modifications du plateau de jeu sont \textit{repaint} sur les anciens éléments par le biais d'une case blanche pour cacher ce dernier, si nécessaire.
 	\end{enumerate}
 	
+	Ces changements nous ont permis d'améliorer considérablement notre
+	consommation des ressources de l'ordinateur et constituent l'un des
+	points forts de ce projet.\\
 	Les deux points présentés ici étaient de loin les plus grosses
-	problématiques rencontrées. Bien sur nous avons connu plusieurs
+	problématiques rencontrées. Bien sûr, nous avons connu plusieurs
 	problèmes isolés, mais ceux-ci étaient plus des "petits bugs" 
-	qu'une véritable problématique.
-	
+	qu'une véritable problématique. 
 	
 	\subsection{Répartition du travail}
-	Au niveau de la répartition du travail, nous n'avons pas 
-	séquencé le projet en partie distinctes mais nous avons 
+	Au niveau de la répartition du travail, nous n'avons pas	séquencé le projet en parties distinctes, mais nous avons 
 	travaillé parallèlement sur chacune des parties du projet (
 	la collaboration nous étant grandement facilité par l'
 	utilisation de \textit{git}	). Par exemple, au niveau de la 
@@ -57,26 +62,13 @@ en programmation orientée objet.
 	\item[Enes] s'est chargé de la destruction des blocs causés 
 	par l’explosion de la bombe ainsi que la génération aléatoire
 	des bonus.
-	\item[Cédric] s'est chargé de l'auto-déclenchement d'une bombe
-	lorsque celle-ci se fait elle-même explosée par une autre 
+	\item[Cédric] s'est chargé de l'auto déclenchement d'une bombe
+	lorsque celle-ci se fait elle-même exploser par une autre 
 	bombe.
 	\end{description}
 	
-	Cet approche nous as permis de chacun avoir une connaissance 
+	Cet exemple de la bombe a été appliqué à la quasi-totalité du code. 
+	Cette approche nous a donc permis à chacun d'avoir une connaissance 
 	de l'intégralité du code et d'ainsi savoir nous aider de 
 	façon rapide lors de l'apparition d'un bug.
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
 

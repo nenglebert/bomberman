@@ -1,9 +1,9 @@
 \newpage
 \section{Designs Patterns}
 Alors qu'initialement nous comptions adopter le modèle MVC, nous avons connu quelques 
-soucis lors de sa mise en place. Du à notre manque d'expérience dans le monde de la  
+soucis lors de sa mise en place. Dû à notre manque d'expérience dans le monde de la  
 programmation orientée objet, nous n'avons pas réussi à scinder de façon complète 
-le contrôleur de le vue. Ne ne sommes pas parvenu à dissocier la gestion des
+le contrôleur de la vue. Nous ne sommes pas parvenus à dissocier la gestion des
 entrées utilisateurs de l'actualisation de l'affichage produit par ces mêmes actions.
 Étant quelque peu en manque de connaissance et surtout en manque de temps, nous avons
 préféré trouver une solution alternative, à savoir le regroupement de ces deux entités.
@@ -21,9 +21,9 @@ chargés de leurs traitements. Après avoir mis à jour les données, le modèle
 vue-contrôleur de se mettre à jour. La \textit{vue-contrôleur} est chargée d'un double 
 rôle. Son premier consiste en la mise à jour de l'interface graphique sur demande du modèle.
 Le deuxième rôle qu'elle tient est de vérifier la validité des données entrées par l'utilisateur
-et des les transmettre au modèle si celles-ci s'avèrent valides. La seule différence entre 
+et de les transmettre au modèle si celles-ci s'avèrent valides. La seule différence entre 
 ce modèle et le modèle MVC est que, pour des raisons purement techniques, nous n'avons pas été en 
-mesurer de séparer la vue du contrôleur en deux classes distinctes.\\
+mesure de séparer la vue du contrôleur en deux classes distinctes.\\
 
 La motivation à utiliser ce design pattern découle de la séparation claire entre 
 l'interface graphique gérée par la vue et le traitement des données par le modèle. 
@@ -44,12 +44,12 @@ au niveau de la conception.
             \item \texttt{GamePanel}
         \end{enumerate}
 	    \end{multicols}
-	    La classe \texttt{GameWindow} hérite de la classe \texttt{GameJFrame}. C'est elle 
-	    qui se charge d'afficher une fenêtre à une taille pré configurée. Le contenu
+	    La classe \texttt{GameWindow} hérite de la classe \texttt{JFrame}. C'est elle 
+	    qui se charge d'afficher une fenêtre à une taille qui s'adapte à celle de \texttt{GamePanel}. Le contenu
 	    de cette fenêtre est géré par la classe \texttt{GamePanel} qui hérite de la 
 	    classe \texttt{JPanel}. Celle-ci récupère les modifications effectuées par le 
-	    modèle après que celui-ci lui ait informé de se mettre à jour pour ensuite 
-	    les afficher mais cette classe se charge également de récupérer les entrées 
+	    modèle après que celui-ci lui ait informé de se mettre à jour, pour ensuite 
+	    les afficher. Mais cette classe se charge également de récupérer les entrées 
 	    utilisateurs pour les transmettre
 	    au modèle.
 	    
@@ -83,9 +83,12 @@ au niveau de la conception.
             \begin{itemize}
             \item[$\rightarrow$] \texttt{Explosion}
 				\begin{itemize}
-				\item[$\twoheadrightarrow$] \texttt{NExplode}
-				\item[$\twoheadrightarrow$] \texttt{PExplode}
-				\item[$\twoheadrightarrow$]	 \texttt{EBomb}			
+				\item[$\twoheadrightarrow$] \texttt{NonExplosion}
+				\item[$\twoheadrightarrow$] \texttt{PlayerExplosion}
+				\item[$\twoheadrightarrow$]	 \texttt{BombExplosion}
+				\item[$\twoheadrightarrow$]	 \texttt{BlockExplosion}
+				\item[$\twoheadrightarrow$]	 \texttt{DeleteExplosion}			
+							
 				\end{itemize}				            
             
             
@@ -97,6 +100,7 @@ au niveau de la conception.
             \item \texttt{Block}
             \item \texttt{Bedrock}
             \item \texttt{Bonus}
+            \item \texttt{Fire}
             \end{itemize}
             \item \texttt{Board}
         
@@ -113,8 +117,9 @@ au niveau de la conception.
         interface graphique.\\
         
         Les différents composants de notre classe \texttt{Board} sont tous 
-        de types \texttt{Element}. La classe \texttt{Element} possède cinq 
-        classes filles : \texttt{Player, Bomb, Block, Bedrock, Bonus}. Le 
+        de types \texttt{Element}. La classe \texttt{Element} possède six 
+        classes filles : \texttt{Player, Bomb, Block, Bedrock, Bonus et Fire}.
+        Le 
         nom des classes est assez explicite si ce n'est pour les deux classes 
         chargées de la gestion des blocs :
         \begin{enumerate}
@@ -127,15 +132,15 @@ au niveau de la conception.
         Afin de gérer les explosions de façon la plus efficace que possible, 
         la méthode \texttt{explode()} a été définie au sein de la classe 
         \texttt{Element}. Or, cette méthode n'a pas le même comportement pour
-        un objet de la classe \texttt{Bedrock} que pour un de la classe \texttt{Bomb} 
+        un objet de la classe \texttt{Bedrock} que pour un de la classe \texttt{Bomb,} 
         mais a le m\^eme pour un objet de la classe \texttt{Bonus}. 
         Afin que cette méthode puisse être utilisée de façon polymorphe et pour
         éviter les doublons de code, l'interface \texttt{Explosion} implémentée 
         à \texttt{Element} permet de définir un comportement adapté à l'objet
-        concerné.\\
+        concerné. Il nous suffira, pour gérer les explosions, d'appliquer une même méthode \textit{applyExplose()} à n’importe quel élément et celui-ci explosera de la manière définie dans la classe correspondante.\\
         
 		Cependant, la classe \texttt{Player} doit posséder des attributs et 
-		des méthodes que les autres classes héritant de \texttt{Element} ne 
+		des méthodes que les autres classes héritiers de \texttt{Element} ne 
 		possèdent pas. Afin de conserver le polymorphisme, l'interface 
 		\texttt{IPlayer} a été implémentée à notre classe \texttt{Player}.
         
@@ -176,3 +181,4 @@ au niveau de la conception.
         
 		
 	
+
