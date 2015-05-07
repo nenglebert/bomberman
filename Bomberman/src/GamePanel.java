@@ -21,6 +21,7 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,6 +36,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	
 	// Interface JPanel (conteneur de boutons)
 	private JPanel subPanel = new JPanel();	
+	private TutoPanel tutoPanel = new TutoPanel();
 	
 	private JButton startButton = new JButton("Start game");	//Bouton "Start"
 	private JButton tutoButton = new JButton("Tutorial");		//Bouton "Tutorial"
@@ -60,6 +62,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private URL nukeSound = getClass().getResource("nuke.wav");
 	private URL playback = getClass().getResource("test.wav");
 	private Image whiteSquare = ImageIO.read(getClass().getResource("blanc.jpeg"));
+	
 	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -110,7 +113,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		// Boutons
 		startButton.addActionListener(new StartActionListener(this,subPanel));
-		tutoButton.addActionListener(new TutoActionListener(gameWindow));
+		tutoButton.addActionListener(new TutoActionListener(this));
 		player2Button.addActionListener(new PlayerActionListener(this,subPanel,2));
 		player3Button.addActionListener(new PlayerActionListener(this,subPanel,3));
 		player4Button.addActionListener(new PlayerActionListener(this,subPanel,4));
@@ -281,6 +284,17 @@ public class GamePanel extends JPanel implements KeyListener{
 		subPanel.add(player4Button);
 
 		subPanel.revalidate();
+	}
+	
+	//Affiche le tuto
+	public void tutorial(){
+		JFrame tutoWindow = new JFrame("Tutorial");
+		tutoPanel.setPreferredSize(new Dimension(800,461));
+		tutoWindow.setContentPane(tutoPanel);
+		tutoWindow.pack();
+		tutoWindow.setVisible(true);
+		tutoWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE );
+		tutoWindow.setLocationRelativeTo(null);
 	}
 	
 	//Récupère le nom des joueurs.
