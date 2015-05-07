@@ -11,7 +11,7 @@ public class TutoActionListener implements ActionListener {
 	
 	public TutoActionListener(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
-		tutoPanel.setPreferredSize(new Dimension(1890,1080));
+		tutoPanel.setPreferredSize(new Dimension(600,343));
 	}
 
 	public void actionPerformed(ActionEvent e) {
