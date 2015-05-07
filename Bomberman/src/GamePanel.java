@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// Gère les entrées utilisateur et l'affichage graphique (ViewController)
 public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets
 	private Board board;
@@ -388,13 +389,6 @@ public class GamePanel extends JPanel implements KeyListener{
 
 	//Affichage
 	public void paintComponent(Graphics g){
-		
-		//Page de tutorial
-		if (begin==-1){
-			ImageIcon img = new ImageIcon(getClass().getResource("tutorial.png"));
-			super.paintComponent(g); 
-			img.paintIcon(this, g, 0, 0);
-		}
 		
 		//Ecran d'accueil
 		if (begin==0){
