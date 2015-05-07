@@ -57,8 +57,9 @@ public class GamePanel extends JPanel implements KeyListener{
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
 	private Sound sound;
-	private ArrayList<ArrayList<Image>> skin = new ArrayList<ArrayList<Image>>() ;
-	
+	private ArrayList<ArrayList<Image>> skin = new ArrayList<ArrayList<Image>>();
+	private File nukeSound = new File("nuke.wav");
+	private File playback = new File("test.wav");
 	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -87,7 +88,6 @@ public class GamePanel extends JPanel implements KeyListener{
 		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction,Image>(2,Direction.BOMB,ImageIO.read(new File("bomb2.png"))));
 		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction,Image>(3,Direction.BOMB,ImageIO.read(new File("bomb3.png"))));
 		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction,Image>(1,Direction.BOMB,ImageIO.read(new File("bomb4.png"))));
-		skin.get(0).add(0,ImageIO.read(new File("bonus1.png")));
 		//On sectionne le panel pour avoir 3 lignes et 1 colonne
 		subPanel.setLayout(new GridLayout(3,1));
 		
@@ -211,7 +211,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		//Bonus bombe atomique
 		if(boni.getType() == 4){
-			Sound nukesound = new Sound("nuke.wav",false);
+			Sound nukesound = new Sound(nukeSound,false);
 			Thread t3 = new Thread(nukesound);
 			sound.pause();
 			t3.start();
@@ -323,7 +323,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		elementTable = board.getTable();
 		begin = 1;
 		repaint();
-		sound = new Sound("test.wav",true);
+		sound = new Sound(playback,true);
 		Thread t1 = new Thread(sound);
 		t1.start();
 		

@@ -19,7 +19,12 @@ public class Board {
 	private GameWindow gameWindow;
 	Image bedrok = ImageIO.read(new File("HardBlock.png"));
 	Image block = ImageIO.read(new File("SoftBlock.png"));
-	
+	Image[] fireSkin = {ImageIO.read(new File("explosionCentre.jpg")),
+			ImageIO.read(new File("explosionVert.jpg")),ImageIO.read(new File("explosionHor.jpg"))};
+	Image[] bonusSkin = {ImageIO.read(new File("bonus1.png")), ImageIO.read(new File("bonus2.png")),
+			ImageIO.read(new File("bonus3.png")), ImageIO.read(new File("bonus4.jpeg")),
+			ImageIO.read(new File("zaap1.png"))};
+	File bombSound = new File("bomb.wav");
 		// Constructeur par défaut
 	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
@@ -89,6 +94,18 @@ public class Board {
 	
 	public GameWindow getWindow() {
 		return this.gameWindow;
+	}
+	
+	public Image getFireSkin(int i){
+		return fireSkin[i];
+	}
+	
+	public Image getBonusSkin(int i){
+		return bonusSkin[i];
+	}
+	
+	public File getBombSound(){
+		return bombSound;
 	}
 	
 	public int getPlayerDeath(){

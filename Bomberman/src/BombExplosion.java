@@ -10,10 +10,10 @@ import javax.imageio.ImageIO;
 // La classe qui va contenir la méthode qui gère l'explosion de la bombe
 public class BombExplosion  implements IExplosion {
 	public void explose(final int posx, final int posy, final Board board, final Player player) throws IOException{
-		Image explosionCentre = ImageIO.read(new File("explosionCentre.jpg"));
-		Image explosionVert = ImageIO.read(new File("explosionVert.jpg"));
-		Image explosionHor = ImageIO.read(new File("explosionHor.jpg"));
-		Thread t2 = new Thread(new Sound("bomb.wav",false));
+		Image explosionCentre = board.getFireSkin(0);
+		Image explosionHor = board.getFireSkin(2);
+		Image explosionVert = board.getFireSkin(1);
+		Thread t2 = new Thread(new Sound(board.getBombSound(),false));
 		t2.start();
 		Fire fireCenter = new Fire(explosionCentre,posx,posy, board, player);
 		Timer timer = new Timer();

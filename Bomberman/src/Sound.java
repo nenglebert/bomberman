@@ -14,8 +14,7 @@ public class Sound extends Thread{
 	File audioFile;
 	int duration;
 	boolean loop;
-	public Sound(String audiofile, boolean loop){
-		 this.audioFile= new File(audiofile);
+	public Sound(File audiofile, boolean loop){
 		 this.loop = loop;
 		 AudioInputStream audioStream;
 		try {
