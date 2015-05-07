@@ -170,7 +170,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		}
 		else if(command.equals(Direction.BOMB) && playerList[playerNum].getBombBag() > 0 && !(board.getElemInBoard(playerList[playerNum].getPosx(),playerList[playerNum].getPosy()) instanceof Bomb)){
 			playerList[playerNum].setBombBag(playerList[playerNum].getBombBag()-1);
-			gameWindow.updateLabel();
+			gameWindow.updateLabel(playerNum);
 			board.setElemInBoard(playerList[playerNum].getPosx(),playerList[playerNum].getPosy(),new Bomb(playerList[playerNum].getPosx(),playerList[playerNum].getPosy(),board,playerList[playerNum],skin));
 			update();
 			
@@ -265,7 +265,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			verif = false; //Ne bouge pas après la téléportation
 			update();
 		}
-		gameWindow.updateLabel();
+		gameWindow.updateLabel(pPlayer);
 		return verif;
 	}
 
@@ -343,6 +343,8 @@ public class GamePanel extends JPanel implements KeyListener{
 		board = new Board(playerList,this,gameWindow);
 		elementTable = board.getTable();
 		begin = 1;
+		// Pour le tableau latéral
+		gameWindow.createLabel();
 		repaint();
 		sound = new Sound(playback,true);
 		Thread t1 = new Thread(sound);
@@ -425,8 +427,6 @@ public class GamePanel extends JPanel implements KeyListener{
 				 }
 			 }
 			 
-		// Pour le tableau latéral
-		gameWindow.updateLabel();
 		
 		// Copie plateau de jeu
 		oldElementTable = dcopy(elementTable);

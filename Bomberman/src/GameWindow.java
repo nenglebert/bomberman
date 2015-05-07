@@ -39,10 +39,8 @@ public class GameWindow extends JFrame{
 		this.setLocationRelativeTo(null);		//Apparaît au milieu de l'écran
 	}
 	
-	public void updateLabel(){
-		playerList = gamePanel.getPlayerList();
-		subPanel.clear();
-		dataPanel.removeAll();
+	public void createLabel(){
+		this.playerList = gamePanel.getPlayerList();
 		dataPanel.setLayout(new GridLayout(playerList.length,1));
 		for (int i=0; i<playerList.length; i++){
 			JLabel label = new JLabel("<html>" + "<b>" + playerList[i].getName() + " : </b>" 
@@ -57,6 +55,17 @@ public class GameWindow extends JFrame{
 		}
 		this.getContentPane().add(dataPanel, BorderLayout.WEST);
 		this.pack();
+	}
+	
+	public void updateLabel(int i){
+		JLabel label = new JLabel("<html>" + "<b>" + playerList[i].getName() + " : </b>" 
+				+ "<br>"
+				+ "<br> life : " + playerList[i].getLife() 
+				+ "<br> bomb in bag : " + playerList[i].getBombBag() 
+				+ "<br> bomb size : " + playerList[i].getBombSize() + "</html>");
+		subPanel.get(i).removeAll();
+		subPanel.get(i).add(label);
+		dataPanel.revalidate();
 	}
 	
 	public static void main(String args[]) {

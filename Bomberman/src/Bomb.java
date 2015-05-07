@@ -23,7 +23,11 @@ public class Bomb extends Element {
 					pPlayer.applyExplose(board, pPlayer);
 				}
 				pPlayer.setBombBag(pPlayer.getBombBag()+1);
-				board.getWindow().updateLabel();
+				for (int i=0; i<board.getPlayerNumber();i++){
+					if (board.getPlayer()[i] == pPlayer)
+						board.getWindow().updateLabel(i);
+				}
+					
 				
 				
 				// Méthode de Element qui 
