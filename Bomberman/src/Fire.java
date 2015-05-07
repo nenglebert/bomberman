@@ -1,3 +1,4 @@
+import java.awt.Image;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -5,7 +6,7 @@ import java.util.TimerTask;
 public class Fire extends Element{
 	
 		// Nos flammes
-	public Fire(String skin, final int posx, final int posy, final Board board, final Player player){
+	public Fire(Image skin, final int posx, final int posy, final Board board, final Player player){
 		this.skin = skin;
 		this.explosion = new DeleteExplosion();
 		this.posx = posx;

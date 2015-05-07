@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -23,6 +24,11 @@ public class ValidateActionListener implements ActionListener{
 		}
 		
 		//Va créer les joueurs en question
-		panel.createPlayers(playerNumber);
+		try {
+			panel.createPlayers(playerNumber);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }

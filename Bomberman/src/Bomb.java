@@ -1,12 +1,17 @@
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.imageio.ImageIO;
 
 
 	// La bombe
 public class Bomb extends Element {	
 	boolean canIExplose = true;
-	public Bomb(final int posx, final int posy, final Board board, final Player pPlayer){
-		this.skin = "bomb2.png";
+	public Bomb(final int posx, final int posy, final Board board, final Player pPlayer, Image skin){
+		this.skin = skin;
 		this.explosion = new BombExplosion(); 	// L'explosion selon Bomb
 		this.posx = posx;
 		this.posy = posy;	
@@ -22,6 +27,7 @@ public class Bomb extends Element {
 					pPlayer.applyExplose(board, pPlayer);
 				}
 				pPlayer.setBombBag(pPlayer.getBombBag()+1);
+				board.getWindow().updateLabel();
 				
 				
 				// Méthode de Element qui 

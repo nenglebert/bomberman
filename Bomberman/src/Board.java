@@ -1,5 +1,9 @@
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -13,9 +17,11 @@ public class Board {
 	private GamePanel panel;
 	private int playerDeath = 0;
 	private GameWindow gameWindow;
+	Image bedrok = ImageIO.read(new File("HardBlock.png"));
+	Image block = ImageIO.read(new File("SoftBlock.png"));
 	
 		// Constructeur par défaut
-	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow){
+	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
 		this.panel = panel;
 			// On récupère les personages 
@@ -25,7 +31,7 @@ public class Board {
 			//Placement des blocs incassables
 		for (int x=1; x < elementTable.length; x+=2){
 			for (int y=1; y < elementTable.length; y+=2){
-				elementTable[x][y] = new Bedrock(x,y);
+				elementTable[x][y] = new Bedrock(x,y,bedrok);
 			}
 		}
 			//Placement des blocs cassables
@@ -41,7 +47,7 @@ public class Board {
 					proba = 0.5;
 					
 				if(elementTable[x][y] == null && Math.random() >= proba)
-					elementTable[x][y] = new Block(x,y);
+					elementTable[x][y] = new Block(x,y,block);
 			}
 		}
 			
@@ -80,6 +86,11 @@ public class Board {
 	public GamePanel getPanel() {
 		return this.panel;
 	}
+	
+	public GameWindow getWindow() {
+		return this.gameWindow;
+	}
+	
 	public int getPlayerDeath(){
 		return this.playerDeath;
 	}

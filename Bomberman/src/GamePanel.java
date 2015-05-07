@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private Element[][] elementTable;
 	protected static Player[] playerList;
 	private int playerNumber;
-	private Map<Integer,Tuple<Integer,Direction>> commandKeys = new HashMap<Integer,Tuple<Integer, Direction>>();
+	private Map<Integer,Tuple<Integer,Direction,Image>> commandKeys = new HashMap<Integer,Tuple<Integer, Direction,Image>>();
 	
 	// Interface JPanel (conteneur de boutons)
 	private JPanel subPanel = new JPanel();	
@@ -57,36 +57,37 @@ public class GamePanel extends JPanel implements KeyListener{
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
 	private Sound sound;
+	private ArrayList<ArrayList<Image>> skin = new ArrayList<ArrayList<Image>>() ;
 	
-	public GamePanel(GameWindow gameWindow){
+	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
 		this.initialize();
 		this.addKeyListener(this);
 		this.setFocusable(true);
 	}
 
-	public void initialize() {
-		commandKeys.put(KeyEvent.VK_Z, new Tuple<Integer, Direction>(0,Direction.UP));
-		commandKeys.put(KeyEvent.VK_Q, new Tuple<Integer, Direction>(0,Direction.LEFT));
-		commandKeys.put(KeyEvent.VK_S, new Tuple<Integer, Direction>(0,Direction.DOWN));
-		commandKeys.put(KeyEvent.VK_D, new Tuple<Integer, Direction>(0,Direction.RIGHT));
-		commandKeys.put(KeyEvent.VK_UP, new Tuple<Integer, Direction>(1,Direction.UP));
-		commandKeys.put(KeyEvent.VK_LEFT, new Tuple<Integer, Direction>(1,Direction.LEFT));
-		commandKeys.put(KeyEvent.VK_DOWN, new Tuple<Integer, Direction>(1,Direction.DOWN));
-		commandKeys.put(KeyEvent.VK_RIGHT, new Tuple<Integer, Direction>(1,Direction.RIGHT));
-		commandKeys.put(KeyEvent.VK_I, new Tuple<Integer, Direction>(2,Direction.UP));
-		commandKeys.put(KeyEvent.VK_J, new Tuple<Integer, Direction>(2,Direction.LEFT));
-		commandKeys.put(KeyEvent.VK_K, new Tuple<Integer, Direction>(2,Direction.DOWN));
-		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction>(2,Direction.RIGHT));
-		commandKeys.put(KeyEvent.VK_G, new Tuple<Integer, Direction>(3,Direction.UP));
-		commandKeys.put(KeyEvent.VK_V, new Tuple<Integer, Direction>(3,Direction.LEFT));
-		commandKeys.put(KeyEvent.VK_B, new Tuple<Integer, Direction>(3,Direction.DOWN));
-		commandKeys.put(KeyEvent.VK_N, new Tuple<Integer, Direction>(3,Direction.RIGHT));
-		commandKeys.put(KeyEvent.VK_A, new Tuple<Integer, Direction>(0,Direction.BOMB));
-		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction>(2,Direction.BOMB));
-		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction>(3,Direction.BOMB));
-		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction>(1,Direction.BOMB));
-		
+	public void initialize() throws IOException {
+		commandKeys.put(KeyEvent.VK_Z, new Tuple<Integer, Direction,Image>(0,Direction.UP,ImageIO.read(new File("skin1_h.png"))));
+		commandKeys.put(KeyEvent.VK_Q, new Tuple<Integer, Direction,Image>(0,Direction.LEFT,ImageIO.read(new File("skin1_g.png"))));
+		commandKeys.put(KeyEvent.VK_S, new Tuple<Integer, Direction,Image>(0,Direction.DOWN,ImageIO.read(new File("skin1.png"))));
+		commandKeys.put(KeyEvent.VK_D, new Tuple<Integer, Direction,Image>(0,Direction.RIGHT,ImageIO.read(new File("skin1_d.png"))));
+		commandKeys.put(KeyEvent.VK_UP, new Tuple<Integer, Direction,Image>(1,Direction.UP,ImageIO.read(new File("skin2_h.png"))));
+		commandKeys.put(KeyEvent.VK_LEFT, new Tuple<Integer, Direction,Image>(1,Direction.LEFT,ImageIO.read(new File("skin2_g.png"))));
+		commandKeys.put(KeyEvent.VK_DOWN, new Tuple<Integer, Direction,Image>(1,Direction.DOWN,ImageIO.read(new File("skin2.png"))));
+		commandKeys.put(KeyEvent.VK_RIGHT, new Tuple<Integer, Direction,Image>(1,Direction.RIGHT,ImageIO.read(new File("skin2_d.png"))));
+		commandKeys.put(KeyEvent.VK_I, new Tuple<Integer, Direction,Image>(2,Direction.UP,ImageIO.read(new File("skin3_h.png"))));
+		commandKeys.put(KeyEvent.VK_J, new Tuple<Integer, Direction,Image>(2,Direction.LEFT,ImageIO.read(new File("skin3_g.png"))));
+		commandKeys.put(KeyEvent.VK_K, new Tuple<Integer, Direction,Image>(2,Direction.DOWN,ImageIO.read(new File("skin3.png"))));
+		commandKeys.put(KeyEvent.VK_L, new Tuple<Integer, Direction,Image>(2,Direction.RIGHT,ImageIO.read(new File("skin1_d.png"))));
+		commandKeys.put(KeyEvent.VK_G, new Tuple<Integer, Direction,Image>(3,Direction.UP,ImageIO.read(new File("skin4_h.png"))));
+		commandKeys.put(KeyEvent.VK_V, new Tuple<Integer, Direction,Image>(3,Direction.LEFT,ImageIO.read(new File("skin4_g.png"))));
+		commandKeys.put(KeyEvent.VK_B, new Tuple<Integer, Direction,Image>(3,Direction.DOWN,ImageIO.read(new File("skin4.png"))));
+		commandKeys.put(KeyEvent.VK_N, new Tuple<Integer, Direction,Image>(3,Direction.RIGHT,ImageIO.read(new File("skin4_d.png"))));
+		commandKeys.put(KeyEvent.VK_A, new Tuple<Integer, Direction,Image>(0,Direction.BOMB,ImageIO.read(new File("bomb1.png"))));
+		commandKeys.put(KeyEvent.VK_U, new Tuple<Integer, Direction,Image>(2,Direction.BOMB,ImageIO.read(new File("bomb2.png"))));
+		commandKeys.put(KeyEvent.VK_F, new Tuple<Integer, Direction,Image>(3,Direction.BOMB,ImageIO.read(new File("bomb3.png"))));
+		commandKeys.put(KeyEvent.VK_ENTER, new Tuple<Integer, Direction,Image>(1,Direction.BOMB,ImageIO.read(new File("bomb4.png"))));
+		skin.get(0).add(0,ImageIO.read(new File("bonus1.png")));
 		//On sectionne le panel pour avoir 3 lignes et 1 colonne
 		subPanel.setLayout(new GridLayout(3,1));
 		
@@ -119,7 +120,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	//Gestion des touches
 	public void keyPressed(KeyEvent e){
 	if (begin == 1 || begin == 2){	
-		Tuple<Integer,Direction> playerAction = commandKeys.get(e.getKeyCode());
+		Tuple<Integer,Direction,Image> playerAction = commandKeys.get(e.getKeyCode());
 		if(playerAction == null || playerAction.first()+1>playerNumber)
 			return;
 		if (playerList[playerAction.first()].getLife()==0){
@@ -127,7 +128,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			return;
 		}
 		if (playerAction.second().equals(Direction.UP) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()-1,playerAction.first())){
-			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+"_h.png");
+			playerList[playerAction.first()].setSkin(playerAction.third());
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()-1, playerList[playerAction.first()]);
@@ -135,7 +136,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 		}
 		else if(playerAction.second().equals(Direction.DOWN) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()+1,playerAction.first())){
-			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+".png");
+			playerList[playerAction.first()].setSkin(playerAction.third());
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()+1, playerList[playerAction.first()]);
@@ -143,7 +144,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 		}
 		else if(playerAction.second().equals(Direction.LEFT)  && check(playerList[playerAction.first()].getPosx()-1,playerList[playerAction.first()].getPosy(),playerAction.first())){
-			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+"_g.png");
+			playerList[playerAction.first()].setSkin(playerAction.third());
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx()-1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
@@ -151,7 +152,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			update();
 		}
 		else if(playerAction.second().equals(Direction.RIGHT) && check(playerList[playerAction.first()].getPosx()+1,playerList[playerAction.first()].getPosy(),playerAction.first())){
-			playerList[playerAction.first()].setSkin("skin"+(playerAction.first()+1)+"_d.png");
+			playerList[playerAction.first()].setSkin(playerAction.third());
 			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
 			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
 			board.setElemInBoard(playerList[playerAction.first()].getPosx()+1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
@@ -160,7 +161,8 @@ public class GamePanel extends JPanel implements KeyListener{
 		}
 		else if(playerAction.second().equals(Direction.BOMB) && playerList[playerAction.first()].getBombBag() > 0 && !(board.getElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()) instanceof Bomb)){
 			playerList[playerAction.first()].setBombBag(playerList[playerAction.first()].getBombBag()-1);
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),new Bomb(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),board,playerList[playerAction.first()]));
+			gameWindow.updateLabel();
+			board.setElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),new Bomb(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),board,playerList[playerAction.first()],playerAction.third()));
 			update();
 			
 		}
@@ -197,6 +199,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		//Bonus bombe
 		if(boni.getType() == 1)
 			playerList[pPlayer].setBombBag(playerList[pPlayer].getBombBag()+1);	
+			
 		
 		//Bonus vie
 		if(boni.getType() == 2)
@@ -253,6 +256,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			verif = false; //Ne bouge pas après la téléportation
 			update();
 		}
+		gameWindow.updateLabel();
 		return verif;
 	}
 
@@ -303,13 +307,14 @@ public class GamePanel extends JPanel implements KeyListener{
 	}
 	
 	// Crée et place les joueurs
-	public void createPlayers(int playerNumber){
+	public void createPlayers(int playerNumber) throws IOException{
+		int[] keyForSkin = {KeyEvent.VK_S,KeyEvent.VK_DOWN,KeyEvent.VK_K,KeyEvent.VK_B};
 		this.playerNumber = playerNumber;
 		int[] posxList = {0,14,14,0};
 		int[] posyList = {0,14,0,14};
 		playerList = new Player[playerNumber];
 		for (int i=0;i < playerNumber;i++){
-			playerList[i] = new Player("skin"+String.valueOf(i+1)+".png", nameList.get(i), posxList[i], posyList[i]);
+			playerList[i] = new Player(commandKeys.get(keyForSkin[i]).third(), nameList.get(i), posxList[i], posyList[i]);
 		}
 		
 		subPanel.removeAll();
@@ -334,6 +339,10 @@ public class GamePanel extends JPanel implements KeyListener{
 		return playerList;
 	}
 	
+	public Board getBoard(){
+		return board;
+	}
+	
 	
 	//Les setteurs
 	public void setName(String name){
@@ -344,6 +353,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		this.nameList.clear();
 	}
 	
+	// Rafraichi la fenêtre
 	public void update(){  
 	   
 		this.begin = 2;
@@ -351,11 +361,6 @@ public class GamePanel extends JPanel implements KeyListener{
 		//repaint();
 	}
 	
-	public Board getBoard(){
-		return board;
-	}
-	
-
 	//Permet la "deepcopy" de la matrice
 	public Element[][] dcopy(Element[][] input) {
 	    Element[][] target = new Element[input.length][];
@@ -379,7 +384,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		// Premier affichage : charge l'intégralité du plateau
 		else if(begin==1) {
-			//this.setLayout(new GridLayout(1,2));
+			this.setLayout(new GridLayout(1,2));
 			super.paintComponent(g); 
 			this.setBackground(Color.white);
 			 
@@ -388,14 +393,10 @@ public class GamePanel extends JPanel implements KeyListener{
 				 for(int y = 0; y < elementTable.length; y++){
 					 if(elementTable[x][y] != null){
 						 try{
-							 Image img1 = ImageIO.read(new File(elementTable[x][y].skin));
+							 Image img1 = elementTable[x][y].getSkin();
 							 g.drawImage(img1, elementTable[x][y].getPosx()*40,
 									elementTable[x][y].getPosy()*40, this);
-						 }catch (IOException e){
-							 e.printStackTrace();
-							 
-						 }
-						 catch (NullPointerException e){
+						 }catch (NullPointerException e){
 							 System.out.println("Méchant NullPointerExeption !");
 						 }
 					 }
@@ -413,6 +414,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		// Ne redessine que les modifications en comparants les changements
 		// avec la copie du plateau de jeu précédent.
 		else if (begin ==2){
+			this.setLayout(new GridLayout(1,2));
 			Element [][] newElementTable = dcopy(elementTable);
 			for(int x = 0; x < newElementTable.length; x++){
 				 for(int y = 0; y < newElementTable.length; y++){
@@ -422,14 +424,10 @@ public class GamePanel extends JPanel implements KeyListener{
 					 if(newElementTable[x][y] != null){
 						 if (!newElementTable[x][y].equals(oldElementTable[x][y])){
 							 try{
-						 			Image img1 = ImageIO.read(new File(newElementTable[x][y].skin));
+						 			Image img1 = newElementTable[x][y].getSkin();
 						 			g.drawImage(img1, newElementTable[x][y].getPosx()*40,
 						 					newElementTable[x][y].getPosy()*40, this);
-						 		}catch (IOException e){
-						 			e.printStackTrace();
-								 
-						 		}
-						 		catch (NullPointerException e){
+						 		}catch (NullPointerException e){
 						 			System.out.println("Méchant NullPointerExeption !");
 						 		}							 
 						 }
@@ -451,7 +449,6 @@ public class GamePanel extends JPanel implements KeyListener{
 					 }
 				}
 			}
-		//gameWindow.updateLabel();
 		oldElementTable = dcopy(newElementTable); 
 		return;
 		}

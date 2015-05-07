@@ -1,10 +1,12 @@
+import java.awt.Image;
+
 
 	// Pour les bonus
 public class Bonus extends Element {
 	
 	public int type;
 	
-	public Bonus(int posx, int posy, int type, String skin){
+	public Bonus(int posx, int posy, int type, Image skin){
 		this.skin = skin;
 		this.type = type ;
 		this.explosion = new DeleteExplosion();

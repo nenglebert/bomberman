@@ -1,9 +1,12 @@
+import java.awt.Image;
+import java.io.IOException;
+
 
 	// Classe abstraite dont hérite tous les éléments du plateau
 public class Element {
 	
 		// Initialisation des attributs communs à tous les éléments
-	protected String skin;
+	protected Image skin;
 	protected IExplosion explosion;
 	protected int posx;
 	protected int posy;
@@ -11,11 +14,16 @@ public class Element {
 		// Méthode qui permet d'appeler la méthode explose 
 		// des attributs explosion des sous-classes
 	public void applyExplose(Board board, Player player){
-		explosion.explose(this.posx, this.posy, board, player);
+		try {
+			explosion.explose(this.posx, this.posy, board, player);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 		
 		// Tous les gettteurs
-	public String getSkin(){
+	public Image getSkin(){
 		return skin;
 	}
 	
@@ -28,7 +36,7 @@ public class Element {
 	}
 		
 		// Tous les setteurs
-	public void setSkin(String skin){
+	public void setSkin(Image skin){
 		this.skin = skin;
 	}
 		

@@ -1,14 +1,21 @@
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
+
 
 // La classe qui va contenir la méthode qui gère l'explosion de la bombe
-public class BombExplosion implements IExplosion{
-	
-	public void explose(final int posx, final int posy, final Board board, final Player player) {
+public class BombExplosion  implements IExplosion {
+	public void explose(final int posx, final int posy, final Board board, final Player player) throws IOException{
+		Image explosionCentre = ImageIO.read(new File("explosionCentre.jpg"));
+		Image explosionVert = ImageIO.read(new File("explosionVert.jpg"));
+		Image explosionHor = ImageIO.read(new File("explosionHor.jpg"));
 		Thread t2 = new Thread(new Sound("bomb.wav",false));
 		t2.start();
-		Fire fireCenter = new Fire("explosionCentre.jpg",posx,posy, board, player);
+		Fire fireCenter = new Fire(explosionCentre,posx,posy, board, player);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
 		// Variables de condition pour que les flammes n'apparaissent pas si la première case est un objet qui a explosé
@@ -24,7 +31,7 @@ public class BombExplosion implements IExplosion{
 			for (int i=1; i<=bombSize; i++){
 				if ((posx+i) <= 14 && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx+i,posy);
-					board.setElemInBoard(posx+i,posy,new Fire("explosionHor.jpg",posx+i,posy,board, player));
+					board.setElemInBoard(posx+i,posy,new Fire(explosionHor,posx+i,posy,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass1 = 0;
 						if (CurrentElem1 instanceof Bomb)
@@ -38,7 +45,7 @@ public class BombExplosion implements IExplosion{
 				
 				if (0 <= (posx-i) && !(board.getElemInBoard(posx-i,posy) instanceof Bedrock) && pass2 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx-i,posy);
-					board.setElemInBoard(posx-i,posy,new Fire("explosionHor.jpg",posx-i,posy,board, player));
+					board.setElemInBoard(posx-i,posy,new Fire(explosionHor,posx-i,posy,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass2 = 0;
 						if (CurrentElem1 instanceof Bomb)
@@ -52,7 +59,7 @@ public class BombExplosion implements IExplosion{
 				
 				if ((posy+i) <= 14 && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx,posy+i);
-					board.setElemInBoard(posx,posy+i,new Fire("explosionVert.jpg",posx,posy+i,board, player));
+					board.setElemInBoard(posx,posy+i,new Fire(explosionVert,posx,posy+i,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass3 = 0;
 						if (CurrentElem1 instanceof Bomb)
@@ -66,7 +73,7 @@ public class BombExplosion implements IExplosion{
 				
 				if (0 <= (posy-i) && !(board.getElemInBoard(posx,posy-i) instanceof Bedrock) && pass4 == 1){
 					Element CurrentElem1 = board.getElemInBoard(posx,posy-i);
-					board.setElemInBoard(posx,posy-i,new Fire("explosionVert.jpg",posx,posy-i,board, player));
+					board.setElemInBoard(posx,posy-i,new Fire(explosionVert,posx,posy-i,board, player));
 					if (CurrentElem1 != null && !(CurrentElem1 instanceof Fire)){
 						pass4 = 0;
 						if (CurrentElem1 instanceof Bomb)

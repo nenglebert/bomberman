@@ -30,7 +30,12 @@ public class GameWindow extends JFrame{
 		setResizable(false);
 		
 		//Création de nos objets
-		gamePanel = new GamePanel(this);
+		try {
+			gamePanel = new GamePanel(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		dataPanel = new JPanel();
 		
 		dataPanel.setPreferredSize(new Dimension(100,600));
@@ -44,6 +49,7 @@ public class GameWindow extends JFrame{
 	}
 	
 	public void updateLabel(){
+		System.out.println("coucou");
 		playerList = GamePanel.getPlayerList();
 		dataPanel.removeAll();
 		dataPanel.setLayout(new GridLayout(playerList.length,1));
@@ -54,7 +60,7 @@ public class GameWindow extends JFrame{
 			dataPanel.add(label);
 		}
 		this.getContentPane().add(dataPanel, BorderLayout.WEST);
-	//	this.pack();
+		this.pack();
 	}
 	
 	public static void main(String args[]) {

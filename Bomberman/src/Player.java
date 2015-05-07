@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 
 	// Classe de l'élément joueur
 public class Player extends Element implements IPlayer{
@@ -10,7 +12,7 @@ public class Player extends Element implements IPlayer{
 	private int bombSize;
 		
 		// Constructeur de Player
-	public Player(String skin, String name, int posx, int posy){
+	public Player(Image skin, String name, int posx, int posy){
 		this.skin = skin;
 		this.explosion = new PlayerExplosion();
 		this.posx = posx;
