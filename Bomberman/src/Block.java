@@ -1,11 +1,10 @@
 import java.awt.Image;
-import java.io.IOException;
 
 
 	//Gère les blocs se détruisant lors d'une explosion
 public class Block extends Element{
 	
-	public Block(int posx, int posy, Image skin) throws IOException{
+	public Block(int posx, int posy, Image skin){
 		this.skin = skin;
 		this.explosion = new BlockExplosion();
 		this.posx = posx;

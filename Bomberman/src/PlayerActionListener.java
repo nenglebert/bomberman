@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 public class PlayerActionListener implements ActionListener {
 	
-	GamePanel panel;
-	JPanel subPanel;
-	int playerNumber;
+	private GamePanel panel;
+	private JPanel subPanel;
+	private int playerNumber;
 	
 	public PlayerActionListener(GamePanel panel, JPanel subPanel, int playerNumber){
 		this.panel = panel;

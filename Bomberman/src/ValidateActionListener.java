@@ -7,9 +7,9 @@ import javax.swing.JTextField;
 
 public class ValidateActionListener implements ActionListener{
 	
-	GamePanel panel;
-	int playerNumber;
-	ArrayList<JTextField> nameFields;
+	private GamePanel panel;
+	private int playerNumber;
+	private ArrayList<JTextField> nameFields;
 	
 	public ValidateActionListener(GamePanel panel, ArrayList<JTextField> nameFields, int playerNumber){
 		this.panel = panel;

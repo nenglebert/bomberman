@@ -10,10 +10,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound extends Thread{
-	Clip audioClip;
-	URL audioFile;
-	int duration;
-	boolean loop;
+	private Clip audioClip;
+	private URL audioFile;
+	private int duration;
+	private boolean loop;
 	public Sound(URL nukeSound, boolean loop){
 		 this.loop = loop;
 		 AudioInputStream audioStream;
@@ -26,13 +26,10 @@ public class Sound extends Thread{
 			 audioClip.open(audioStream);
 			 this.duration = ((int)audioClip.getMicrosecondLength()/1000);
 		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
