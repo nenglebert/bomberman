@@ -1,8 +1,8 @@
 
 public class Tuple<A,B,C> {
-	final A a;
-	final B b;
-	final C c;
+	private final A a;
+	private final B b;
+	private final C c;
 	public Tuple(A a,B b,C c){
 		this.a = a;
 		this.b = b;

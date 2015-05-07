@@ -19,7 +19,6 @@ public class Element {
 		try {
 			explosion.explose(this.posx, this.posy, board, player);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

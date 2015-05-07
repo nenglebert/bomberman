@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 // Gestion de la fenêtre "containeur" du jeu
+@SuppressWarnings("serial")
 public class GameWindow extends JFrame{
 	private GamePanel gamePanel;		//Le panel global avec image	
 	private JPanel dataPanel;

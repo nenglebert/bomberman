@@ -20,14 +20,14 @@ public class Board {
 	private GamePanel panel;
 	private int playerDeath = 0;
 	private GameWindow gameWindow;
-	Image bedrok = ImageIO.read(getClass().getResource("HardBlock.png"));
-	Image block = ImageIO.read(getClass().getResource("SoftBlock.png"));
-	Image[] fireSkin = {ImageIO.read(getClass().getResource("explosionCentre.jpg")),
+	private Image bedrok = ImageIO.read(getClass().getResource("HardBlock.png"));
+	private Image block = ImageIO.read(getClass().getResource("SoftBlock.png"));
+	private Image[] fireSkin = {ImageIO.read(getClass().getResource("explosionCentre.jpg")),
 			ImageIO.read(getClass().getResource("explosionVert.jpg")),ImageIO.read(getClass().getResource("explosionHor.jpg"))};
-	Image[] bonusSkin = {ImageIO.read(getClass().getResource("bonus1.png")), ImageIO.read(getClass().getResource("bonus2.png")),
+	private Image[] bonusSkin = {ImageIO.read(getClass().getResource("bonus1.png")), ImageIO.read(getClass().getResource("bonus2.png")),
 			ImageIO.read(getClass().getResource("bonus3.png")), ImageIO.read(getClass().getResource("bonus4.jpeg")),
 			ImageIO.read(getClass().getResource("zaap1.png"))};
-	URL bombSound = getClass().getResource("bomb.wav");
+	private URL bombSound = getClass().getResource("bomb.wav");
 		// Constructeur par défaut
 	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;

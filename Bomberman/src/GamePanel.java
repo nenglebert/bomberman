@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 // Gère les entrées utilisateur et l'affichage graphique (ViewController)
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets
 	private Board board;
@@ -128,46 +129,49 @@ public class GamePanel extends JPanel implements KeyListener{
 		Tuple<Integer,Direction,Image> playerAction = commandKeys.get(e.getKeyCode());
 		if(playerAction == null || playerAction.first()+1>playerNumber)
 			return;
-		if (playerList[playerAction.first()].getLife()==0){
+		int  playerNum = playerAction.first();
+		Direction command = playerAction.second();
+		Image skin = playerAction.third();
+		if (playerList[playerNum].getLife()==0){
 			commandKeys.remove(e.getKeyCode());
 			return;
 		}
-		if (playerAction.second().equals(Direction.UP) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()-1,playerAction.first())){
-			playerList[playerAction.first()].setSkin(playerAction.third());
-			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()-1, playerList[playerAction.first()]);
-			playerList[playerAction.first()].setPosy(playerList[playerAction.first()].getPosy()-1);
+		if (command.equals(Direction.UP) && check(playerList[playerNum].getPosx(),playerList[playerNum].getPosy()-1,playerNum)){
+			playerList[playerNum].setSkin(skin);
+			if (!(board.getElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy(), null);
+			board.setElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy()-1, playerList[playerNum]);
+			playerList[playerNum].setPosy(playerList[playerNum].getPosy()-1);
 			update();
 		}
-		else if(playerAction.second().equals(Direction.DOWN) && check(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()+1,playerAction.first())){
-			playerList[playerAction.first()].setSkin(playerAction.third());
-			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()+1, playerList[playerAction.first()]);
-			playerList[playerAction.first()].setPosy(playerList[playerAction.first()].getPosy()+1);
+		else if(command.equals(Direction.DOWN) && check(playerList[playerNum].getPosx(),playerList[playerNum].getPosy()+1,playerNum)){
+			playerList[playerNum].setSkin(skin);
+			if (!(board.getElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy(), null);
+			board.setElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy()+1, playerList[playerNum]);
+			playerList[playerNum].setPosy(playerList[playerNum].getPosy()+1);
 			update();
 		}
-		else if(playerAction.second().equals(Direction.LEFT)  && check(playerList[playerAction.first()].getPosx()-1,playerList[playerAction.first()].getPosy(),playerAction.first())){
-			playerList[playerAction.first()].setSkin(playerAction.third());
-			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
-			board.setElemInBoard(playerList[playerAction.first()].getPosx()-1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
-			playerList[playerAction.first()].setPosx(playerList[playerAction.first()].getPosx()-1);
+		else if(command.equals(Direction.LEFT)  && check(playerList[playerNum].getPosx()-1,playerList[playerNum].getPosy(),playerNum)){
+			playerList[playerNum].setSkin(skin);
+			if (!(board.getElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy(), null);
+			board.setElemInBoard(playerList[playerNum].getPosx()-1, playerList[playerNum].getPosy(), playerList[playerNum]);
+			playerList[playerNum].setPosx(playerList[playerNum].getPosx()-1);
 			update();
 		}
-		else if(playerAction.second().equals(Direction.RIGHT) && check(playerList[playerAction.first()].getPosx()+1,playerList[playerAction.first()].getPosy(),playerAction.first())){
-			playerList[playerAction.first()].setSkin(playerAction.third());
-			if (!(board.getElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy()) instanceof Bomb))
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(), playerList[playerAction.first()].getPosy(), null);
-			board.setElemInBoard(playerList[playerAction.first()].getPosx()+1, playerList[playerAction.first()].getPosy(), playerList[playerAction.first()]);
-			playerList[playerAction.first()].setPosx(playerList[playerAction.first()].getPosx()+1);
+		else if(command.equals(Direction.RIGHT) && check(playerList[playerNum].getPosx()+1,playerList[playerNum].getPosy(),playerNum)){
+			playerList[playerNum].setSkin(skin);
+			if (!(board.getElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy()) instanceof Bomb))
+			board.setElemInBoard(playerList[playerNum].getPosx(), playerList[playerNum].getPosy(), null);
+			board.setElemInBoard(playerList[playerNum].getPosx()+1, playerList[playerNum].getPosy(), playerList[playerNum]);
+			playerList[playerNum].setPosx(playerList[playerNum].getPosx()+1);
 			update();
 		}
-		else if(playerAction.second().equals(Direction.BOMB) && playerList[playerAction.first()].getBombBag() > 0 && !(board.getElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy()) instanceof Bomb)){
-			playerList[playerAction.first()].setBombBag(playerList[playerAction.first()].getBombBag()-1);
+		else if(command.equals(Direction.BOMB) && playerList[playerNum].getBombBag() > 0 && !(board.getElemInBoard(playerList[playerNum].getPosx(),playerList[playerNum].getPosy()) instanceof Bomb)){
+			playerList[playerNum].setBombBag(playerList[playerNum].getBombBag()-1);
 			gameWindow.updateLabel();
-			board.setElemInBoard(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),new Bomb(playerList[playerAction.first()].getPosx(),playerList[playerAction.first()].getPosy(),board,playerList[playerAction.first()],playerAction.third()));
+			board.setElemInBoard(playerList[playerNum].getPosx(),playerList[playerNum].getPosy(),new Bomb(playerList[playerNum].getPosx(),playerList[playerNum].getPosy(),board,playerList[playerNum],skin));
 			update();
 			
 		}

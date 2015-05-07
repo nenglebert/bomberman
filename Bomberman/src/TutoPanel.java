@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
+@SuppressWarnings("serial")
 public class TutoPanel extends JPanel {
 	
 	public void paintComponent(Graphics g){
