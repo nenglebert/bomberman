@@ -18,7 +18,6 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// Gère les entrées utilisateur et l'affichage graphique (ViewController)
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets

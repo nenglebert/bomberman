@@ -9,7 +9,6 @@ public class Bonus extends Element {
 	public Bonus(int posx, int posy, int type, Image skin){
 		this.skin = skin;
 		this.type = type ;
-		this.explosion = new NonExplosion();
 		this.posx = posx;
 		this.posy = posy;
 	}
