@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class StartActionListener implements ActionListener {
 	
-	GamePanel panel;
-	JPanel subPanel;
+	private GamePanel panel;
+	private JPanel subPanel;
 	
 	public StartActionListener(GamePanel panel, JPanel subPanel) {
 		this.panel = panel;

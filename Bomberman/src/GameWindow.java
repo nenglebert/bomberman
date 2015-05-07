@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class GameWindow extends JFrame{
 	private GamePanel gamePanel;		//Le panel global avec image	
 	private JPanel dataPanel;

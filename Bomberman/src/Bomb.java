@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 //Gestion de la case bombe
 public class Bomb extends Element {	
-	boolean canIExplose = true;
+	private boolean canIExplose = true;
 	public Bomb(final int posx, final int posy, final Board board, final Player pPlayer, Image skin){
 		this.skin = skin;
 		this.explosion = new BombExplosion(); 	// L'explosion selon Bomb

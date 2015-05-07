@@ -1,13 +1,9 @@
-import java.io.IOException;
-
-
-
 	// Défini la méthode explose() pour les élements de type "Block".
 	// Elle cause la suppression du bloc et laisse apparaître un bonus
 	// à la place de celui-ci.
 public class BlockExplosion implements IExplosion {
 
-	public void explose(int posx, int posy, Board board, Player player) throws IOException {
+	public void explose(int posx, int posy, Board board, Player player){
 		Double proba = 0.6;
 		
 		if(Math.random() >= proba){
@@ -27,7 +23,7 @@ public class BlockExplosion implements IExplosion {
 				board.setElemInBoard(posx, posy, new Bonus(posx,posy, 3, board.getBonusSkin(2)));
 			
 			//Bombe atomique 
-			if(0.6 < wbonus && 0.8 > wbonus)
+			if(0.7 < wbonus && 0.8 > wbonus)
 				board.setElemInBoard(posx, posy, new Bonus(posx, posy, 4, board.getBonusSkin(3)));
 			
 			//Teleportation

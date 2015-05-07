@@ -4,12 +4,12 @@ import java.awt.Image;
 	//Gère les bonus
 public class Bonus extends Element {
 	
-	public int type;
+	private int type;
 	
 	public Bonus(int posx, int posy, int type, Image skin){
 		this.skin = skin;
 		this.type = type ;
-		this.explosion = new DeleteExplosion();
+		this.explosion = new NonExplosion();
 		this.posx = posx;
 		this.posy = posy;
 	}
