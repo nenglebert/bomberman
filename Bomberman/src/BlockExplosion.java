@@ -5,7 +5,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
-	// Le block disparaît de la map et doit laisser place à un bonus
+	// Défini la méthode explose() pour les élements de type "Block".
+	// Elle cause la suppression du bloc et laisse apparaître un bonus
+	// à la place de celui-ci.
 public class BlockExplosion implements IExplosion {
 
 	public void explose(int posx, int posy, Board board, Player player) throws IOException {

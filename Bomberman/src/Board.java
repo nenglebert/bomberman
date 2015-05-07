@@ -8,7 +8,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-	// Plateau de jeu mis sous matrice
+//Gestion du tableau
+
+
+// Plateau de jeu mis sous matrice
 public class Board {
 	
 	private Element[][] elementTable = new Element[15][15];
