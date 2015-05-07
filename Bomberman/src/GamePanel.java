@@ -57,6 +57,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
 	private Sound sound;
+	
 	public GamePanel(GameWindow gameWindow){
 		this.gameWindow = gameWindow;
 		this.initialize();
@@ -304,13 +305,11 @@ public class GamePanel extends JPanel implements KeyListener{
 	// Crée et place les joueurs
 	public void createPlayers(int playerNumber){
 		this.playerNumber = playerNumber;
-		System.out.println(playerNumber);
 		int[] posxList = {0,14,14,0};
 		int[] posyList = {0,14,0,14};
 		playerList = new Player[playerNumber];
 		for (int i=0;i < playerNumber;i++){
 			playerList[i] = new Player("skin"+String.valueOf(i+1)+".png", nameList.get(i), posxList[i], posyList[i]);
-			System.out.println(i+1 + ") " + playerList[i].getName());
 		}
 		
 		subPanel.removeAll();
@@ -318,6 +317,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		board = new Board(playerList,this,gameWindow);
 		elementTable = board.getTable();
 		begin = 1;
+		repaint();
 		sound = new Sound("test.wav",true);
 		Thread t1 = new Thread(sound);
 		t1.start();
@@ -347,7 +347,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	public void update(){  
 	   
 		this.begin = 2;
-		 this.paintComponent(this.getGraphics());
+		this.paintComponent(this.getGraphics());
 		//repaint();
 	}
 	
@@ -379,9 +379,9 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		// Premier affichage : charge l'intégralité du plateau
 		else if(begin==1) {
-			this.setLayout(new GridLayout(1,2));
+			//this.setLayout(new GridLayout(1,2));
 			super.paintComponent(g); 
-			 this.setBackground(Color.white);
+			this.setBackground(Color.white);
 			 
 			 // Passe la grille en revue & place les éléments
 			 for(int x = 0; x < elementTable.length; x++){

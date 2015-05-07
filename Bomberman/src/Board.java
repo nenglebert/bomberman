@@ -87,7 +87,6 @@ public class Board {
 		this.playerDeath++;
 	}
 	public void end(){
-		System.out.println("Jeu terminé");
 		int i = 0;
 		while (playerList[i].getPosx() == -10 ) {
 			i++	;	
@@ -97,8 +96,7 @@ public class Board {
 		 UI.put("OptionPane.background", Color.white);
 		 UI.put("Panel.background", Color.white);
 		ImageIcon img = new ImageIcon("winner.jpeg");
-		dialog.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);
-		System.out.println(playerList[i].getName()+" a gagné");
+		dialog.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);		
 		panel.getSound().stopClip();
 		gameWindow.getContentPane().removeAll();
 		gameWindow.dispose();

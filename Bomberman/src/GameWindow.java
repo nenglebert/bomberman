@@ -58,7 +58,7 @@ public class GameWindow extends JFrame{
 	}
 	
 	public static void main(String args[]) {
-		GameWindow window = new GameWindow();
+		new GameWindow();
 		
 	}
 }
