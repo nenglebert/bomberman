@@ -1,5 +1,5 @@
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -11,13 +11,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound extends Thread{
 	Clip audioClip;
-	File audioFile;
+	URL audioFile;
 	int duration;
 	boolean loop;
-	public Sound(File audiofile, boolean loop){
+	public Sound(URL nukeSound, boolean loop){
 		 this.loop = loop;
 		 AudioInputStream audioStream;
-		 this.audioFile = audiofile;
+		 this.audioFile = nukeSound;
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
 			 AudioFormat format = audioStream.getFormat();
@@ -60,12 +60,13 @@ public void pause(){
 	audioClip.stop();
 }
 public void restart(){
+	if (audioClip.isOpen()){
 	if(loop)
 		audioClip.loop(Clip.LOOP_CONTINUOUSLY);
 	else
 		audioClip.start();
 }
-
+}
  public int getDuration(){
 	 System.out.println(duration);
 	return duration;

@@ -1,8 +1,5 @@
-import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 
 
 	// Le block disparaît de la map et doit laisser place à un bonus

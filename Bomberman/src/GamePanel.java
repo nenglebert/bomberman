@@ -8,8 +8,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -57,9 +57,8 @@ public class GamePanel extends JPanel implements KeyListener{
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
 	private Sound sound;
-	private ArrayList<ArrayList<Image>> skin = new ArrayList<ArrayList<Image>>();
-	private File nukeSound = new File("nuke.wav");
-	private File playback = new File("test.wav");
+	private URL nukeSound = getClass().getResource("nuke.wav");
+	private URL playback = getClass().getResource("test.wav");
 	private Image whiteSquare = ImageIO.read(getClass().getResource("blanc.jpeg"));
 	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
@@ -228,7 +227,7 @@ public class GamePanel extends JPanel implements KeyListener{
 					 }
 				  }, 4000);
 			timer.schedule(new TimerTask() {
-				  public void run() {	
+				  public void run() {
 					  sound.restart();
 					 }
 				  }, duration+200);

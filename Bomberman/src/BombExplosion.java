@@ -1,10 +1,7 @@
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.imageio.ImageIO;
 
 
 // La classe qui va contenir la méthode qui gère l'explosion de la bombe
