@@ -16,9 +16,10 @@ import kuusisto.tinysound.TinySound;
 // Plateau de jeu mis sous matrice
 public class Board {
 	
-	private Element[][] elementTable = new Element[15][15];
+	private Element[][] elementTable;
 	private Player[] playerList;
 	private int playerNumber;
+	private int boardSize;
 	private GamePanel panel;
 	private int playerDeath = 0;
 	private GameWindow gameWindow;
@@ -30,13 +31,17 @@ public class Board {
 			ImageIO.read(getClass().getResource("bonus3.png")), ImageIO.read(getClass().getResource("bonus4.jpeg")),
 			ImageIO.read(getClass().getResource("zaap1.png"))};
 	private Sound bombSound = TinySound.loadSound(getClass().getResource("bomb.wav"));
-		// Constructeur par défaut
+		
+	// Constructeur par défaut
 	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
 		this.panel = panel;
+		this.boardSize = panel.getBoardSize();
+		elementTable = new Element[panel.getBoardSize()+1][panel.getBoardSize()+1];
 			// On récupère les personages 
 		this.playerList = playerList;
 		this.playerNumber = playerList.length;
+		System.out.println(elementTable.length);
 		
 			//Placement des blocs incassables
 		for (int x=1; x < elementTable.length; x+=2){
@@ -62,14 +67,14 @@ public class Board {
 		}
 			
 			//Place les cases libres
-		elementTable[0][0]  = elementTable[0][1]   = elementTable[1][0]   = elementTable[0][13]  = 
-		elementTable[0][14] = elementTable[1][14]  = elementTable[13][0]  = elementTable[14][0]  = 
-		elementTable[14][1] = elementTable[14][13] = elementTable[14][14] = elementTable[13][14] =
+		elementTable[0][0]  = elementTable[0][1]   = elementTable[1][0]   = elementTable[0][panel.getBoardSize()-1]  = 
+		elementTable[0][panel.getBoardSize()] = elementTable[1][panel.getBoardSize()]  = elementTable[panel.getBoardSize()-1][0]  = elementTable[panel.getBoardSize()][0]  = 
+		elementTable[panel.getBoardSize()][1] = elementTable[panel.getBoardSize()][panel.getBoardSize()-1] = elementTable[panel.getBoardSize()][panel.getBoardSize()] = elementTable[panel.getBoardSize()-1][panel.getBoardSize()] =
 		null;
 		
 			//Place les joueurs
-		int[] posxList = {0,14,14,0};
-		int[] posyList = {0,14,0,14};
+		int[] posxList = {0,panel.getBoardSize(),panel.getBoardSize(),0};
+		int[] posyList = {0,panel.getBoardSize(),0,panel.getBoardSize()};
 		
 		for (int i=0; i< playerNumber; i++){
 			elementTable[posxList[i]][posyList[i]] = playerList[i];
@@ -85,6 +90,9 @@ public class Board {
 	}
 	public Element getElemInBoard(int posx,int posy){
 		return elementTable[posx][posy];
+	}
+	public int getBoardSize(){
+		return this.boardSize;
 	}
 	public int getPlayerNumber(){
 		return playerNumber;

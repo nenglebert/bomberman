@@ -29,10 +29,6 @@ public class GameWindow extends JFrame{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		dataPanel = new DataPanel();
-		
-		dataPanel.setPreferredSize(new Dimension(150,600));
-		
 		
 		this.setLayout(new BorderLayout());
 		this.getContentPane().add(gamePanel, BorderLayout.EAST);	//Pour l'ajouter sur la fenêtre
@@ -42,6 +38,8 @@ public class GameWindow extends JFrame{
 	}
 	
 	public void createLabel(){
+		dataPanel = new DataPanel();
+		dataPanel.setPreferredSize(new Dimension(150,(gamePanel.getBoardSize()+1)*40));
 		this.playerList = gamePanel.getPlayerList();
 		dataPanel.setLayout(new GridLayout(playerList.length,1));
 		for (int i=0; i<playerList.length; i++){
@@ -57,6 +55,7 @@ public class GameWindow extends JFrame{
 		}
 		this.getContentPane().add(dataPanel, BorderLayout.WEST);
 		this.pack();
+		this.setLocationRelativeTo(null);
 	}
 	
 	public void updateLabel(int i){

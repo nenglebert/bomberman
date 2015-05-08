@@ -29,7 +29,7 @@ public class BombExplosion  implements IExplosion {
 			board.setElemInBoard(posx,posy,fireCenter);
 		// Pour que les cases disparaissent
 			for (int i=1; i<=bombSize; i++){
-				if ((posx+i) <= 14 && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
+				if ((posx+i) <= board.getBoardSize() && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
 					Element currentElem1 = board.getElemInBoard(posx+i,posy);
 					board.setElemInBoard(posx+i,posy,new Fire(explosionHor,posx+i,posy,board, player));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
@@ -40,7 +40,7 @@ public class BombExplosion  implements IExplosion {
 					}
 				}
 				
-				else if ((posx+i) <= 14 && board.getElemInBoard(posx+i,posy) instanceof Bedrock) 
+				else if ((posx+i) <= board.getBoardSize() && board.getElemInBoard(posx+i,posy) instanceof Bedrock) 
 				pass1 =0;
 				
 				if (0 <= (posx-i) && !(board.getElemInBoard(posx-i,posy) instanceof Bedrock) && pass2 == 1){
@@ -57,7 +57,7 @@ public class BombExplosion  implements IExplosion {
 				else if (0 <= (posx-i) && board.getElemInBoard(posx-i,posy) instanceof Bedrock) 
 					pass2 =0;
 				
-				if ((posy+i) <= 14 && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
+				if ((posy+i) <= board.getBoardSize() && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
 					Element currentElem1 = board.getElemInBoard(posx,posy+i);
 					board.setElemInBoard(posx,posy+i,new Fire(explosionVert,posx,posy+i,board, player));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
@@ -68,7 +68,7 @@ public class BombExplosion  implements IExplosion {
 					}
 				}
 				
-				else if ((posy+i) <= 14 && board.getElemInBoard(posx,posy+i) instanceof Bedrock) 
+				else if ((posy+i) <= board.getBoardSize() && board.getElemInBoard(posx,posy+i) instanceof Bedrock) 
 					pass3 =0;
 				
 				if (0 <= (posy-i) && !(board.getElemInBoard(posx,posy-i) instanceof Bedrock) && pass4 == 1){

@@ -20,6 +20,7 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -58,6 +59,10 @@ public class GamePanel extends JPanel implements KeyListener{
 	private ArrayList<JTextField> nameFields = new ArrayList<JTextField>();	//Zone pour les noms
 	private ArrayList<String> nameList = new ArrayList<String>();
 	
+	// Liste déroulante
+	private String[] boardSizes = {"11x11","13x13","15x15","17x17"};
+	private JComboBox boardSizeList = new JComboBox(boardSizes);
+	
 	//Affichage du menu
 	private int begin = 0;	// Indique qu'il faut afficher le menu
 	private GameWindow gameWindow;
@@ -67,6 +72,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	private Music sound = TinySound.loadMusic(getClass().getResource("test.wav"));
 	private Image whiteSquare = ImageIO.read(getClass().getResource("blanc.png"));
 	private int nukeRunning = 0;
+	private int boardSize = 14;
 	
 	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
@@ -114,7 +120,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		subPanel.setOpaque(false);		//Mise en forme des boutons
 		this.add(subPanel);				//Placement sur la fenêtre
 		
-		this.setPreferredSize(new Dimension(600, 600));
+		this.setPreferredSize(new Dimension((boardSize+1)*40, (boardSize+1)*40));
 		
 		// Boutons
 		startButton.addActionListener(new StartActionListener(this,subPanel));
@@ -192,7 +198,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	//Vérification des collisons et ajout bonus
 	public boolean check(int pX, int pY, int pPlayer){
 		boolean verif = true;
-		if (-1<pX && pX<15 && -1< pY && pY <15 && (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)){
+		if (-1<pX && pX<boardSize+1 && -1< pY && pY <boardSize+1 && (board.getElemInBoard(pX,pY) == null || board.getElemInBoard(pX, pY) instanceof Bonus)){
 			//Si c'est un bonus, on lui donne
 			if(board.getElemInBoard(pX, pY) instanceof Bonus)
 				verif = bonus(pX,pY,pPlayer);
@@ -250,8 +256,8 @@ public class GamePanel extends JPanel implements KeyListener{
 		if(boni.getType() == 5){
 			ArrayList<Integer> posxList = new ArrayList<Integer>();
 			ArrayList<Integer> posyList = new ArrayList<Integer>();
-			for (int i=0; i<=14; i++){
-				for (int j=0; j<=14; j++){
+			for (int i=0; i<=boardSize; i++){
+				for (int j=0; j<=boardSize; j++){
 					if (elementTable[i][j] == null){
 						posxList.add(i);
 						posyList.add(j);
@@ -310,7 +316,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	//Récupère le nom des joueurs.
 	public void takePlayersName(JPanel subPanel, int playerNumber){
 		subPanel.removeAll();
-		subPanel.setLayout(new GridLayout(2*playerNumber + 2,1));
+		subPanel.setLayout(new GridLayout(2*playerNumber + 4,1));
 		
 		subPanel.add(nameLabel);
 		// Création des espaces d'ériture du nom
@@ -324,9 +330,12 @@ public class GamePanel extends JPanel implements KeyListener{
 				});
 				subPanel.add(nameFields.get(i-1));
 			}
-		
+			
+		JLabel label = new JLabel("Choose the board size");
+		subPanel.add(label);
+		subPanel.add(boardSizeList);
 		subPanel.add(validateButton);
-		validateButton.addActionListener(new ValidateActionListener(this,nameFields,playerNumber));
+		validateButton.addActionListener(new ValidateActionListener(this,nameFields,playerNumber,boardSizeList));
 		
 		subPanel.revalidate();
 	}
@@ -335,8 +344,8 @@ public class GamePanel extends JPanel implements KeyListener{
 	public void createPlayers(int playerNumber) throws IOException{
 		int[] keyForSkin = {KeyEvent.VK_S,KeyEvent.VK_DOWN,KeyEvent.VK_K,KeyEvent.VK_B};
 		this.playerNumber = playerNumber;
-		int[] posxList = {0,14,14,0};
-		int[] posyList = {0,14,0,14};
+		int[] posxList = {0,boardSize,boardSize,0};
+		int[] posyList = {0,boardSize,0,boardSize};
 		playerList = new Player[playerNumber];
 		for (int i=0;i < playerNumber;i++){
 			playerList[i] = new Player(commandKeys.get(keyForSkin[i]).third(), nameList.get(i), posxList[i], posyList[i]);
@@ -348,6 +357,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		elementTable = board.getTable();
 		begin = 1;
 		// Pour le tableau latéral
+		this.setPreferredSize(new Dimension((boardSize+1)*40,(boardSize+1)*40));
 		gameWindow.createLabel();
 		repaint();
 		sound.play(true);
@@ -369,8 +379,17 @@ public class GamePanel extends JPanel implements KeyListener{
 		return board;
 	}
 	
+	public int getBoardSize(){
+		return this.boardSize;
+	}
+	
 	
 	//Les setteurs
+	
+	public void setBoardSize(int boardSize){
+		this.boardSize = boardSize;
+	}
+	
 	public void setName(String name){
 		this.nameList.add(name);
 	}
