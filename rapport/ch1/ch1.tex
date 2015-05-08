@@ -37,11 +37,18 @@ au niveau de la conception.
 
 	\subsection{Implémentation du MVC à notre projet}
 		\subsubsection{ViewController}
-		Notre \textit{ViewController} se compose de deux classes : 
+		Notre \textit{ViewController} se compose de huit classes : 
 		\begin{multicols}{2}
         \begin{enumerate}
             \item \texttt{GameWindow}
             \item \texttt{GamePanel}
+            \item \texttt{DataPanel}
+            \item \texttt{TutoPanel}
+            \item \texttt{TutoActionListener}
+            \item \texttt{StartActionListener}
+            \item \texttt{ValidateActionListener}
+            \item \texttt{PlayerActionListener}
+            
         \end{enumerate}
 	    \end{multicols}
 	    La classe \texttt{GameWindow} hérite de la classe \texttt{JFrame}. C'est elle 
@@ -50,31 +57,23 @@ au niveau de la conception.
 	    classe \texttt{JPanel}. Celle-ci récupère les modifications effectuées par le 
 	    modèle après que celui-ci lui ait informé de se mettre à jour, pour ensuite 
 	    les afficher. Mais cette classe se charge également de récupérer les entrées 
-	    utilisateurs pour les transmettre
-	    au modèle.
+	    utilisateurs pour les transmettre au modèle. Toutes les classes comprenant \texttt{ActionListener} s'occuppent des actions des différents boutons dans le jeu. La classe \texttt{DataPanel} est la classe qui génère la banderole latérale s'affichant après le début d'une partie. La classe \texttt{TutoPanel} se chargera quant à elle du tutoriel.
 	    
 		
-		\begin{figure}[H]
-        \centering
-            \subfigure [View]{\includegraphics[scale=0.17]{ch1/View}}
-        \quad
-            \subfigure [Controller]{\includegraphics[scale=0.17]{ch1/Controller}}
-            \caption {Diagramme des classes : View/Controller \textbf{A CHANGER}}
+		\begin{figure}[H]		
+  			\includegraphics[scale=0.45]{ch1/ViewController}
+            \caption {Diagramme des classes : ViewController }
         \end{figure}		
             
         
         \subsubsection{Model}
-        Notre \textit{model} se compose de deux interfaces :
-  		\begin{multicols}{2}
+        Notre \textit{model} se compose d'une interface :
         \begin{enumerate}
-            \item \texttt{IPlayer}
-            \item \texttt{Explosion}
+            \item \texttt{I Explosion}
         \end{enumerate}
-	    \end{multicols}
-	    et de dix classes dont deux classes mère ($\bullet$) où la première est 
-	    abstraite. Les implémentations d'interfaces sont représentées par $\rightarrow$, 
-	    les classes filles par une sous-liste (-) et l'implémentation d'interface entre
-        une classe concrète et une interface par $\twoheadrightarrow$\footnote{Pour 
+	    et de quatorze classes dont une classe abstraite \texttt{Element}. Les implémentations d'interfaces sont représentées par une $\rightarrow$, 
+	    les classes filles par une un <<->> et l'implémentation d'interface entre
+        une classe concrète et une interface par $\twoheadrightarrow$\ \footnote{Pour 
         plus de clarté, consultez la \autoref{fig:DiagModel}} :
 	    \begin{multicols}{2}
         \begin{itemize}
@@ -94,7 +93,7 @@ au niveau de la conception.
             
 	        \item \texttt{Player}
 	        \begin{itemize}
-	        \item[$\rightarrow$]	 \texttt{IPlayer}	
+			\item[ ]
 	        \end{itemize}
             \item \texttt{Bomb}
             \item \texttt{Block}
@@ -116,36 +115,31 @@ au niveau de la conception.
         jour, un message sera envoyé à la vue afin de remettre à jour l'
         interface graphique.\\
         
-        Les différents composants de notre classe \texttt{Board} sont tous 
-        de types \texttt{Element}. La classe \texttt{Element} possède six 
+        Les différents composants de notre classe \texttt{Board} sont principalement 
+        de type \texttt{Element}. La classe \texttt{Element} possède six 
         classes filles : \texttt{Player, Bomb, Block, Bedrock, Bonus et Fire}.
         Le 
         nom des classes est assez explicite si ce n'est pour les deux classes 
         chargées de la gestion des blocs :
         \begin{enumerate}
-        \item \texttt{Block} : une case pouvant \^etre détruite suite à l'
-        explosion d'une bombe.
+        \item \texttt{Block} : une case pouvant \^etre détruite suite à l'explosion d'une bombe.
         \item \texttt{Bedrock} : une case ne pouvant \^etre détruite (ainsi 
         qu'une petite référence à \textit{Minecraft}).
         \end{enumerate}
         
         Afin de gérer les explosions de façon la plus efficace que possible, 
-        la méthode \texttt{explode()} a été définie au sein de la classe 
+        la méthode \textit{explose()} a été définie au sein de la classe 
         \texttt{Element}. Or, cette méthode n'a pas le même comportement pour
         un objet de la classe \texttt{Bedrock} que pour un de la classe \texttt{Bomb,} 
-        mais a le m\^eme pour un objet de la classe \texttt{Bonus}. 
+        mais a le m\^eme pour un objet de la classe \texttt{Bonus} (à quelques différences près). 
         Afin que cette méthode puisse être utilisée de façon polymorphe et pour
         éviter les doublons de code, l'interface \texttt{Explosion} implémentée 
         à \texttt{Element} permet de définir un comportement adapté à l'objet
         concerné. Il nous suffira, pour gérer les explosions, d'appliquer une même méthode \textit{applyExplose()} à n’importe quel élément et celui-ci explosera de la manière définie dans la classe correspondante.\\
-        
-		Cependant, la classe \texttt{Player} doit posséder des attributs et 
-		des méthodes que les autres classes héritiers de \texttt{Element} ne 
-		possèdent pas. Afin de conserver le polymorphisme, l'interface 
-		\texttt{IPlayer} a été implémentée à notre classe \texttt{Player}.
-        
+       
         \begin{center}
-		\includegraphics[scale=0.35]{ch1/Model}
+        \centering
+		\includegraphics[scale=0.44]{ch1/newModel}
  	 	\captionof{figure}{Diagramme les classes : Model}
  	 	\label{fig:DiagModel}
         \end{center}
