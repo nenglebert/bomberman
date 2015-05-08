@@ -7,7 +7,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
-
+/*
+ *  Ancienne classe pour lancer les sons, mais cela faisait bugger le jeu.
+ */
 public class OldSound extends Thread{
 	private Clip audioClip;
 	private URL audioFile;

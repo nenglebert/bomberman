@@ -9,7 +9,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,7 +35,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	//Création des différents objets
 	private Board board;
 	private Element[][] elementTable;
-	protected Player[] playerList;
+	private Player[] playerList;
 	private int playerNumber;
 	private Map<Integer,Tuple<Integer,Direction,Image>> commandKeys = new HashMap<Integer,Tuple<Integer, Direction,Image>>();
 	
@@ -425,7 +424,7 @@ public class GamePanel extends JPanel implements KeyListener{
 									elementTable[x][y].getPosy()*40, this);
 
 						 }catch (NullPointerException e){
-							 System.out.println("Méchant NullPointerExeption !");
+							 e.printStackTrace();
 						 }
 					 }
 				 }
@@ -454,7 +453,7 @@ public class GamePanel extends JPanel implements KeyListener{
 						 			g.drawImage(img1, newElementTable[x][y].getPosx()*40,
 						 					newElementTable[x][y].getPosy()*40, this);
 						 		}catch (NullPointerException e){
-						 			System.out.println("Méchant NullPointerExeption !");
+						 			e.printStackTrace();
 						 		}							 
 						 }
 					 }
@@ -466,7 +465,7 @@ public class GamePanel extends JPanel implements KeyListener{
 					 			g.drawImage(whiteSquare, x*40, y*40, this);
 					 		}
 					 		catch (NullPointerException e){
-					 			System.out.println("Méchant NullPointerExeption !");
+					 			e.printStackTrace();
 					 		}						 
 					 }
 				}
