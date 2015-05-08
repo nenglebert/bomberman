@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import kuusisto.tinysound.Sound;
+import kuusisto.tinysound.TinySound;
+
 //Gestion du tableau
 
 
@@ -27,7 +30,7 @@ public class Board {
 	private Image[] bonusSkin = {ImageIO.read(getClass().getResource("bonus1.png")), ImageIO.read(getClass().getResource("bonus2.png")),
 			ImageIO.read(getClass().getResource("bonus3.png")), ImageIO.read(getClass().getResource("bonus4.jpeg")),
 			ImageIO.read(getClass().getResource("zaap1.png"))};
-	private URL bombSound = getClass().getResource("bomb.wav");
+	Sound bombSound = TinySound.loadSound(getClass().getResource("bomb.wav"));
 		// Constructeur par défaut
 	public Board(Player[] playerList, GamePanel panel, GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
@@ -107,7 +110,7 @@ public class Board {
 		return bonusSkin[i];
 	}
 	
-	public URL getBombSound(){
+	public Sound getBombSound(){
 		return bombSound;
 	}
 	
@@ -127,7 +130,7 @@ public class Board {
 		 
 		ImageIcon img = new ImageIcon(getClass().getResource("winner.jpeg"));
 		JOptionPane.showMessageDialog(null, "The winner is " + playerList[i].getName(), "The end !", JOptionPane.INFORMATION_MESSAGE, img);		
-		panel.getSound().stopClip();
+		TinySound.shutdown();
 		gameWindow.getContentPane().removeAll();
 		gameWindow.dispose();
 		System.gc();

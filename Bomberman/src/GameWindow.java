@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import kuusisto.tinysound.TinySound;
+
 // Gestion de la fenêtre "containeur" du jeu
 @SuppressWarnings("serial")
 public class GameWindow extends JFrame{
@@ -69,6 +71,7 @@ public class GameWindow extends JFrame{
 	}
 	
 	public static void main(String args[]) {
+		TinySound.init();
 		new GameWindow();
 		
 	}

@@ -12,8 +12,7 @@ public class BombExplosion  implements IExplosion {
 		Image explosionCentre = board.getFireSkin(0);
 		Image explosionHor = board.getFireSkin(2);
 		Image explosionVert = board.getFireSkin(1);
-		Thread t2 = new Thread(new Sound(board.getBombSound(),false));
-		t2.start();
+		board.getBombSound().play();
 		Fire fireCenter = new Fire(explosionCentre,posx,posy, board, player);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();

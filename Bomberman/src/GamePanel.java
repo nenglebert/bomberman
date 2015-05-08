@@ -26,6 +26,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import kuusisto.tinysound.Music;
+import kuusisto.tinysound.Sound;
+import kuusisto.tinysound.TinySound;
+
 // Gère les entrées utilisateur et l'affichage graphique (ViewController)
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements KeyListener{
@@ -60,10 +64,10 @@ public class GamePanel extends JPanel implements KeyListener{
 	private GameWindow gameWindow;
 	public enum Direction{UP,DOWN,LEFT,RIGHT,BOMB};
 	private Element[][] oldElementTable;
-	private Sound sound;
-	private URL nukeSound = getClass().getResource("nuke.wav");
-	private URL playback = getClass().getResource("test.wav");
+	private Sound nukesound = TinySound.loadSound(getClass().getResource("nuke.wav"));
+	private Music sound = TinySound.loadMusic(getClass().getResource("test.wav"));
 	private Image whiteSquare = ImageIO.read(getClass().getResource("blanc.png"));
+	private int nukeRunning = 0;
 	
 	public GamePanel(GameWindow gameWindow) throws IOException{
 		this.gameWindow = gameWindow;
@@ -220,11 +224,10 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		//Bonus bombe atomique
 		if(boni.getType() == 4){
-			Sound nukesound = new Sound(nukeSound,false);
-			Thread t3 = new Thread(nukesound);
+			nukeRunning ++;
+			if (nukeRunning == 1)
 			sound.pause();
-			t3.start();
-			int duration = nukesound.getDuration();
+			nukesound.play(1.5);
 			Timer timer = new Timer();
 			final int nPlayer = pPlayer;
 			timer.schedule(new TimerTask() {
@@ -237,9 +240,11 @@ public class GamePanel extends JPanel implements KeyListener{
 				  }, 4000);
 			timer.schedule(new TimerTask() {
 				  public void run() {
-					  sound.restart();
+					  nukeRunning--;
+					  if (nukeRunning == 0)
+					  sound.resume();
 					 }
-				  }, duration+200);
+				  }, 5200);
 			}
 		
 		//Bonus téléportation
@@ -346,9 +351,8 @@ public class GamePanel extends JPanel implements KeyListener{
 		// Pour le tableau latéral
 		gameWindow.createLabel();
 		repaint();
-		sound = new Sound(playback,true);
-		Thread t1 = new Thread(sound);
-		t1.start();
+		sound.play(true);
+		
 		
 		
 	}
@@ -471,7 +475,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		return;
 		}
 	}
-	public Sound getSound(){
+	public Music getSound(){
 	return sound;
 	}
 }
