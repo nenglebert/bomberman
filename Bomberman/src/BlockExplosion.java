@@ -27,11 +27,11 @@ public class BlockExplosion implements IExplosion {
 						board.setElemInBoard(posx, posy, new Bonus(posx,posy, 3, board.getBonusSkin(2)));
 					
 					//Bombe atomique 
-					if(0.7 < wbonus && 0.8 > wbonus)
+					if(0.6 < wbonus && 0.7 > wbonus)
 						board.setElemInBoard(posx, posy, new Bonus(posx, posy, 4, board.getBonusSkin(3)));
 					
 					//Teleportation
-					if(0.8 < wbonus)
+					if(0.7 < wbonus)
 						board.setElemInBoard(posx, posy, new Bonus(posx, posy, 5, board.getBonusSkin(4)));
 			
 				}

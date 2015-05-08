@@ -226,7 +226,7 @@ public class GamePanel extends JPanel implements KeyListener{
 			nukeRunning ++;
 			if (nukeRunning == 1)
 			sound.pause();
-			nukesound.play(1.5);
+			nukesound.play(2);
 			Timer timer = new Timer();
 			final int nPlayer = pPlayer;
 			timer.schedule(new TimerTask() {
