@@ -23,11 +23,6 @@ public class Player extends Element{
 		this.bombBag = 1;
 		this.bombSize = 1;
 	}
-		
-		// Méthodes de l'interface IPlayer à redéfinir
-	public void command() {
-		
-	}
 
 	public String getName() {
 		return name;
