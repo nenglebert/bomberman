@@ -16,7 +16,7 @@ public class BombExplosion  implements IExplosion {
 		Fire fireCenter = new Fire(explosionCentre,posx,posy, board);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
-		
+		int boardSize = board.getBoardSize();
 		// Variables de condition pour que les flammes n'apparaissent pas si la première 
 		// case est un objet qui a explosé
 		int pass1 = 1;
@@ -29,7 +29,7 @@ public class BombExplosion  implements IExplosion {
 			board.setElemInBoard(posx,posy,fireCenter);
 		// Pour que les cases disparaissent
 			for (int i=1; i<=bombSize; i++){
-				if ((posx+i) <= board.getBoardSize() && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
+				if ((posx+i) <= boardSize && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
 					Element currentElem1 = board.getElemInBoard(posx+i,posy);
 					board.setElemInBoard(posx+i,posy,new Fire(explosionHor,posx+i,posy,board));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
@@ -40,7 +40,7 @@ public class BombExplosion  implements IExplosion {
 					}
 				}
 				
-				else if ((posx+i) <= board.getBoardSize() && board.getElemInBoard(posx+i,posy) instanceof Bedrock) 
+				else if ((posx+i) <= boardSize && board.getElemInBoard(posx+i,posy) instanceof Bedrock) 
 				pass1 =0;
 				
 				if (0 <= (posx-i) && !(board.getElemInBoard(posx-i,posy) instanceof Bedrock) && pass2 == 1){
@@ -57,7 +57,7 @@ public class BombExplosion  implements IExplosion {
 				else if (0 <= (posx-i) && board.getElemInBoard(posx-i,posy) instanceof Bedrock) 
 					pass2 =0;
 				
-				if ((posy+i) <= board.getBoardSize() && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
+				if ((posy+i) <= boardSize && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
 					Element currentElem1 = board.getElemInBoard(posx,posy+i);
 					board.setElemInBoard(posx,posy+i,new Fire(explosionVert,posx,posy+i,board));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
@@ -68,7 +68,7 @@ public class BombExplosion  implements IExplosion {
 					}
 				}
 				
-				else if ((posy+i) <= board.getBoardSize() && board.getElemInBoard(posx,posy+i) instanceof Bedrock) 
+				else if ((posy+i) <= boardSize && board.getElemInBoard(posx,posy+i) instanceof Bedrock) 
 					pass3 =0;
 				
 				if (0 <= (posy-i) && !(board.getElemInBoard(posx,posy-i) instanceof Bedrock) && pass4 == 1){

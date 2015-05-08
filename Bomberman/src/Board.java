@@ -37,7 +37,7 @@ public class Board {
 		this.gameWindow = gameWindow;
 		this.panel = panel;
 		this.boardSize = panel.getBoardSize();
-		elementTable = new Element[panel.getBoardSize()+1][panel.getBoardSize()+1];
+		elementTable = new Element[boardSize+1][boardSize+1];
 			// On récupère les personages 
 		this.playerList = playerList;
 		this.playerNumber = playerList.length;
@@ -66,14 +66,14 @@ public class Board {
 		}
 			
 			//Place les cases libres
-		elementTable[0][0]  = elementTable[0][1]   = elementTable[1][0]   = elementTable[0][panel.getBoardSize()-1]  = 
-		elementTable[0][panel.getBoardSize()] = elementTable[1][panel.getBoardSize()]  = elementTable[panel.getBoardSize()-1][0]  = elementTable[panel.getBoardSize()][0]  = 
-		elementTable[panel.getBoardSize()][1] = elementTable[panel.getBoardSize()][panel.getBoardSize()-1] = elementTable[panel.getBoardSize()][panel.getBoardSize()] = elementTable[panel.getBoardSize()-1][panel.getBoardSize()] =
+		elementTable[0][0]  = elementTable[0][1]   = elementTable[1][0]   = elementTable[0][boardSize-1]  = 
+		elementTable[0][boardSize] = elementTable[1][boardSize]  = elementTable[boardSize-1][0]  = elementTable[boardSize][0]  = 
+		elementTable[boardSize][1] = elementTable[boardSize][boardSize-1] = elementTable[boardSize][boardSize] = elementTable[boardSize-1][boardSize] =
 		null;
 		
 			//Place les joueurs
-		int[] posxList = {0,panel.getBoardSize(),panel.getBoardSize(),0};
-		int[] posyList = {0,panel.getBoardSize(),0,panel.getBoardSize()};
+		int[] posxList = {0,boardSize,boardSize,0};
+		int[] posyList = {0,boardSize,0,boardSize};
 		
 		for (int i=0; i< playerNumber; i++){
 			elementTable[posxList[i]][posyList[i]] = playerList[i];
