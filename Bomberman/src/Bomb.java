@@ -11,6 +11,7 @@ public class Bomb extends Element {
 		this.explosion = new BombExplosion(); 	// L'explosion selon Bomb
 		this.posx = posx;
 		this.posy = posy;	
+		this.player = pPlayer;
 		// La bombe explosera dans une seconde grâce au timer
 		
 		Timer timer = new Timer();
@@ -18,9 +19,7 @@ public class Bomb extends Element {
 			public void run() {
 				if (canIExplose){
 					ImExploding();
-				applyExplose(board, pPlayer);
-				if (pPlayer.getPosx() == posx && pPlayer.getPosy() == posy)
-					pPlayer.applyExplose(board, pPlayer);
+				applyExplose(board);
 				}
 				pPlayer.setBombBag(pPlayer.getBombBag()+1);
 				for (int i=0; i<board.getPlayerNumber();i++){

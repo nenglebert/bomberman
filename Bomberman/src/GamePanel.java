@@ -61,7 +61,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	
 	// Liste déroulante
 	private String[] boardSizes = {"11x11","13x13","15x15","17x17"};
-	private JComboBox boardSizeList = new JComboBox(boardSizes);
+	private JComboBox<String> boardSizeList = new JComboBox<String>(boardSizes);
 	
 	//Affichage du menu
 	private int begin = 0;	// Indique qu'il faut afficher le menu
@@ -239,7 +239,7 @@ public class GamePanel extends JPanel implements KeyListener{
 				  public void run() {	
 					  for (int i=0; i<playerList.length; i++){
 							if (playerList[i] != playerList[nPlayer] && playerList[i].getLife()>0)
-								playerList[i].applyExplose(board, playerList[i]);
+								playerList[i].applyExplose(board);
 						}
 					 }
 				  }, 4000);

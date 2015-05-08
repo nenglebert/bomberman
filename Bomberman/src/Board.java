@@ -41,7 +41,6 @@ public class Board {
 			// On récupère les personages 
 		this.playerList = playerList;
 		this.playerNumber = playerList.length;
-		System.out.println(elementTable.length);
 		
 			//Placement des blocs incassables
 		for (int x=1; x < elementTable.length; x+=2){

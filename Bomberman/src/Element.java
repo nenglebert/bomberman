@@ -12,12 +12,13 @@ public class Element {
 	protected IExplosion explosion;
 	protected int posx;
 	protected int posy;
+	protected Player player;
 		
 		// Méthode qui permet d'appeler la méthode explose 
 		// des attributs explosion des sous-classes
-	public void applyExplose(Board board, Player player){
+	public void applyExplose(Board board){
 		try {
-			explosion.explose(this.posx, this.posy, board, player);
+			explosion.explose(this.posx, this.posy, board, this.player);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

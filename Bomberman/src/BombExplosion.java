@@ -13,7 +13,7 @@ public class BombExplosion  implements IExplosion {
 		Image explosionHor = board.getFireSkin(2);
 		Image explosionVert = board.getFireSkin(1);
 		board.getBombSound().play();
-		Fire fireCenter = new Fire(explosionCentre,posx,posy, board, player);
+		Fire fireCenter = new Fire(explosionCentre,posx,posy, board);
 		Timer timer = new Timer();
 		int bombSize = player.getBombSize();
 		
@@ -31,12 +31,12 @@ public class BombExplosion  implements IExplosion {
 			for (int i=1; i<=bombSize; i++){
 				if ((posx+i) <= board.getBoardSize() && !(board.getElemInBoard(posx+i,posy) instanceof Bedrock) && pass1 == 1){
 					Element currentElem1 = board.getElemInBoard(posx+i,posy);
-					board.setElemInBoard(posx+i,posy,new Fire(explosionHor,posx+i,posy,board, player));
+					board.setElemInBoard(posx+i,posy,new Fire(explosionHor,posx+i,posy,board));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass1 = 0;
 						if (currentElem1 instanceof Bomb)
 							((Bomb)currentElem1).ImExploding();
-						currentElem1.applyExplose(board, player);
+						currentElem1.applyExplose(board);
 					}
 				}
 				
@@ -45,12 +45,12 @@ public class BombExplosion  implements IExplosion {
 				
 				if (0 <= (posx-i) && !(board.getElemInBoard(posx-i,posy) instanceof Bedrock) && pass2 == 1){
 					Element currentElem1 = board.getElemInBoard(posx-i,posy);
-					board.setElemInBoard(posx-i,posy,new Fire(explosionHor,posx-i,posy,board, player));
+					board.setElemInBoard(posx-i,posy,new Fire(explosionHor,posx-i,posy,board));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass2 = 0;
 						if (currentElem1 instanceof Bomb)
 							((Bomb)currentElem1).ImExploding();
-						currentElem1.applyExplose(board, player);
+						currentElem1.applyExplose(board);
 					}
 				}
 				
@@ -59,12 +59,12 @@ public class BombExplosion  implements IExplosion {
 				
 				if ((posy+i) <= board.getBoardSize() && !(board.getElemInBoard(posx,posy+i) instanceof Bedrock) && pass3 == 1){
 					Element currentElem1 = board.getElemInBoard(posx,posy+i);
-					board.setElemInBoard(posx,posy+i,new Fire(explosionVert,posx,posy+i,board, player));
+					board.setElemInBoard(posx,posy+i,new Fire(explosionVert,posx,posy+i,board));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass3 = 0;
 						if (currentElem1 instanceof Bomb)
 							((Bomb)currentElem1).ImExploding();
-						currentElem1.applyExplose(board, player);
+						currentElem1.applyExplose(board);
 					}
 				}
 				
@@ -73,18 +73,20 @@ public class BombExplosion  implements IExplosion {
 				
 				if (0 <= (posy-i) && !(board.getElemInBoard(posx,posy-i) instanceof Bedrock) && pass4 == 1){
 					Element currentElem1 = board.getElemInBoard(posx,posy-i);
-					board.setElemInBoard(posx,posy-i,new Fire(explosionVert,posx,posy-i,board, player));
+					board.setElemInBoard(posx,posy-i,new Fire(explosionVert,posx,posy-i,board));
 					if (currentElem1 != null && !(currentElem1 instanceof Fire)){
 						pass4 = 0;
 						if (currentElem1 instanceof Bomb)
 							((Bomb)currentElem1).ImExploding();
-						currentElem1.applyExplose(board, player);
+						currentElem1.applyExplose(board);
 					}	
 				}
 				
 				else if (0 <= (posy-i) && board.getElemInBoard(posx,posy-i) instanceof Bedrock) 
 					pass4 =0;
 			}
+			if (player.getPosx() == posx && player.getPosy() == posy)
+				player.applyExplose(board);
 				board.getPanel().update();
 				timer.schedule(new TimerTask() {
 					  public void run() {	

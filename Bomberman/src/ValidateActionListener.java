@@ -11,9 +11,9 @@ public class ValidateActionListener implements ActionListener{
 	private GamePanel panel;
 	private int playerNumber;
 	private ArrayList<JTextField> nameFields;
-	private JComboBox boardSizeList;
+	private JComboBox<String> boardSizeList;
 	
-	public ValidateActionListener(GamePanel panel, ArrayList<JTextField> nameFields, int playerNumber, JComboBox boardSizeList){
+	public ValidateActionListener(GamePanel panel, ArrayList<JTextField> nameFields, int playerNumber, JComboBox<String> boardSizeList){
 		this.panel = panel;
 		this.playerNumber = playerNumber;
 		this.nameFields = nameFields;
@@ -28,7 +28,6 @@ public class ValidateActionListener implements ActionListener{
 		
 		// Récupération de la taille du plateau et introduction dans le gamePanel
 		String boardSize = (String) boardSizeList.getSelectedItem();
-		System.out.println(boardSize);
 		if (boardSize == "11x11")
 			panel.setBoardSize(10);
 		
