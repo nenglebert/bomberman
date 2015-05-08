@@ -443,7 +443,7 @@ public class GamePanel extends JPanel implements KeyListener{
 									elementTable[x][y].getPosy()*40, this);
 
 						 }catch (NullPointerException e){
-							 e.printStackTrace();
+							 System.out.println("Someone suddenly disappeared");
 						 }
 					 }
 				 }
@@ -472,7 +472,7 @@ public class GamePanel extends JPanel implements KeyListener{
 						 			g.drawImage(img1, newElementTable[x][y].getPosx()*40,
 						 					newElementTable[x][y].getPosy()*40, this);
 						 		}catch (NullPointerException e){
-						 			e.printStackTrace();
+						 			System.out.println("Someone suddenly disappeared");
 						 		}							 
 						 }
 					 }
@@ -484,7 +484,7 @@ public class GamePanel extends JPanel implements KeyListener{
 					 			g.drawImage(whiteSquare, x*40, y*40, this);
 					 		}
 					 		catch (NullPointerException e){
-					 			e.printStackTrace();
+					 			System.out.println("Someone suddenly disappeared");
 					 		}						 
 					 }
 				}
