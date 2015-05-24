@@ -5,7 +5,7 @@ import java.io.IOException;
 	// Classe abstraite dont hérite tous les éléments du plateau
 
 
-public class Element {
+public abstract class Element {
 	
 		// Initialisation des attributs communs à tous les éléments
 	protected Image skin;
